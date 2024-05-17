@@ -230,7 +230,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         String avdelning = jTFAvdelning.getText();
         boolean arAdmin = jRBAdmin.isSelected();
         boolean arHandlaggare = jRBHandlaggare.isSelected();
-        
+        //Hej
         int newAid = 1;
 
         try{

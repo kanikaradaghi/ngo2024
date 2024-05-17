@@ -11,7 +11,7 @@ import oru.inf.InfException;
  */
 public class AnstallBakgrund {
     private static  InfDB idb;
-    
+//    HEJTEST
 public  AnstallBakgrund(InfDB idb){
     this.idb = idb;
 }

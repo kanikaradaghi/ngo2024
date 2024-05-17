@@ -178,3 +178,4 @@ public class AdminMeny extends javax.swing.JFrame {
     private javax.swing.JLabel txtAdminMeny;
     // End of variables declaration//GEN-END:variables
 }
+//HEHEJH

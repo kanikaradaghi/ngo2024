@@ -28,9 +28,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton3" max="32767" attributes="0"/>
-                          <Component id="jButton2" max="32767" attributes="0"/>
-                          <Component id="jButton1" max="32767" attributes="0"/>
+                          <Component id="JbtnHanteraProjekt" max="32767" attributes="0"/>
+                          <Component id="JbtnLand" max="32767" attributes="0"/>
+                          <Component id="JbtnPartner" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -39,7 +39,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                      <Component id="jLVemInlogg" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLVemInlogg" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="151" max="32767" attributes="0"/>
@@ -54,11 +54,11 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLVemInlogg" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="23" max="32767" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+              <Component id="JbtnHanteraProjekt" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="JbtnPartner" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="JbtnLand" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -73,7 +73,7 @@
         <Property name="text" type="java.lang.String" value="Projekt "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="JbtnPartner">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
@@ -81,10 +81,10 @@
         <Property name="text" type="java.lang.String" value="Partner"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnPartnerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="JbtnLand">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
@@ -92,10 +92,10 @@
         <Property name="text" type="java.lang.String" value="Land"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnLandActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="JbtnHanteraProjekt">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
@@ -103,7 +103,7 @@
         <Property name="text" type="java.lang.String" value="Hantera projekt"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnHanteraProjektActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLVemInlogg">

@@ -5,6 +5,7 @@
 package ngo2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import ngo2024.AdminProjektHantera;
 
 /**
  *
@@ -19,7 +20,8 @@ public class AdminProjekt extends javax.swing.JFrame {
      * Creates new form AdminProjekt
      */
     public AdminProjekt(InfDB idb, String InloggadAnvandare) {
-         this.idb = idb;
+        this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
         jLVemInlogg.setText(InloggadAnvandare);
     }
@@ -34,9 +36,9 @@ public class AdminProjekt extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        JbtnPartner = new javax.swing.JButton();
+        JbtnLand = new javax.swing.JButton();
+        JbtnHanteraProjekt = new javax.swing.JButton();
         jLVemInlogg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,27 +46,27 @@ public class AdminProjekt extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Projekt ");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Partner");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        JbtnPartner.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JbtnPartner.setText("Partner");
+        JbtnPartner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                JbtnPartnerActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Land");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JbtnLand.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JbtnLand.setText("Land");
+        JbtnLand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                JbtnLandActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setText("Hantera projekt");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        JbtnHanteraProjekt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JbtnHanteraProjekt.setText("Hantera projekt");
+        JbtnHanteraProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                JbtnHanteraProjektActionPerformed(evt);
             }
         });
 
@@ -79,15 +81,15 @@ public class AdminProjekt extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(JbtnHanteraProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbtnLand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JbtnPartner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(157, 157, 157)
-                        .addComponent(jLVemInlogg)))
+                        .addComponent(jLVemInlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,28 +100,31 @@ public class AdminProjekt extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLVemInlogg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(JbtnHanteraProjekt)
                 .addGap(29, 29, 29)
-                .addComponent(jButton1)
+                .addComponent(JbtnPartner)
                 .addGap(34, 34, 34)
-                .addComponent(jButton2)
+                .addComponent(JbtnLand)
                 .addGap(46, 46, 46))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void JbtnPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnPartnerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_JbtnPartnerActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void JbtnLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnLandActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_JbtnLandActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void JbtnHanteraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnHanteraProjektActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        AdminProjektHantera hanteraProjekt = new AdminProjektHantera(idb, InloggadAnvandare);
+        hanteraProjekt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_JbtnHanteraProjektActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,9 +162,9 @@ public class AdminProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton JbtnHanteraProjekt;
+    private javax.swing.JButton JbtnLand;
+    private javax.swing.JButton JbtnPartner;
     private javax.swing.JLabel jLVemInlogg;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

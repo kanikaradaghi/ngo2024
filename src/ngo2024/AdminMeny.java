@@ -131,7 +131,7 @@ public class AdminMeny extends javax.swing.JFrame {
 
     private void pA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pA1ActionPerformed
        new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
+       this.setVisible(false);
      
     }//GEN-LAST:event_pA1ActionPerformed
 

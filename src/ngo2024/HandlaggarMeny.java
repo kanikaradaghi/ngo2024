@@ -47,7 +47,6 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         lblinloggadAnvandareH = new javax.swing.JLabel();
         hB1 = new javax.swing.JButton();
         hB2 = new javax.swing.JButton();
-        hB3 = new javax.swing.JButton();
         txthandlaggarmeny = new javax.swing.JLabel();
         tfmittAid = new javax.swing.JTextField();
         tfforNamn = new javax.swing.JTextField();
@@ -70,13 +69,14 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         lblAndringMeddelande = new javax.swing.JLabel();
         btnAndraEpost = new javax.swing.JButton();
         tfEpost = new javax.swing.JTextField();
+        btnLoggaUt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblinloggadAnvandareH.setText("Inloggad med");
 
         hB1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        hB1.setText("Projekt");
+        hB1.setText("Mina projekt");
         hB1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hB1ActionPerformed(evt);
@@ -88,14 +88,6 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         hB2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hB2ActionPerformed(evt);
-            }
-        });
-
-        hB3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        hB3.setText("Projektledare");
-        hB3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hB3ActionPerformed(evt);
             }
         });
 
@@ -174,19 +166,22 @@ public class HandlaggarMeny extends javax.swing.JFrame {
 
         tfEpost.setText("jTextField1");
 
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hB2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hB1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hB3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txthandlaggarmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hB2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hB1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -227,7 +222,11 @@ public class HandlaggarMeny extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAndraEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(txthandlaggarmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLoggaUt))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,9 +238,10 @@ public class HandlaggarMeny extends javax.swing.JFrame {
                         .addComponent(hB1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addComponent(hB2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(hB3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLoggaUt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblinloggadAnvandareH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -290,15 +290,21 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB1ActionPerformed
-
+  
+        boolean projektLedare = AnstallBakgrund.isProjektLedare(InloggadAnvandareH);
+        
+           if(projektLedare == false)
+        {
         new Projekt (idb, InloggadAnvandareH).setVisible(true);
-                this.setVisible(false);     
-    }//GEN-LAST:event_hB1ActionPerformed
-
-    private void hB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB3ActionPerformed
-        new Projektledare(idb, InloggadAnvandareH).setVisible(true);   
+                this.setVisible(false); }
+           else{
+               new Projektledare(idb, InloggadAnvandareH).setVisible(true);   
                 this.setVisible(false);
-    }//GEN-LAST:event_hB3ActionPerformed
+               
+           }
+
+       
+    }//GEN-LAST:event_hB1ActionPerformed
 
     private void hB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB2ActionPerformed
         new AvdelningHandlaggare(idb, InloggadAnvandareH).setVisible(true);
@@ -399,6 +405,11 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnAndraEpostActionPerformed
+//knapp för att logga ut till första sidan.
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+         new Inlogg(idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
 
     /**
@@ -440,9 +451,9 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnAndraEpost;
     private javax.swing.JButton btnAndraNamn;
     private javax.swing.JButton btnAndraNmr;
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton hB1;
     private javax.swing.JButton hB2;
-    private javax.swing.JButton hB3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

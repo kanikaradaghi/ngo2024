@@ -235,6 +235,31 @@ public static boolean andraAdress(String nytt,String ePost){
   return andringGjord;
 
    }
+  
+  public static boolean isProjektLedare(String ePost){
+    boolean projektLedare = true;
+    
+    String sqlFraga = "SELECT aid FROM anstalld WHERE epost = '" + ePost + "'";
+    
+   try{
+    String valtId = idb.fetchSingle(sqlFraga);
+    int valtId2 = Integer.parseInt(valtId);
+    String sqlFraga2 = "Select projektchef from projekt where projektchef = " + valtId2;
+    String kontroll = idb.fetchSingle(sqlFraga2);
+    System.out.println("Kontrollen blev: " +kontroll);
+    if(kontroll == null || kontroll.isEmpty()){
+    projektLedare = false;
+    }
+}
+   catch(InfException ex)
+   {
+       System.out.println(ex.getMessage());
+   
+   }
+        return projektLedare; 
+     
+   }
+
 
     
 }

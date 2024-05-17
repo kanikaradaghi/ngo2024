@@ -102,7 +102,7 @@ private String InloggadAnvandareH;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     new ProjektledareProjekt (idb, InloggadAnvandareH).setVisible(true);   
+     new ProjektledareProjekt1 (idb, InloggadAnvandareH).setVisible(true);   
                 this.setVisible(false);  
     }//GEN-LAST:event_jButton2ActionPerformed
 

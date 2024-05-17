@@ -28,8 +28,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jBSlumpaLosen" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jBTaBort" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jBTaBort" alignment="0" pref="120" max="32767" attributes="0"/>
                           <Component id="jBLaggTill" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -57,9 +56,7 @@
               <Component id="jBLaggTill" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jBTaBort" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBSlumpaLosen" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="92" max="32767" attributes="0"/>
+              <EmptySpace pref="133" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,11 +82,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ta bort"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBSlumpaLosen">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Slumpa l&#xf6;senord"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBTaBortActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLVemInlogg">
       <Properties>

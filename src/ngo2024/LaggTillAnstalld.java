@@ -230,12 +230,12 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         String avdelning = jTFAvdelning.getText();
         boolean arAdmin = jRBAdmin.isSelected();
         boolean arHandlaggare = jRBHandlaggare.isSelected();
-        //Hej
+        
         int newAid = 1;
 
         try{
-            String maxAidQuery = "SELECT MAX(aid) FROM anstalld";
-            String maxAidStr = idb.fetchSingle(maxAidQuery);
+            String maxAidSql = "SELECT MAX(aid) FROM anstalld";
+            String maxAidStr = idb.fetchSingle(maxAidSql);
             
             if(maxAidStr != null && !maxAidStr.isEmpty()){
                 newAid = Integer.parseInt(maxAidStr) + 1;
@@ -244,9 +244,19 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         SecureRandom slumpLosenord = new SecureRandom();
         String bokstaverSiffror = "abcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder losenord = new StringBuilder("password");
+        boolean anvand = slumpLosenord.nextBoolean();
+        for (int i = 0; i < 3; i++){
+        if(anvand){
+        losenord.append(bokstaverSiffror.charAt(slumpLosenord.nextInt(26)));
+        }else {
+        losenord.append(bokstaverSiffror.charAt(26 + slumpLosenord.nextInt (10)));
         
-        String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, avdelning) VALUES ("
-                + newAid + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsDatum + "', '" + avdelning + "')";
+        }
+        
+        }
+        
+        String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, avdelning, losenord) VALUES ("
+                + newAid + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsDatum + "', '" + avdelning + "', '" + losenord.toString() + "')";
         
         
         idb.insert(sql);

@@ -36,7 +36,6 @@ public class Anstallda extends javax.swing.JFrame {
         headerAnstallda = new javax.swing.JLabel();
         jBLaggTill = new javax.swing.JButton();
         jBTaBort = new javax.swing.JButton();
-        jBSlumpaLosen = new javax.swing.JButton();
         jLVemInlogg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,8 +51,11 @@ public class Anstallda extends javax.swing.JFrame {
         });
 
         jBTaBort.setText("Ta bort");
-
-        jBSlumpaLosen.setText("Slumpa lösenord");
+        jBTaBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTaBortActionPerformed(evt);
+            }
+        });
 
         jLVemInlogg.setText("jLabel1");
 
@@ -66,8 +68,7 @@ public class Anstallda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBSlumpaLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(jBLaggTill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -88,9 +89,7 @@ public class Anstallda extends javax.swing.JFrame {
                 .addComponent(jBLaggTill)
                 .addGap(18, 18, 18)
                 .addComponent(jBTaBort)
-                .addGap(18, 18, 18)
-                .addComponent(jBSlumpaLosen)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,6 +99,11 @@ public class Anstallda extends javax.swing.JFrame {
       new LaggTillAnstalld(idb, InloggadAnvandare).setVisible(true);
                 this.setVisible(false);
     }//GEN-LAST:event_jBLaggTillActionPerformed
+
+    private void jBTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTaBortActionPerformed
+        new TaBortAnstalld(idb, InloggadAnvandare).setVisible(true);
+                this. setVisible(false);
+    }//GEN-LAST:event_jBTaBortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,7 +143,6 @@ public class Anstallda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headerAnstallda;
     private javax.swing.JButton jBLaggTill;
-    private javax.swing.JButton jBSlumpaLosen;
     private javax.swing.JButton jBTaBort;
     private javax.swing.JLabel jLVemInlogg;
     // End of variables declaration//GEN-END:variables

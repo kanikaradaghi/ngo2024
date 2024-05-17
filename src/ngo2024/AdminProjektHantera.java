@@ -48,6 +48,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         JtxtKostnad = new javax.swing.JTextField();
         JtxtStatus = new javax.swing.JTextField();
         JbtnLäggTillProjekt = new javax.swing.JButton();
+        JlbPrioritet = new javax.swing.JLabel();
+        JtxtPrioritet = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +74,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
             }
         });
 
+        JlbPrioritet.setText("Prioritet:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,6 +84,10 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                 .addGap(154, 154, 154)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JbtnLäggTillProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -88,7 +96,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                     .addComponent(JlbStartdatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JlbSlutdatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JlbKostnad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JlbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JlbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JlbPrioritet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -101,12 +110,9 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(JtxtKostnad)
-                            .addComponent(JtxtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                            .addComponent(JtxtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                            .addComponent(JtxtPrioritet))
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JbtnLäggTillProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,8 +144,12 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                     .addComponent(JtxtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JlbStatus))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JlbPrioritet)
+                    .addComponent(JtxtPrioritet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(JbtnLäggTillProjekt)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -153,6 +163,7 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     String slutdatum = JtxtSlutdatum.getText();
     String kostnad = JtxtKostnad.getText();
     String status = JtxtStatus.getText();
+    String prioritet = JtxtPrioritet.getText();
     
     int newPid = 1;
 
@@ -166,8 +177,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
     
         // Lägg till projekt i databasen
-        String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status) VALUES (" + newPid + ", '" +
-            projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "')";
+        String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet) VALUES (" + newPid + ", '" +
+            projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "')";
         
         idb.insert(sql);
         
@@ -181,6 +192,7 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         JtxtSlutdatum.setText("");
         JtxtKostnad.setText("");
         JtxtStatus.setText("");
+        JtxtPrioritet.setText("");
 
     } catch (InfException e) {
           JOptionPane.showMessageDialog(this, "Ett fel uppstod: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
@@ -228,12 +240,14 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     private javax.swing.JButton JbtnLäggTillProjekt;
     private javax.swing.JLabel JlbBeskrivning;
     private javax.swing.JLabel JlbKostnad;
+    private javax.swing.JLabel JlbPrioritet;
     private javax.swing.JLabel JlbProjektnamn;
     private javax.swing.JLabel JlbSlutdatum;
     private javax.swing.JLabel JlbStartdatum;
     private javax.swing.JLabel JlbStatus;
     private javax.swing.JTextField JtxtBeskrivning;
     private javax.swing.JTextField JtxtKostnad;
+    private javax.swing.JTextField JtxtPrioritet;
     private javax.swing.JTextField JtxtProjektnamn;
     private javax.swing.JTextField JtxtSlutdatum;
     private javax.swing.JTextField JtxtStartdatum;

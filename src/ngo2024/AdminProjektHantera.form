@@ -28,6 +28,11 @@
               <Component id="jLabel1" min="-2" pref="94" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="JbtnLäggTillProjekt" min="-2" pref="115" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -37,6 +42,7 @@
                   <Component id="JlbSlutdatum" alignment="0" max="32767" attributes="0"/>
                   <Component id="JlbKostnad" alignment="0" max="32767" attributes="0"/>
                   <Component id="JlbStatus" alignment="0" max="32767" attributes="0"/>
+                  <Component id="JlbPrioritet" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="87" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -53,15 +59,11 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="JtxtKostnad" max="32767" attributes="0"/>
                           <Component id="JtxtStatus" pref="106" max="32767" attributes="0"/>
+                          <Component id="JtxtPrioritet" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="JbtnLäggTillProjekt" min="-2" pref="115" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,8 +103,13 @@
                   <Component id="JlbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JlbPrioritet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JtxtPrioritet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="JbtnLäggTillProjekt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -162,6 +169,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnL&#xe4;ggTillProjektActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JlbPrioritet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Prioritet:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="JtxtPrioritet">
     </Component>
   </SubComponents>
 </Form>

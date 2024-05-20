@@ -313,10 +313,89 @@ public class ProjektBakgrund {
       
   }
    
-  
-  
-  
-  
-  
-  
+   // Nu kommer lite kod för att hämta avdelningar och projekt releaterade till dem.
+   
+   public static String getAvdelning(String ePost){
+    String sqlFraga1 = "SELECT avdelning FROM anstalld WHERE epost = '" + ePost + "'";
+    
+    String avdelningsInfo;
+    try{
+        String avdelning = idb.fetchSingle(sqlFraga1);
+        
+        avdelningsInfo = avdelning;
+    }
+    catch(InfException ex){
+        System.out.println(ex.getMessage());
+        avdelningsInfo = "Kunde inte hämtas";
+         }
+    
+    return avdelningsInfo;
 }
+   public static ArrayList getProjektListaAvdelning(String avdelning){
+      ArrayList<String> namnLista = new ArrayList<>();
+      String sqlFraga = "select projekt.projektnamn from projekt, proj_hallbarhet, avd_hallbarhet, avdelning, hallbarhetsmal " +
+        "where projekt.pid = proj_hallbarhet.pid " +
+         "and proj_hallbarhet.hid = hallbarhetsmal.hid "+
+        "and hallbarhetsmal.hid = avd_hallbarhet.hid " +
+         "and avd_hallbarhet.avdid = avdelning.avdid " +
+         "and avdelning.avdid = '"+ avdelning + "' "+
+         "group by projekt.projektnamn";
+      
+      
+      try{
+          namnLista = idb.fetchColumn(sqlFraga);
+          System.out.println(namnLista);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return namnLista;
+   }
+   //Metod för att lisa all personal på en avdelning
+   public static ArrayList getPersonalForNamnPåAvdelning(String avdelning){
+        ArrayList<String> forNamnAvdelning = new ArrayList<>();
+      String sqlFraga = "select anstalld.fornamn from anstalld " +
+                       "where anstalld.avdelning = '" + avdelning + "'";
+        
+      try{
+          forNamnAvdelning = idb.fetchColumn(sqlFraga);
+          System.out.println(forNamnAvdelning);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return forNamnAvdelning;
+   }
+   //Metod för att hämta namn på alla hållbarhetsmål
+   public static ArrayList getHallbarHetsMal(){
+      ArrayList<String> mal = new ArrayList<>();
+      String sqlFraga = "select namn from hallbarhetsmal";
+
+      
+      try{
+          mal = idb.fetchColumn(sqlFraga);
+          System.out.println(mal);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return mal;
+   }
+   
+   
+   
+       
+   }
+  
+  
+  
+  
+  
+  
+

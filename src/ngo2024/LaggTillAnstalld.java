@@ -21,8 +21,9 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
      */
     public LaggTillAnstalld(InfDB idb, String InloggadAnvandare) {
         this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
-        jLVemInloggad.setText(InloggadAnvandare);
+        jLVemInlogg.setText(InloggadAnvandare);
     }
 
     /**
@@ -52,7 +53,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         jTFAvdelning = new javax.swing.JTextField();
         jBLaggTill = new javax.swing.JButton();
         jBAvbryt = new javax.swing.JButton();
-        jLVemInloggad = new javax.swing.JLabel();
+        jLVemInlogg = new javax.swing.JLabel();
         jRBHandlaggare = new javax.swing.JRadioButton();
         jRBAdmin = new javax.swing.JRadioButton();
 
@@ -101,7 +102,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
             }
         });
 
-        jLVemInloggad.setText("jLabel1");
+        jLVemInlogg.setText("jLabel1");
 
         buttonGroup2.add(jRBHandlaggare);
         jRBHandlaggare.setText("Handläggare");
@@ -137,7 +138,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                         .addComponent(jTFFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addComponent(jLVemInloggad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLVemInlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLAnstallningsDatum)
@@ -177,7 +178,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLLaggTillAnstalld)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLVemInloggad)
+                .addComponent(jLVemInlogg)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLFornamn)
@@ -352,7 +353,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
     private javax.swing.JLabel jLFornamn;
     private javax.swing.JLabel jLLaggTillAnstalld;
     private javax.swing.JLabel jLTelefon;
-    private javax.swing.JLabel jLVemInloggad;
+    private javax.swing.JLabel jLVemInlogg;
     private javax.swing.JRadioButton jRBAdmin;
     private javax.swing.JRadioButton jRBHandlaggare;
     private javax.swing.JTextField jTFAdress;

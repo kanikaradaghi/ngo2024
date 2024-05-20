@@ -20,6 +20,7 @@ public class Anstallda extends javax.swing.JFrame {
      */
     public Anstallda(InfDB idb, String InloggadAnvandare) {
         this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
         jLVemInlogg.setText(InloggadAnvandare);
     }

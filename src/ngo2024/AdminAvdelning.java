@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -19,6 +21,7 @@ public class AdminAvdelning extends javax.swing.JFrame {
      */
     public AdminAvdelning(InfDB idb, String InloggadAnvandare) {
         this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
         jLVemInlogg.setText(InloggadAnvandare);
     }
@@ -49,6 +52,11 @@ public class AdminAvdelning extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setText("Ändra uppgifter");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Avdelning");
@@ -94,6 +102,11 @@ public class AdminAvdelning extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      new AndraUppgifterAvdelning(idb, InloggadAnvandare).setVisible(true);
+                this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -14,6 +14,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadAnvandareH;
     private AnstallBakgrund anstalldInfo;
+    private ProjektBakgrund projektInfo;
 
 
     /**
@@ -23,6 +24,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         this.idb = idb;
         this.InloggadAnvandareH = InloggadAnvandareH;
         anstalldInfo = new AnstallBakgrund(idb);
+        projektInfo = new ProjektBakgrund(idb);
         initComponents();
         lblAndringMeddelande.setVisible(false);
         tfmittAid.setText(AnstallBakgrund.getAId(InloggadAnvandareH));

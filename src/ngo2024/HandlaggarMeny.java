@@ -18,7 +18,8 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private AnstallBakgrund anstalldInfo;
     private ProjektBakgrund projektInfo;
     private DefaultListModel<String> listModel;
-     private ArrayList<String> namnPaMal;
+    private ArrayList<String> namnPaMal;
+    private boolean projektLedare;
 
 
     /**
@@ -40,11 +41,16 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         tfTelefonNmr.setText(AnstallBakgrund.getTelefon(InloggadAnvandareH));
         tfAnstallningsDatum.setText(AnstallBakgrund.getAnstallningsDatum(InloggadAnvandareH));
         tfAvdelning.setText(AnstallBakgrund.getAvdelning(InloggadAnvandareH));
+        projektLedare = AnstallBakgrund.isProjektLedare(InloggadAnvandareH);
         tfEpost.setText(InloggadAnvandareH);
-        listaHallbarhet.setModel(listModel);
+        btnProjektLedarKnapp.setVisible(false);
+        jList1.setModel(listModel);
         for(String mal: namnPaMal){
             listModel.addElement(mal);
         }
+        if(projektLedare){
+            btnProjektLedarKnapp.setVisible(true);
+                    }
     }
 
     /**
@@ -83,8 +89,9 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         tfEpost = new javax.swing.JTextField();
         btnLoggaUt = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaHallbarhet = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
+        btnProjektLedarKnapp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,14 +195,21 @@ public class HandlaggarMeny extends javax.swing.JFrame {
             }
         });
 
-        listaHallbarhet.setModel(new javax.swing.AbstractListModel<String>() {
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listaHallbarhet);
+        jScrollPane1.setViewportView(jList1);
 
         jLabel1.setText("Hållbarhetsmål");
+
+        btnProjektLedarKnapp.setText("Projektchef meny");
+        btnProjektLedarKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProjektLedarKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,9 +217,10 @@ public class HandlaggarMeny extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hB2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hB1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(hB2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(hB1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(btnProjektLedarKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -267,7 +282,9 @@ public class HandlaggarMeny extends javax.swing.JFrame {
                         .addComponent(hB1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hB2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnProjektLedarKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnLoggaUt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -326,18 +343,12 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB1ActionPerformed
-  
-        boolean projektLedare = AnstallBakgrund.isProjektLedare(InloggadAnvandareH);
-        
-           if(projektLedare == false)
-        {
+
         new Projekt (idb, InloggadAnvandareH).setVisible(true);
-                this.setVisible(false); }
-           else{
-               new Projektledare(idb, InloggadAnvandareH).setVisible(true);   
-                this.setVisible(false);
-               
-           }
+                this.setVisible(false); 
+        
+              
+           
 
        
     }//GEN-LAST:event_hB1ActionPerformed
@@ -447,6 +458,11 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
+    private void btnProjektLedarKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektLedarKnappActionPerformed
+       new Projektledare(idb, InloggadAnvandareH).setVisible(true);   
+                this.setVisible(false);
+    }//GEN-LAST:event_btnProjektLedarKnappActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -488,6 +504,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private javax.swing.JButton btnAndraNamn;
     private javax.swing.JButton btnAndraNmr;
     private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton btnProjektLedarKnapp;
     private javax.swing.JButton hB1;
     private javax.swing.JButton hB2;
     private javax.swing.JLabel jLabel1;
@@ -498,10 +515,10 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAndringMeddelande;
     private javax.swing.JLabel lblinloggadAnvandareH;
-    private javax.swing.JList<String> listaHallbarhet;
     private javax.swing.JTextField tfAdress;
     private javax.swing.JTextField tfAnstallningsDatum;
     private javax.swing.JTextField tfAvdelning;

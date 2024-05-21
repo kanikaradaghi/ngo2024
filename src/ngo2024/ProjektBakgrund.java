@@ -387,11 +387,242 @@ public class ProjektBakgrund {
       }
       return mal;
    }
+   public static ArrayList getProjektNamnForLedarel(String aid){
+      ArrayList<String> namn = new ArrayList<>();
+      String sqlFraga = "select projektnamn from projekt where projektchef = '" + aid +"'";
+
+      
+      try{
+          namn = idb.fetchColumn(sqlFraga);
+          System.out.println(namn);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return namn;
+   }
+   
+   // Kodför att ändra i projekt
+   public static void andraPid(String nyttPid,String projektNamn){
+    
+   String sqlFraga = "update  projekt set projekt.pid = '" + nyttPid + "' where projektnamn = '" + projektNamn + "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+   }
+   
+   public static void andraProjektNamn(String pid,String nyttprojektNamn){
+    
+   String sqlFraga = "update  projekt set projektnamn = '" + nyttprojektNamn + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+   }
+    public static void andraBeskrivning(String pid,String nyBeskrivning){
+    
+   String sqlFraga = "update  projekt set beskrivning = '" + nyBeskrivning + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+    
+     public static void andraStartDatum(String pid,String nyStartDatum){
+    
+   String sqlFraga = "update  projekt set startdatum = '" + nyStartDatum + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+     
+     public static void andraSlutDatum(String pid,String nySlutDatum){
+    
+   String sqlFraga = "update  projekt set slutdatum = '" + nySlutDatum + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+     public static void andraKostand(String pid,String nyKostand){
+    
+   String sqlFraga = "update  projekt set kostnad = '" + nyKostand + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+   public static void andraStatus(String pid,String nyStatus){
+    
+   String sqlFraga = "update  projekt set status = '" + nyStatus + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+   public static void andraPrio(String pid,String nyPrio){
+    
+   String sqlFraga = "update  projekt set prioritet = '" + nyPrio + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+   public static void andraChef(String pid,String nyAid){
+    
+   String sqlFraga = "update  projekt set projektchef = '" + nyAid + "' where projekt.pid = '" + pid +  "'";
+   
+   try{
+        idb.update(sqlFraga);
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+   }
+   // Metod för att hämta en arraylist med strängar av alla partners
+   
+   public static ArrayList getAllaPartnersNamn(){
+      ArrayList<String> namn = new ArrayList<>();
+      String sqlFraga = "select partner.namn from partner";
+
+      
+      try{
+          namn = idb.fetchColumn(sqlFraga);
+          System.out.println(namn);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return namn;
+   }
+   // Metod för att för att ista alla id i partner tabbellen
+   public static ArrayList getAllaPartnerId(){
+      ArrayList<String> pid = new ArrayList<>();
+      String sqlFraga = "select partner.pid from partner";
+
+      
+      try{
+          pid = idb.fetchColumn(sqlFraga);
+          System.out.println(pid);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return pid;
+      
+   }
+   // metod för att lägga till en partner på ett projekt
+   
+   public static void laggTillPartner(String pid,String partnerId){
+    
+   String sqlFraga = "INSERT INTO projekt_partner (pid, partner_pid) " +
+                        "VALUES ('" + pid + "','" + partnerId + "')";
+   
+   
+   try{
+        idb.insert(sqlFraga);
+        
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+   
+   // Tar bort en partner från ett projekt.
+   public static void taBortPartner(String pid,String partnerId){
+    
+   String sqlFraga = "DELETE FROM projekt_partner WHERE pid = '" + pid + "' AND partner_pid = '" + partnerId + "'";
+   
+   
+   try{
+        idb.delete(sqlFraga);
+        
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+   
+   
+   // Metod för att lista alla handläggare på ett projekt
+   
+   public static ArrayList getAllaHandlaggare(String projektNamn){
+      ArrayList<String> handlaggare = new ArrayList<>();
+      String sqlFraga = "Select anstalld.fornamn from anstalld, ans_proj, projekt " +
+                             "where anstalld.aid = ans_proj.aid " +
+                             "and ans_proj.pid = projekt.pid " +
+                             " and projekt.projektnamn = '" + projektNamn + "'";
+      
+      try{
+          handlaggare = idb.fetchColumn(sqlFraga);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return handlaggare;
+      
+  }
+   
+}
+   
+    
+    
+    
+    
+    
+    
+
+   
    
    
    
        
-   }
+   
   
   
   

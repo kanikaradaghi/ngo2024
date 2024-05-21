@@ -4,6 +4,8 @@
  */
 package ngo2024;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -15,6 +17,8 @@ import javax.swing.JOptionPane;
 public class AdminProjektHantera extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadAnvandare;
+    private ArrayList<Integer> landId;
+    private ArrayList<Integer> projektchefId;
 
     /**
      * Creates new form AdminProjektHantera
@@ -22,7 +26,55 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     public AdminProjektHantera(InfDB idb, String InloggadAnvandare) {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
+        this.landId = new ArrayList<>();
+        this.projektchefId = new ArrayList<>();
         initComponents();
+        fyllLandComboBox();
+        fyllProjektchefComboBox();
+        
+    }
+    
+    private void fyllLandComboBox(){
+    
+    try{
+       String query = "SELECT lid, namn FROM land";
+       ArrayList<HashMap<String, String>> landList = idb.fetchRows(query);
+       
+       if (landList != null){
+       JcbLand.removeAllItems();
+       landId.clear();
+       for (HashMap <String, String> land : landList){
+       JcbLand.addItem(land.get("namn"));
+       landId.add(Integer.parseInt(land.get("id")));
+       
+       }
+     } else {
+       JOptionPane.showMessageDialog(this, "Inga länder hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
+       }
+     } catch (InfException e){
+        JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av länder: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
+     }
+    }
+    
+    private void fyllProjektchefComboBox(){
+    
+    try{
+       String query = "SELECT aid, fornamn FROM anstalld";
+       ArrayList<HashMap<String, String>> anstalldList = idb.fetchRows(query);
+       
+       if (anstalldList != null){
+       JcbProjektchef.removeAllItems();
+       projektchefId.clear();
+       for (HashMap<String, String> anstalld : anstalldList){
+       JcbProjektchef.addItem(anstalld.get("fornamn"));
+       projektchefId.add(Integer.parseInt(anstalld.get("aid")));
+       }
+     } else {
+       JOptionPane.showMessageDialog(this, "Inga projektchefer hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
+       }
+     } catch (InfException e){
+        JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av projektchefer: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
+     }
     }
 
     /**
@@ -50,6 +102,10 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         JbtnLäggTillProjekt = new javax.swing.JButton();
         JlbPrioritet = new javax.swing.JLabel();
         JtxtPrioritet = new javax.swing.JTextField();
+        JlbProjektchef = new javax.swing.JLabel();
+        JlbLand = new javax.swing.JLabel();
+        JcbLand = new javax.swing.JComboBox<>();
+        JcbProjektchef = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +132,14 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
         JlbPrioritet.setText("Prioritet:");
 
+        JlbProjektchef.setText("Projektchef:");
+
+        JlbLand.setText("Land:");
+
+        JcbLand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        JcbProjektchef.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +161,9 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                     .addComponent(JlbSlutdatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JlbKostnad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JlbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JlbPrioritet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JlbPrioritet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JlbProjektchef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JlbLand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -108,10 +174,13 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                             .addComponent(JtxtSlutdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JtxtKostnad)
-                            .addComponent(JtxtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                            .addComponent(JtxtPrioritet))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JtxtKostnad)
+                                .addComponent(JtxtStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                .addComponent(JtxtPrioritet))
+                            .addComponent(JcbLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JcbProjektchef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -147,7 +216,15 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JlbPrioritet)
                     .addComponent(JtxtPrioritet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JlbProjektchef)
+                    .addComponent(JcbProjektchef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JlbLand)
+                    .addComponent(JcbLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JbtnLäggTillProjekt)
                 .addContainerGap())
         );
@@ -165,6 +242,13 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     String status = JtxtStatus.getText();
     String prioritet = JtxtPrioritet.getText();
     
+    int landIndex = JcbLand.getSelectedIndex();
+    int projektchefIndex = JcbProjektchef.getSelectedIndex();
+    
+    int selectedLandId = landId.get(landIndex);
+    int selectedProjektchefId = projektchefId.get(projektchefIndex);
+    
+    
     int newPid = 1;
 
         try{
@@ -177,9 +261,12 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
     
         // Lägg till projekt i databasen
-        String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet) VALUES (" + newPid + ", '" +
-            projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "')";
+        //String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
+            //projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" +)";
         
+         String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" +
+                newPid + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', " + projektchefId + ", " + landId + ")";   
+            
         idb.insert(sql);
         
         JOptionPane.showMessageDialog(this, "Projekt har lagts till.");
@@ -193,6 +280,9 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         JtxtKostnad.setText("");
         JtxtStatus.setText("");
         JtxtPrioritet.setText("");
+        JcbProjektchef.setSelectedIndex(0);
+        JcbLand.setSelectedIndex(0);
+
 
     } catch (InfException e) {
           JOptionPane.showMessageDialog(this, "Ett fel uppstod: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
@@ -238,9 +328,13 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbtnLäggTillProjekt;
+    private javax.swing.JComboBox<String> JcbLand;
+    private javax.swing.JComboBox<String> JcbProjektchef;
     private javax.swing.JLabel JlbBeskrivning;
     private javax.swing.JLabel JlbKostnad;
+    private javax.swing.JLabel JlbLand;
     private javax.swing.JLabel JlbPrioritet;
+    private javax.swing.JLabel JlbProjektchef;
     private javax.swing.JLabel JlbProjektnamn;
     private javax.swing.JLabel JlbSlutdatum;
     private javax.swing.JLabel JlbStartdatum;

@@ -5,7 +5,7 @@
 package ngo2024;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 public class AdminProjektHantera extends javax.swing.JFrame {
     private InfDB idb;
     private String InloggadAnvandare;
-    private ArrayList<Integer> landId;
-    private ArrayList<Integer> projektchefId;
+    //private ArrayList<Integer> landId;
+    //private ArrayList<Integer> projektchefId;
 
     /**
      * Creates new form AdminProjektHantera
@@ -26,8 +26,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     public AdminProjektHantera(InfDB idb, String InloggadAnvandare) {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
-        this.landId = new ArrayList<>();
-        this.projektchefId = new ArrayList<>();
+        //this.landId = new ArrayList<>();
+       // this.projektchefId = new ArrayList<>();
         initComponents();
         fyllLandComboBox();
         fyllProjektchefComboBox();
@@ -37,18 +37,17 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     private void fyllLandComboBox(){
     
     try{
-       String query = "SELECT lid, namn FROM land";
-       ArrayList<HashMap<String, String>> landList = idb.fetchRows(query);
+       String query = "SELECT lid FROM land";
+       ArrayList<String> landList = idb.fetchColumn(query);
        
        if (landList != null){
        JcbLand.removeAllItems();
-       landId.clear();
-       for (HashMap <String, String> land : landList){
-       JcbLand.addItem(land.get("namn"));
-       landId.add(Integer.parseInt(land.get("id")));
+       for ( String land : landList){
+           JcbLand.addItem(land);
+           }
        
-       }
-     } else {
+       } 
+      else {
        JOptionPane.showMessageDialog(this, "Inga länder hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
        }
      } catch (InfException e){
@@ -59,15 +58,13 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     private void fyllProjektchefComboBox(){
     
     try{
-       String query = "SELECT aid, fornamn FROM anstalld";
-       ArrayList<HashMap<String, String>> anstalldList = idb.fetchRows(query);
+       String query = "SELECT aid FROM anstalld";
+       ArrayList<String> anstalldList = idb.fetchColumn(query);
        
        if (anstalldList != null){
        JcbProjektchef.removeAllItems();
-       projektchefId.clear();
-       for (HashMap<String, String> anstalld : anstalldList){
-       JcbProjektchef.addItem(anstalld.get("fornamn"));
-       projektchefId.add(Integer.parseInt(anstalld.get("aid")));
+       for (String anstalld : anstalldList){
+        JcbProjektchef.addItem(anstalld);
        }
      } else {
        JOptionPane.showMessageDialog(this, "Inga projektchefer hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -242,11 +239,11 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     String status = JtxtStatus.getText();
     String prioritet = JtxtPrioritet.getText();
     
-    int landIndex = JcbLand.getSelectedIndex();
-    int projektchefIndex = JcbProjektchef.getSelectedIndex();
+    //int landIndex = JcbLand.getSelectedIndex();
+    //int projektchefIndex = JcbProjektchef.getSelectedIndex();
     
-    int selectedLandId = landId.get(landIndex);
-    int selectedProjektchefId = projektchefId.get(projektchefIndex);
+    //int selectedLandId = landId.get(landIndex);
+    //int selectedProjektchefId = projektchefId.get(projektchefIndex);
     
     
     int newPid = 1;
@@ -260,12 +257,16 @@ public class AdminProjektHantera extends javax.swing.JFrame {
             }
 
     
-        // Lägg till projekt i databasen
+         //Lägg till projekt i databasen
         //String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
-            //projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" +)";
+            //projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" )";
         
-         String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" +
-                newPid + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', " + projektchefId + ", " + landId + ")";   
+            String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
+            projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + JcbProjektchef.getSelectedItem().toString() + "', '" + JcbLand.getSelectedItem().toString() + "')";
+            
+       //String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
+            //projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchef + "', '" + land + "')";
+            //JcbProjektchef.getSelectedItem().toString() + "', '" + JcbLand.getSelectedItem().toString() + "')";
             
         idb.insert(sql);
         
@@ -280,8 +281,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         JtxtKostnad.setText("");
         JtxtStatus.setText("");
         JtxtPrioritet.setText("");
-        JcbProjektchef.setSelectedIndex(0);
-        JcbLand.setSelectedIndex(0);
+        //JcbProjektchef.setSelectedIndex(0);
+        //JcbLand.setSelectedIndex(0);
 
 
     } catch (InfException e) {

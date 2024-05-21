@@ -52,7 +52,10 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
         jTFChefAvdelning = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jCBVäljAvdelning = new javax.swing.JComboBox<>();
+        jCBValjAvdelning = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jLTelefonAvdelning = new javax.swing.JLabel();
+        jTFTelefonAvdelning = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,12 +101,23 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
             }
         });
 
-        jCBVäljAvdelning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCBVäljAvdelning.addActionListener(new java.awt.event.ActionListener() {
+        jCBValjAvdelning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBValjAvdelning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBVäljAvdelningActionPerformed(evt);
+                jCBValjAvdelningActionPerformed(evt);
             }
         });
+
+        jButton3.setText("Tillbaka");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLTelefonAvdelning.setText("Telefon");
+
+        jTFTelefonAvdelning.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,29 +125,28 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(169, 169, 169)
+                                    .addComponent(jLVemInlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(114, 114, 114)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCBValjAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLAndraUppgifter))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(169, 169, 169)
-                                .addComponent(jLVemInlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCBVäljAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLAndraUppgifter))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(20, 20, 20)))
+                                .addContainerGap()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLEpostAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTFEpostAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLBeskrivningAvdelning)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,19 +168,31 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                                     .addComponent(jTFStadAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTFChefAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTFNamnAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTFAvdidAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                                    .addComponent(jTFAvdidAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLTelefonAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTFTelefonAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLEpostAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTFEpostAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLAndraUppgifter)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLAndraUppgifter)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLVemInlogg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCBVäljAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jCBValjAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLAvdid)
                     .addComponent(jTFAvdidAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,15 +212,19 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLEpostAvdelning)
                     .addComponent(jTFEpostAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLTelefonAvdelning)
+                    .addComponent(jTFTelefonAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLStadAvdelning)
                     .addComponent(jTFStadAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLChefAvdelning)
                     .addComponent(jTFChefAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
@@ -206,14 +235,14 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fyllComboBox() {
-        jCBVäljAvdelning.removeAllItems();
+        jCBValjAvdelning.removeAllItems();
     try {
         String query = "SELECT namn FROM avdelning";
         ArrayList<String> avdelningar = idb.fetchColumn(query);
 
         if (avdelningar != null) {
             for (String avdelning : avdelningar) {
-                jCBVäljAvdelning.addItem(avdelning);
+                jCBValjAvdelning.addItem(avdelning);
             }
         } else {
             System.out.println("Inga avdelningar hittades.");
@@ -223,9 +252,9 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
     }
 }
     
-    private void jCBVäljAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBVäljAvdelningActionPerformed
+    private void jCBValjAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjAvdelningActionPerformed
    
-        String valtNamn = (String) jCBVäljAvdelning.getSelectedItem();
+        String valtNamn = (String) jCBValjAvdelning.getSelectedItem();
     if (valtNamn != null) {
         try {
             String query = "SELECT * FROM avdelning WHERE namn = '" + valtNamn + "'";
@@ -237,6 +266,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                 jTFBeskrivningAvdelning.setText(avdelning.get("beskrivning"));
                 jTFAdressAvdelning.setText(avdelning.get("adress"));
                 jTFEpostAvdelning.setText(avdelning.get("epost"));
+                jTFTelefonAvdelning.setText(avdelning.get("telefon"));
                 jTFStadAvdelning.setText(avdelning.get("stad"));
                 jTFChefAvdelning.setText(avdelning.get("chef"));
             } else {
@@ -247,7 +277,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
         }
     }
 
-    }//GEN-LAST:event_jCBVäljAvdelningActionPerformed
+    }//GEN-LAST:event_jCBValjAvdelningActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     
@@ -256,12 +286,13 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
     String beskrivning = jTFBeskrivningAvdelning.getText();
     String adress = jTFAdressAvdelning.getText();
     String epost = jTFEpostAvdelning.getText();
+    String telefon = jTFTelefonAvdelning.getText();
     String stad = jTFStadAvdelning.getText();
     String chef = jTFChefAvdelning.getText();
 
     try {
         // Uppdatera databasen med de nya värdena
-String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '" + beskrivning + "', adress = '" + adress + "', epost = '" + epost + "', stad = '" + stad + "', chef = NULL WHERE avdid = '" + avdid + "'";
+String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '" + beskrivning + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', stad = '" + stad + "', chef = NULL WHERE avdid = '" + avdid + "'";
         idb.update(sqlAndring);
         
         // Visa en bekräftelse att ändringarna har genomförts
@@ -274,6 +305,11 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
   
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      new AdminMeny(idb, InloggadAnvandare).setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,7 +349,8 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jCBVäljAvdelning;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jCBValjAvdelning;
     private javax.swing.JLabel jLAdressAvdelning;
     private javax.swing.JLabel jLAndraUppgifter;
     private javax.swing.JLabel jLAvdid;
@@ -322,6 +359,7 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
     private javax.swing.JLabel jLEpostAvdelning;
     private javax.swing.JLabel jLNamnAvdelning;
     private javax.swing.JLabel jLStadAvdelning;
+    private javax.swing.JLabel jLTelefonAvdelning;
     private javax.swing.JLabel jLVemInlogg;
     private javax.swing.JTextField jTFAdressAvdelning;
     private javax.swing.JTextField jTFAvdidAvdelning;
@@ -330,5 +368,6 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
     private javax.swing.JTextField jTFEpostAvdelning;
     private javax.swing.JTextField jTFNamnAvdelning;
     private javax.swing.JTextField jTFStadAvdelning;
+    private javax.swing.JTextField jTFTelefonAvdelning;
     // End of variables declaration//GEN-END:variables
 }

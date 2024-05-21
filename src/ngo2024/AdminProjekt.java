@@ -116,7 +116,8 @@ public class AdminProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_JbtnPartnerActionPerformed
 
     private void JbtnLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnLandActionPerformed
-        // TODO add your handling code here:
+        new AdminLand(idb, InloggadAnvandare).setVisible(true);
+                this.setVisible(false);
     }//GEN-LAST:event_JbtnLandActionPerformed
 
     private void JbtnHanteraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnHanteraProjektActionPerformed

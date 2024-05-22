@@ -121,14 +121,14 @@ public class AdminAndraPartner extends javax.swing.JFrame {
             }
         });
 
-        jBAndraPartner.setText("jButton2");
+        jBAndraPartner.setText("Ändra");
         jBAndraPartner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAndraPartnerActionPerformed(evt);
             }
         });
 
-        jLPid.setText("jLabel2");
+        jLPid.setText("Pid");
 
         jTFPid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,13 +183,15 @@ public class AdminAndraPartner extends javax.swing.JFrame {
                                                 .addComponent(jBAndraPartner)
                                                 .addGap(6, 6, 6))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLPartner)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLPartner)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(8, 8, 8)
+                                                .addComponent(jLPid)))
                                         .addGap(42, 42, 42)
-                                        .addComponent(jTFPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLPid)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(jTFPid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTFPid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTFPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -277,7 +279,29 @@ private void fyllComboBox() {
     }//GEN-LAST:event_jTFPartnerActionPerformed
 
     private void jCBValjPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjPartnerActionPerformed
-        // TODO add your handling code here:
+    String valdPartner = (String) jCBValjPartner.getSelectedItem();
+    if (valdPartner != null) {
+        try {
+            String sql = "SELECT * FROM partner WHERE namn = '" + valdPartner + "'";
+            HashMap<String, String> partner = idb.fetchRow(sql);
+            
+            if (partner != null) {
+                jTFPid.setText(partner.get("pid"));
+                jTFPartner.setText(partner.get("namn"));
+                jTFKontaktperson.setText(partner.get("kontaktperson"));
+                jTFKontaktepost.setText(partner.get("kontaktepost"));
+                jTFTelefon.setText(partner.get("telefon"));
+                jTFAdress.setText(partner.get("adress"));
+                jTFBranch.setText(partner.get("branch"));
+                jTFStad.setText(partner.get("stad"));
+            } else {
+                System.out.println("Kunde inte hitta partner.");
+            }
+        } catch (InfException e) {
+            System.out.println("Ett fel uppstod vid hämtning av partnerdetaljer.");
+        }
+    }
+                
     }//GEN-LAST:event_jCBValjPartnerActionPerformed
 
     private void jBAndraPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraPartnerActionPerformed

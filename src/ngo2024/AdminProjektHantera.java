@@ -64,6 +64,10 @@ public class AdminProjektHantera extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av projektchefer: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
+    //validering ?
+    
+         
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -233,7 +237,38 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtnLäggTillProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnLäggTillProjektActionPerformed
-        // TODO add your handling code here:                                                    
+        // TODO add your handling code here:
+        
+        if (!Validering.textFaltHarVarde(JtxtProjektnamn) ||
+            !Validering.textFaltHarVarde(JtxtBeskrivning) ||
+            !Validering.textFaltHarVarde(JtxtStartdatum) ||
+            !Validering.textFaltHarVarde(JtxtSlutdatum) ||
+            !Validering.textFaltHarVarde(JtxtKostnad) ||
+            !Validering.textFaltHarVarde(JtxtStatus) ||
+            !Validering.textFaltHarVarde(JtxtPrioritet)) {
+            JOptionPane.showMessageDialog(this, "Vänligen fyll i alla fält.", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!Validering.isValidDate(JtxtStartdatum) || !Validering.isValidDate(JtxtSlutdatum)) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt datumformat. Använd ÅÅÅÅ-MM-DD.", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+//        if (!Validering.isHelTal(JtxtKostand)) {
+//            JOptionPane.showMessageDialog(this, "Prioritet måste vara ett heltal.", "Fel", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+
+        if (!Validering.isHelTal(JtxtKostnad) || !Validering.isValidCost(JtxtKostnad)) {
+            JOptionPane.showMessageDialog(this, "Ogiltig kostnad. Det måste vara ett positivt heltal.", "Fel", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        
+        
+        
         String projektnamn = JtxtProjektnamn.getText();
         String beskrivning = JtxtBeskrivning.getText();
         String startdatum = JtxtStartdatum.getText();
@@ -241,6 +276,8 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         String kostnad = JtxtKostnad.getText();
         String status = JtxtStatus.getText();
         String prioritet = JtxtPrioritet.getText();
+        String projektchef = JcbProjektchef.getSelectedItem().toString();
+        String land = JcbLand.getSelectedItem().toString();
 
         int newPid = 1;
 

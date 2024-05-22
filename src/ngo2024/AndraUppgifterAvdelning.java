@@ -51,7 +51,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
         jTFStadAvdelning = new javax.swing.JTextField();
         jTFChefAvdelning = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAndraAvdelning = new javax.swing.JButton();
         jCBValjAvdelning = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jLTelefonAvdelning = new javax.swing.JLabel();
@@ -94,10 +94,10 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
 
         jButton1.setText("Avbryt");
 
-        jButton2.setText("Ändra");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBAndraAvdelning.setText("Ändra");
+        jBAndraAvdelning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBAndraAvdelningActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                                         .addComponent(jLAndraUppgifter))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBAndraAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)))
@@ -226,7 +226,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                     .addComponent(jTFChefAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jBAndraAvdelning)
                     .addComponent(jButton1))
                 .addGap(14, 14, 14))
         );
@@ -279,7 +279,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jCBValjAvdelningActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBAndraAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraAvdelningActionPerformed
     
     String avdid = jTFAvdidAvdelning.getText();
     String namn = jTFNamnAvdelning.getText();
@@ -304,7 +304,7 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
     }
   
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBAndraAvdelningActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       new AdminMeny(idb, InloggadAnvandare).setVisible(true);
@@ -347,8 +347,8 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAndraAvdelning;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jCBValjAvdelning;
     private javax.swing.JLabel jLAdressAvdelning;

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ngo2024;
+import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -259,6 +260,82 @@ public static boolean andraAdress(String nytt,String ePost){
         return projektLedare; 
      
    }
+  
+  
+  // Följande två kodblock hömtar en arraylist i databasen av fornamn och aid som används i projektledarfönstret
+   public static ArrayList getAnstallda(){
+      ArrayList<String> handlaggare = new ArrayList<>();
+      String sqlFraga = "select fornamn from anstalld";
+      
+      try{
+          handlaggare = idb.fetchColumn(sqlFraga);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return handlaggare;
+      
+  }
+   public static ArrayList getAllaAid(){
+      ArrayList<String> allaId = new ArrayList<>();
+      String sqlFraga = "select aid from anstalld";
+      
+      try{
+          allaId = idb.fetchColumn(sqlFraga);
+      }
+      catch(InfException ex){
+          System.out.println(ex.getMessage());
+          
+          
+      }
+      return allaId;
+      
+  }
+   public static String getAidMedForNamn(String fornamn){
+    String sqlFraga1 = "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn + "'";
+    
+    String aidInfo;
+    try{
+        String aid = idb.fetchSingle(sqlFraga1);
+        
+        aidInfo = aid;
+    }
+    catch(InfException ex){
+        System.out.println(ex.getMessage());
+        aidInfo = "Kunde inte hämtas";
+         }
+    
+    System.out.println(aidInfo);
+    return aidInfo;
+}
+   
+   //kolla hur många av ett fornamn som finns i databasen
+   public static int getAntalforNamn(String fornamn){
+    String sqlFraga1 = "select count(*) " +
+                        "from anstalld " +
+                         "where fornamn = '" + fornamn + "' " +
+                          "group by fornamn";
+
+    
+    int antal;
+    try{
+        String antalStrang = idb.fetchSingle(sqlFraga1);
+        antal = Integer.parseInt(antalStrang);
+        
+        
+        
+    }
+    catch(InfException ex){
+        System.out.println(ex.getMessage());
+       antal = 100000;
+         }
+    
+    return antal;
+    
+}
+
   
 
 

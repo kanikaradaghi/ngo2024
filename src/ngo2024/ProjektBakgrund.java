@@ -607,6 +607,38 @@ public class ProjektBakgrund {
       return handlaggare;
       
   }
+   //Metod för att tabort en handläggare från ett projket, görs via projektledarfönstret
+   public static void taBortHandlaggare(String pid,String aid){
+    
+   String sqlFraga = "DELETE FROM ans_proj WHERE pid = '" + pid + "' AND aid = '" + aid + "'";
+   
+   
+   try{
+        idb.delete(sqlFraga);
+        
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+    public static void laggTillHandlaggare(String pid,String aid){
+    
+   String sqlFraga = "INSERT INTO ans_proj (pid, aid) " +
+                        "VALUES ('" + pid + "','" + aid + "')";
+   
+   
+   try{
+        idb.insert(sqlFraga);
+        
+   }
+   catch(InfException ex){
+       System.out.println(ex.getMessage());
+       
+   }
+    }
+   
+   
    
 }
    

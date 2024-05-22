@@ -8,6 +8,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.DefaultComboBoxModel;
 import java.util.ArrayList;
+import java.util.Collections;
 /**
  *
  * @author User
@@ -22,6 +23,7 @@ private ArrayList<String> minaProjekt;
 private ArrayList<String> minaPartners;
 private ArrayList<String> minaHandlaggare;
 private String projektNamn;
+int totalKostnad = 0;
 
     /**
      * Creates new form Projektledare
@@ -36,6 +38,8 @@ private String projektNamn;
         comboBoxModel3 = new DefaultComboBoxModel<>();
         minaProjekt = ProjektBakgrund.getProjektNamnForLedarel(AnstallBakgrund.getAId(InloggadAnvandareH));
         minaHandlaggareBox.setModel(comboBoxModel3);
+        lblMeddelande.setVisible(false);
+        
         
         minaChefFor.setModel(comboBoxModel);
         
@@ -59,7 +63,15 @@ private String projektNamn;
          
          partnersPaMina.setModel(comboBoxModel2);
          
-        
+         
+         for(String namn: minaProjekt){
+             int kostnad = (int) Double.parseDouble(ProjektBakgrund.getKostand(namn));
+             totalKostnad = totalKostnad + kostnad;
+             
+         }
+         lblstats.setText("Totalkostand för alla:" + totalKostnad );
+            System.out.print(ProjektBakgrund.getKostand(projektNamn));
+//        
  
     }
 
@@ -85,7 +97,6 @@ private String projektNamn;
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        tftPid = new javax.swing.JTextField();
         tftProjektNamn = new javax.swing.JTextField();
         tftProjektBeskrivning = new javax.swing.JTextField();
         tftStartDatum = new javax.swing.JTextField();
@@ -94,7 +105,6 @@ private String projektNamn;
         tftStatus = new javax.swing.JTextField();
         tftPrio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        tftLand = new javax.swing.JTextField();
         partnersPaMina = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         btnSparaAndringar = new javax.swing.JButton();
@@ -105,9 +115,12 @@ private String projektNamn;
         tftVadlPartner = new javax.swing.JTextField();
         minaHandlaggareBox = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tftHandlaggarRuta = new javax.swing.JTextField();
+        btnTabortHandlaggare = new javax.swing.JButton();
+        btnLaggTillHandLaggare = new javax.swing.JButton();
+        lblstats = new javax.swing.JLabel();
+        lblPid = new javax.swing.JLabel();
+        lblLand = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -143,12 +156,6 @@ private String projektNamn;
 
         jLabel9.setText("Prioritet:");
 
-        tftPid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tftPidActionPerformed(evt);
-            }
-        });
-
         tftProjektNamn.setText("jTextField2");
 
         tftProjektBeskrivning.setText("jTextField3");
@@ -164,8 +171,6 @@ private String projektNamn;
         tftPrio.setText("jTextField8");
 
         jLabel10.setText("Land:");
-
-        tftLand.setText("jTextField1");
 
         partnersPaMina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         partnersPaMina.addActionListener(new java.awt.event.ActionListener() {
@@ -217,21 +222,32 @@ private String projektNamn;
 
         jLabel12.setText("Handläggare");
 
-        jTextField1.setText("Här kommer handläggare ");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tftHandlaggarRuta.setText("Här kommer handläggare ");
+        tftHandlaggarRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tftHandlaggarRutaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ta bort");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnTabortHandlaggare.setText("Ta bort");
+        btnTabortHandlaggare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnTabortHandlaggareActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Lägg till");
+        btnLaggTillHandLaggare.setText("Lägg till");
+        btnLaggTillHandLaggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillHandLaggareActionPerformed(evt);
+            }
+        });
+
+        lblstats.setText("jLabel13");
+
+        lblPid.setText("jLabel13");
+
+        lblLand.setText("jLabel13");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,8 +270,8 @@ private String projektNamn;
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(40, 40, 40)
                                         .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(tftPid))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblPid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(btnSparaAndringar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,14 +292,14 @@ private String projektNamn;
                                                                 .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(tftProjektBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tftStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tftSlutDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tftKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tftStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tftLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(tftPrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(tftProjektBeskrivning)
+                                                    .addComponent(tftStartDatum)
+                                                    .addComponent(tftSlutDatum)
+                                                    .addComponent(tftKostnad)
+                                                    .addComponent(tftStatus)
+                                                    .addComponent(tftPrio)
+                                                    .addComponent(lblLand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblMeddelande)
@@ -294,7 +310,7 @@ private String projektNamn;
                                             .addComponent(minaHandlaggareBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 1, Short.MAX_VALUE)
+                                .addGap(0, 3, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(minaChefFor, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -305,19 +321,21 @@ private String projektNamn;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 1, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnTaBort)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnLaggTill))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblstats, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tftVadlPartner, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tftHandlaggarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton2)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(btnTabortHandlaggare)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton3)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(btnLaggTillHandLaggare)))
+                                .addGap(0, 1, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -340,9 +358,9 @@ private String projektNamn;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tftPid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLaggTill)
-                    .addComponent(btnTaBort))
+                    .addComponent(btnTaBort)
+                    .addComponent(lblPid))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -353,13 +371,13 @@ private String projektNamn;
                     .addComponent(jLabel4)
                     .addComponent(tftProjektBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(minaHandlaggareBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tftHandlaggarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tftStartDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnTabortHandlaggare)
+                    .addComponent(btnLaggTillHandLaggare))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -373,18 +391,23 @@ private String projektNamn;
                     .addComponent(jLabel8)
                     .addComponent(tftStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(tftPrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(tftLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(tftPrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(lblLand, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblstats)
+                        .addGap(24, 24, 24)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSparaAndringar)
                     .addComponent(lblMeddelande))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -395,7 +418,7 @@ private String projektNamn;
       
       uppdateraProjektNamn(valtObjekt);
       
-      tftPid.setText(ProjektBakgrund.getPid(valtObjekt));
+      lblPid.setText(ProjektBakgrund.getPid(valtObjekt));
       tftProjektNamn.setText(valtObjekt);
       tftProjektBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
       tftStartDatum.setText(ProjektBakgrund.getStartDatum(valtObjekt));
@@ -404,7 +427,7 @@ private String projektNamn;
       tftKostnad.setText(ProjektBakgrund.getKostand(valtObjekt));
       tftStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
       tftPrio.setText(ProjektBakgrund.getPrioritet(valtObjekt));
-      tftLand.setText(ProjektBakgrund.getLand(valtObjekt));
+      lblLand.setText(ProjektBakgrund.getLand(valtObjekt));
       
       
          minaHandlaggare = ProjektBakgrund.getAllaHandlaggare(projektNamn);
@@ -421,15 +444,12 @@ private void uppdateraProjektNamn(String namn){
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
          
          String pid = ProjektBakgrund.getPid(projektNamn);
-         
-        if(Validering.textFaltHarVarde(tftPid) && Validering.isHelTal(tftPid)){
-          ProjektBakgrund.andraPid(tftPid.getText(), projektNamn);
-            
-        }
-         
+        
+    
         if(Validering.textFaltHarVarde(tftProjektNamn)){
             ProjektBakgrund.andraProjektNamn(pid, tftProjektNamn.getText());
-            uppdateraProjektNamn(tftProjektNamn.getText());           
+            uppdateraProjektNamn(tftProjektNamn.getText());
+            
         }
         if(Validering.textFaltHarVarde(tftProjektBeskrivning)){
             ProjektBakgrund.andraBeskrivning(pid, tftProjektBeskrivning.getText());
@@ -449,15 +469,11 @@ private void uppdateraProjektNamn(String namn){
         if(Validering.textFaltHarVarde(tftPrio)){
             ProjektBakgrund.andraPrio(pid, tftPrio.getText());
         }
-        if(Validering.textFaltHarVarde(tftLand)){
-            
-        }
+        lblMeddelande.setVisible(true);
+        
+     
         
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
-
-    private void tftPidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tftPidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tftPidActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
        new HandlaggarMeny(idb, InloggadAnvandareH).setVisible(true);
@@ -510,17 +526,76 @@ private void uppdateraProjektNamn(String namn){
             
     }//GEN-LAST:event_btnTaBortActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tftHandlaggarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tftHandlaggarRutaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tftHandlaggarRutaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnTabortHandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTabortHandlaggareActionPerformed
+     String anstalld = tftHandlaggarRuta.getText();
+     ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
+     ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
+     boolean andring = false;
+     if(!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1){
+         tftHandlaggarRuta.setText("Misslyckades, Använd id istället");
+       
+             
+           } 
+     else{
+         
+         String pid = ProjektBakgrund.getPid(projektNamn);
+         String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
+         
+         ProjektBakgrund.taBortHandlaggare(pid,aid);
+         
+         System.out.println("Försöker ta bort: " + pid + " " + aid);
+          andring = true;    
+         
+         }
+     if(allaId.contains(anstalld)){
+         String pid = ProjektBakgrund.getPid(projektNamn);
+         String aid = anstalld;
+         
+         ProjektBakgrund.taBortHandlaggare(pid,aid);
+         andring = true;
+         
+          }  
+      if(andring){
+          tftHandlaggarRuta.setText("Ändring sparad");
+      }
+
+     
+    }//GEN-LAST:event_btnTabortHandlaggareActionPerformed
 
     private void minaHandlaggareBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaHandlaggareBoxActionPerformed
-       
+      String valtObjekt = (String) comboBoxModel3.getSelectedItem();
+        tftHandlaggarRuta.setText(valtObjekt);
     }//GEN-LAST:event_minaHandlaggareBoxActionPerformed
+
+    private void btnLaggTillHandLaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillHandLaggareActionPerformed
+        String anstalld = tftHandlaggarRuta.getText();
+     ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
+     ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
+     
+     if(!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1){
+         tftHandlaggarRuta.setText("Misslyckades, andvänd aid");
+}
+     else{
+        
+         String pid = ProjektBakgrund.getPid(projektNamn);
+         String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
+         
+         ProjektBakgrund.laggTillHandlaggare(pid,aid);
+         }
+     if(allaId.contains(anstalld)){
+         
+         String pid = ProjektBakgrund.getPid(projektNamn);
+         String aid = anstalld;
+         
+         ProjektBakgrund.laggTillHandlaggare(pid,aid);
+         
+           }
+        
+    }//GEN-LAST:event_btnLaggTillHandLaggareActionPerformed
 
     /**
      * @param args the command line arguments
@@ -558,12 +633,12 @@ private void uppdateraProjektNamn(String namn){
 //Hej
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTill;
+    private javax.swing.JButton btnLaggTillHandLaggare;
     private javax.swing.JButton btnSparaAndringar;
     private javax.swing.JButton btnTaBort;
+    private javax.swing.JButton btnTabortHandlaggare;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -576,16 +651,17 @@ private void uppdateraProjektNamn(String namn){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbEpostProjektledare;
     private javax.swing.JLabel lbProjektledare;
+    private javax.swing.JLabel lblLand;
     private javax.swing.JLabel lblMeddelande;
+    private javax.swing.JLabel lblPid;
+    private javax.swing.JLabel lblstats;
     private javax.swing.JComboBox<String> minaChefFor;
     private javax.swing.JComboBox<String> minaHandlaggareBox;
     private javax.swing.JComboBox<String> partnersPaMina;
+    private javax.swing.JTextField tftHandlaggarRuta;
     private javax.swing.JTextField tftKostnad;
-    private javax.swing.JTextField tftLand;
-    private javax.swing.JTextField tftPid;
     private javax.swing.JTextField tftPrio;
     private javax.swing.JTextField tftProjektBeskrivning;
     private javax.swing.JTextField tftProjektNamn;

@@ -6,6 +6,7 @@ package ngo2024;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author User
@@ -14,7 +15,7 @@ public class AdminMeny extends javax.swing.JFrame {
 
     private InfDB idb;
     private String InloggadAnvandare;
-    
+
     /**
      * Creates new form Meny
      */
@@ -24,9 +25,7 @@ public class AdminMeny extends javax.swing.JFrame {
         initComponents();
         lblInloggadAnvandare.setText(InloggadAnvandare);
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,25 +131,25 @@ public class AdminMeny extends javax.swing.JFrame {
 
     private void aB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aB1ActionPerformed
         new Anstallda(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
-     
+        this.setVisible(false);
+
 
     }//GEN-LAST:event_aB1ActionPerformed
 
     private void aA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aA1ActionPerformed
-       new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
-     
+        new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_aA1ActionPerformed
 
     private void pA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pA1ActionPerformed
-       new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
-       this.setVisible(false);
-     
+        new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_pA1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         new Inlogg(idb).setVisible(true);
+        new Inlogg(idb).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -198,4 +197,3 @@ public class AdminMeny extends javax.swing.JFrame {
     private javax.swing.JLabel txtAdminMeny;
     // End of variables declaration//GEN-END:variables
 }
-//HEHEJH

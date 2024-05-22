@@ -5,20 +5,14 @@
 package ngo2024;
 
 import java.util.ArrayList;
-//import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author kani_
- */
 public class AdminProjektHantera extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandare;
-    //private ArrayList<Integer> landId;
-    //private ArrayList<Integer> projektchefId;
 
     /**
      * Creates new form AdminProjektHantera
@@ -26,52 +20,49 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     public AdminProjektHantera(InfDB idb, String InloggadAnvandare) {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
-        //this.landId = new ArrayList<>();
-       // this.projektchefId = new ArrayList<>();
         initComponents();
         fyllLandComboBox();
         fyllProjektchefComboBox();
-        
+
     }
-    
-    private void fyllLandComboBox(){
-    
-    try{
-       String query = "SELECT lid FROM land";
-       ArrayList<String> landList = idb.fetchColumn(query);
-       
-       if (landList != null){
-       JcbLand.removeAllItems();
-       for ( String land : landList){
-           JcbLand.addItem(land);
-           }
-       
-       } 
-      else {
-       JOptionPane.showMessageDialog(this, "Inga länder hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
-       }
-     } catch (InfException e){
-        JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av länder: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
-     }
+
+    private void fyllLandComboBox() {
+
+        try {
+            String query = "SELECT lid FROM land";
+            ArrayList<String> landList = idb.fetchColumn(query);
+
+            if (landList != null) {
+                JcbLand.removeAllItems();
+                for (String land : landList) {
+                    JcbLand.addItem(land);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Inga länder hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av länder: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-    
-    private void fyllProjektchefComboBox(){
-    
-    try{
-       String query = "SELECT aid FROM anstalld";
-       ArrayList<String> anstalldList = idb.fetchColumn(query);
-       
-       if (anstalldList != null){
-       JcbProjektchef.removeAllItems();
-       for (String anstalld : anstalldList){
-        JcbProjektchef.addItem(anstalld);
-       }
-     } else {
-       JOptionPane.showMessageDialog(this, "Inga projektchefer hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
-       }
-     } catch (InfException e){
-        JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av projektchefer: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
-     }
+
+    private void fyllProjektchefComboBox() {
+
+        try {
+            String query = "SELECT aid FROM anstalld";
+            ArrayList<String> anstalldList = idb.fetchColumn(query);
+
+            if (anstalldList != null) {
+                JcbProjektchef.removeAllItems();
+                for (String anstalld : anstalldList) {
+                    JcbProjektchef.addItem(anstalld);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Inga projektchefer hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av projektchefer: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**
@@ -243,69 +234,49 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
     private void JbtnLäggTillProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnLäggTillProjektActionPerformed
         // TODO add your handling code here:                                                    
-    String projektnamn = JtxtProjektnamn.getText();
-    String beskrivning = JtxtBeskrivning.getText();
-    String startdatum = JtxtStartdatum.getText();
-    String slutdatum = JtxtSlutdatum.getText();
-    String kostnad = JtxtKostnad.getText();
-    String status = JtxtStatus.getText();
-    String prioritet = JtxtPrioritet.getText();
-    
-    //int landIndex = JcbLand.getSelectedIndex();
-    //int projektchefIndex = JcbProjektchef.getSelectedIndex();
-    
-    //int selectedLandId = landId.get(landIndex);
-    //int selectedProjektchefId = projektchefId.get(projektchefIndex);
-    
-    
-    int newPid = 1;
+        String projektnamn = JtxtProjektnamn.getText();
+        String beskrivning = JtxtBeskrivning.getText();
+        String startdatum = JtxtStartdatum.getText();
+        String slutdatum = JtxtSlutdatum.getText();
+        String kostnad = JtxtKostnad.getText();
+        String status = JtxtStatus.getText();
+        String prioritet = JtxtPrioritet.getText();
 
-        try{
+        int newPid = 1;
+
+        try {
             String maxPidQuery = "SELECT MAX(pid) FROM projekt";
             String maxPidStr = idb.fetchSingle(maxPidQuery);
 
-            if(maxPidStr != null && !maxPidStr.isEmpty()){
+            if (maxPidStr != null && !maxPidStr.isEmpty()) {
                 newPid = Integer.parseInt(maxPidStr) + 1;
             }
 
-    
-         //Lägg till projekt i databasen
-        //String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
-            //projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" )";
-        
-            String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
-            projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + JcbProjektchef.getSelectedItem().toString() + "', '" + JcbLand.getSelectedItem().toString() + "')";
-            
-       //String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '" +
-            //projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchef + "', '" + land + "')";
-            //JcbProjektchef.getSelectedItem().toString() + "', '" + JcbLand.getSelectedItem().toString() + "')";
-            
-        idb.insert(sql);
-        
-        JOptionPane.showMessageDialog(this, "Projekt har lagts till.");
-//        System.out.println("Projekt har lagts till.");
+            String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '"
+                    + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + JcbProjektchef.getSelectedItem().toString() + "', '" + JcbLand.getSelectedItem().toString() + "')";
 
-        // Återställ fälten efter att projektet har lagts till
-        JtxtProjektnamn.setText("");
-        JtxtBeskrivning.setText("");
-        JtxtStartdatum.setText("");
-        JtxtSlutdatum.setText("");
-        JtxtKostnad.setText("");
-        JtxtStatus.setText("");
-        JtxtPrioritet.setText("");
-        //JcbProjektchef.setSelectedIndex(0);
-        //JcbLand.setSelectedIndex(0);
+            idb.insert(sql);
 
+            JOptionPane.showMessageDialog(this, "Projekt har lagts till.");
 
-    } catch (InfException e) {
-          JOptionPane.showMessageDialog(this, "Ett fel uppstod: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
-//        System.out.println("Ett fel uppstod: " + e.getMessage());
-    }
+            // Återställ fälten efter att projektet har lagts till
+            JtxtProjektnamn.setText("");
+            JtxtBeskrivning.setText("");
+            JtxtStartdatum.setText("");
+            JtxtSlutdatum.setText("");
+            JtxtKostnad.setText("");
+            JtxtStatus.setText("");
+            JtxtPrioritet.setText("");
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(this, "Ett fel uppstod: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_JbtnLäggTillProjektActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

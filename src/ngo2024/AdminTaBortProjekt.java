@@ -3,30 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
-import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-import java.util.HashMap;
 
 /**
  *
  * @author Ägaren
  */
-public class AdminHanteraProjekt2 extends javax.swing.JFrame {
-     private InfDB idb;
+public class AdminTaBortProjekt extends javax.swing.JFrame {
+    private InfDB idb;
     private String InloggadAnvandare;
 
     /**
-     * Creates new form AdminHanteraProjekt2
+     * Creates new form AdminTaBortProjekt
      */
-    public AdminHanteraProjekt2(InfDB idb, String InloggadAnvandare) {
-        this.idb = idb;
+    public AdminTaBortProjekt(InfDB idb, String InloggadAnvandare) {
+         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
-         //fyllComboBox();
         jLVemInlogg.setText(InloggadAnvandare);
-       
     }
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,45 +35,33 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLVemInlogg = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTFPid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLVemInlogg = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Hantera Projekt");
+        jLVemInlogg.setText("jLabel1");
 
-        jButton1.setText("Lägg Till");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Ta Bort Projekt");
+
+        jLabel2.setText("Pid:");
+
+        jButton1.setText("Ta Bort");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ta Bort");
+        jButton2.setText("Tillbaka");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Ändra");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLVemInlogg.setText("jLabel2");
-
-        jButton4.setText("Tillbaka");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
             }
         });
 
@@ -86,59 +72,85 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jLVemInlogg)))
+                        .addGap(140, 140, 140)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jTFPid, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(155, 155, 155)
+                            .addComponent(jLVemInlogg))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLVemInlogg)
-                .addGap(31, 31, 31)
+                .addGap(106, 106, 106)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTFPid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(26, 26, 26)
-                .addComponent(jButton2)
-                .addGap(29, 29, 29)
-                .addComponent(jButton3)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminProjektHantera(idb, InloggadAnvandare).setVisible(true);
-        this.setVisible(false);
+         String pid = jTFPid.getText();
+        try {
+            if (pid.isEmpty()) {
+                System.out.println("Ange ett giltigt ID");
+                return;
+            }
+
+            String fragaSql = "SELECT pid FROM projekt WHERE pid = " + pid;
+            String finnsPid = idb.fetchSingle(fragaSql);
+
+            if (finnsPid != null && !finnsPid.isEmpty()) {
+
+                String taBortProjekt = "DELETE FROM projekt WHERE pid = " + pid;
+                idb.delete(taBortProjekt);
+
+                
+         
+                System.out.println("Projekt har tagits bort.");
+
+                jTFPid.setText("");
+
+            } else {
+                System.out.println("Finns inte projekt med ID");
+
+            }
+
+        } catch (InfException ex) {
+            System.out.println("Ett fel uppstod: " + ex.getMessage());
+
+        } catch (NumberFormatException ex) {
+            System.out.println("Fel ID: " + ex.getMessage());
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new AdminTaBortProjekt(idb, InloggadAnvandare).setVisible(true);
-        this.setVisible(false);
+          new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -158,20 +170,20 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminHanteraProjekt2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTaBortProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminHanteraProjekt2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTaBortProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminHanteraProjekt2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTaBortProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminHanteraProjekt2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminTaBortProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new AdminHanteraProjekt2().setVisible(true);
+                //new AdminTaBortProjekt().setVisible(true);
             }
         });
     }
@@ -179,9 +191,9 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLVemInlogg;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTFPid;
     // End of variables declaration//GEN-END:variables
 }

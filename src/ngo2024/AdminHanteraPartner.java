@@ -60,6 +60,11 @@ public class AdminHanteraPartner extends javax.swing.JFrame {
         });
 
         jButton3.setText("Ändra");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLVemInlogg.setText("jLabel2");
 
@@ -127,6 +132,11 @@ public class AdminHanteraPartner extends javax.swing.JFrame {
         new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new AdminAndraPartner(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);    
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

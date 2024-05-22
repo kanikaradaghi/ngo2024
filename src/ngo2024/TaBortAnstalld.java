@@ -6,6 +6,7 @@ package ngo2024;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author walee

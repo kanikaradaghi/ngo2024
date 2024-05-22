@@ -235,7 +235,7 @@ public static boolean andraAdress(String nytt,String ePost){
   return andringGjord;
 
    }
-  
+  // kod som tar en epost (oftast det användaren loggar in med) och kollar ifall denne är projektledare
   public static boolean isProjektLedare(String ePost){
     boolean projektLedare = true;
     

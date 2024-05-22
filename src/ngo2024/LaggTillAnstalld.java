@@ -7,6 +7,7 @@ package ngo2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.security.SecureRandom;
+import javax.swing.JOptionPane;
 /**
  *
  * @author walee
@@ -277,6 +278,8 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         idb.insert(sqlHandlaggare);
         }
         
+        JOptionPane.showMessageDialog(this, "Lösenord: " + losenord.toString(), "Nytt Lösenord", JOptionPane.INFORMATION_MESSAGE);
+        
         jTFFornamn.setText("");
         jTFEfternamn.setText("");
         jTFAdress.setText("");
@@ -307,7 +310,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
     }//GEN-LAST:event_jRBHandlaggareActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminMeny(idb, InloggadAnvandare).setVisible(true);
+       new Anstallda(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -282,7 +282,7 @@ public class AndraLand extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBValjLandActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
+     new AdminLand(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -151,7 +151,7 @@ System.out.println("Fel ID: " + ex.getMessage());
     }//GEN-LAST:event_jBTaBortActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      new AdminMeny(idb, InloggadAnvandare).setVisible(true);
+      new Anstallda(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

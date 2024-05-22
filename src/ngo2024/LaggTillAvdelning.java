@@ -224,7 +224,7 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_jBLaggTillActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminMeny(idb, InloggadAnvandare).setVisible(true);
+       new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

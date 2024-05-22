@@ -321,7 +321,7 @@ public class AdminAndraProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAndraProjektActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
+       new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -39,6 +39,7 @@ public class AndraLand extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLVemInlogg = new javax.swing.JLabel();
         jCBValjLand = new javax.swing.JComboBox<>();
@@ -58,6 +59,9 @@ public class AndraLand extends javax.swing.JFrame {
         jTFEkonomiLand = new javax.swing.JTextField();
         jBAndraLand = new javax.swing.JButton();
         jBAvbrytAndraLand = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +114,8 @@ public class AndraLand extends javax.swing.JFrame {
 
         jBAvbrytAndraLand.setText("Avbryt");
 
+        jButton1.setText("Tillbaka");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,13 +155,17 @@ public class AndraLand extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jBAvbrytAndraLand, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLVemInlogg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -188,7 +198,7 @@ public class AndraLand extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLEkonomiLand)
                     .addComponent(jTFEkonomiLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAndraLand)
                     .addComponent(jBAvbrytAndraLand))
@@ -310,6 +320,7 @@ public class AndraLand extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAndraLand;
     private javax.swing.JButton jBAvbrytAndraLand;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCBValjLand;
     private javax.swing.JLabel jLEkonomiLand;
     private javax.swing.JLabel jLLidLand;
@@ -320,6 +331,7 @@ public class AndraLand extends javax.swing.JFrame {
     private javax.swing.JLabel jLValutaLand;
     private javax.swing.JLabel jLVemInlogg;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTFEkonomiLand;
     private javax.swing.JTextField jTFLidLand;
     private javax.swing.JTextField jTFNamnLand;

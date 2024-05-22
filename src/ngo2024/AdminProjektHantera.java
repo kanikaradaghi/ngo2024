@@ -5,6 +5,7 @@
 package ngo2024;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -49,13 +50,18 @@ public class AdminProjektHantera extends javax.swing.JFrame {
     private void fyllProjektchefComboBox() {
 
         try {
-            String query = "SELECT aid FROM anstalld";
-            ArrayList<String> anstalldList = idb.fetchColumn(query);
+            String query = "SELECT aid, fornamn, efternamn FROM anstalld";
+            ArrayList<HashMap<String, String>> anstalldList = idb.fetchRows(query);
 
             if (anstalldList != null) {
                 JcbProjektchef.removeAllItems();
-                for (String anstalld : anstalldList) {
-                    JcbProjektchef.addItem(anstalld);
+                for (HashMap<String, String> anstalld : anstalldList) {
+                    String aid = anstalld.get("aid");
+                    String fornamn = anstalld.get("fornamn");
+                    String efternamn = anstalld.get("efternamn");
+                    String displayName = aid + " - " + fornamn + " " + efternamn;
+                    JcbProjektchef.addItem(displayName);
+
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Inga projektchefer hittades.", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -64,10 +70,6 @@ public class AdminProjektHantera extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ett fel uppstod vid hämtning av projektchefer: " + e.getMessage(), "Fel", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
-    //validering ?
-    
-         
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -238,14 +240,14 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
     private void JbtnLäggTillProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnLäggTillProjektActionPerformed
         // TODO add your handling code here:
-        
-        if (!Validering.textFaltHarVarde(JtxtProjektnamn) ||
-            !Validering.textFaltHarVarde(JtxtBeskrivning) ||
-            !Validering.textFaltHarVarde(JtxtStartdatum) ||
-            !Validering.textFaltHarVarde(JtxtSlutdatum) ||
-            !Validering.textFaltHarVarde(JtxtKostnad) ||
-            !Validering.textFaltHarVarde(JtxtStatus) ||
-            !Validering.textFaltHarVarde(JtxtPrioritet)) {
+
+        if (!Validering.textFaltHarVarde(JtxtProjektnamn)
+                || !Validering.textFaltHarVarde(JtxtBeskrivning)
+                || !Validering.textFaltHarVarde(JtxtStartdatum)
+                || !Validering.textFaltHarVarde(JtxtSlutdatum)
+                || !Validering.textFaltHarVarde(JtxtKostnad)
+                || !Validering.textFaltHarVarde(JtxtStatus)
+                || !Validering.textFaltHarVarde(JtxtPrioritet)) {
             JOptionPane.showMessageDialog(this, "Vänligen fyll i alla fält.", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -255,20 +257,11 @@ public class AdminProjektHantera extends javax.swing.JFrame {
             return;
         }
 
-//        if (!Validering.isHelTal(JtxtKostand)) {
-//            JOptionPane.showMessageDialog(this, "Prioritet måste vara ett heltal.", "Fel", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-
         if (!Validering.isHelTal(JtxtKostnad) || !Validering.isValidCost(JtxtKostnad)) {
             JOptionPane.showMessageDialog(this, "Ogiltig kostnad. Det måste vara ett positivt heltal.", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        
-        
-        
-        
+
         String projektnamn = JtxtProjektnamn.getText();
         String beskrivning = JtxtBeskrivning.getText();
         String startdatum = JtxtStartdatum.getText();
@@ -278,6 +271,9 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         String prioritet = JtxtPrioritet.getText();
         String projektchef = JcbProjektchef.getSelectedItem().toString();
         String land = JcbLand.getSelectedItem().toString();
+
+        // Extrahera aid från projektchef-strängen
+        String aid = projektchef.split(" - ")[0];
 
         int newPid = 1;
 
@@ -289,8 +285,17 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                 newPid = Integer.parseInt(maxPidStr) + 1;
             }
 
-            String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + newPid + ", '"
-                    + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + JcbProjektchef.getSelectedItem().toString() + "', '" + JcbLand.getSelectedItem().toString() + "')";
+            String sql = "INSERT INTO projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES ("
+                    + newPid + ", '"
+                    + projektnamn + "', '"
+                    + beskrivning + "', '"
+                    + startdatum + "', '"
+                    + slutdatum + "', '"
+                    + kostnad + "', '"
+                    + status + "', '"
+                    + prioritet + "', '"
+                    + aid + "', '"
+                    + land + "')";
 
             idb.insert(sql);
 

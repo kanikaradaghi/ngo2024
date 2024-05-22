@@ -55,6 +55,11 @@ public class AdminLand extends javax.swing.JFrame {
         });
 
         jBAndraLand.setText("Ändra");
+        jBAndraLand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAndraLandActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +103,11 @@ public class AdminLand extends javax.swing.JFrame {
        new LaggTillLand(idb, InloggadAnvandare).setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jBLaggTillLandActionPerformed
+
+    private void jBAndraLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraLandActionPerformed
+        new AndraLand(idb, InloggadAnvandare).setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_jBAndraLandActionPerformed
 
     /**
      * @param args the command line arguments

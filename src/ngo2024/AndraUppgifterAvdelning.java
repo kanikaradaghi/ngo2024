@@ -217,8 +217,8 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                     .addComponent(jLTelefonAvdelning)
                     .addComponent(jTFTelefonAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLStadAvdelning)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLStadAvdelning, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTFStadAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,8 +257,8 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
         String valtNamn = (String) jCBValjAvdelning.getSelectedItem();
     if (valtNamn != null) {
         try {
-            String query = "SELECT * FROM avdelning WHERE namn = '" + valtNamn + "'";
-            HashMap<String, String> avdelning = idb.fetchRow(query);
+            String sql = "SELECT * FROM avdelning WHERE namn = '" + valtNamn + "'";
+            HashMap<String, String> avdelning = idb.fetchRow(sql);
 
             if (avdelning != null) {
                 jTFAvdidAvdelning.setText(avdelning.get("avdid"));

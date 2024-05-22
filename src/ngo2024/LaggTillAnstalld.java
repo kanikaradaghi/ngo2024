@@ -52,7 +52,6 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         jLAvdelning = new javax.swing.JLabel();
         jTFAvdelning = new javax.swing.JTextField();
         jBLaggTill = new javax.swing.JButton();
-        jBAvbryt = new javax.swing.JButton();
         jLVemInlogg = new javax.swing.JLabel();
         jRBHandlaggare = new javax.swing.JRadioButton();
         jRBAdmin = new javax.swing.JRadioButton();
@@ -96,13 +95,6 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
             }
         });
 
-        jBAvbryt.setText("Avbryt");
-        jBAvbryt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAvbrytActionPerformed(evt);
-            }
-        });
-
         jLVemInlogg.setText("jLabel1");
 
         buttonGroup2.add(jRBHandlaggare);
@@ -136,11 +128,6 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addComponent(jBLaggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBAvbryt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,6 +171,10 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                                 .addComponent(jRBAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jBLaggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,11 +217,9 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLAvdelning))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBLaggTill)
-                    .addComponent(jBAvbryt))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jBLaggTill)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -305,10 +294,6 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBLaggTillActionPerformed
 
-    private void jBAvbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvbrytActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBAvbrytActionPerformed
-
     private void jTFFornamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFFornamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFFornamnActionPerformed
@@ -363,7 +348,6 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jBAvbryt;
     private javax.swing.JButton jBLaggTill;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLAdress;

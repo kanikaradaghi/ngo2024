@@ -26,14 +26,6 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                      <Component id="jLVemInlogg" min="-2" pref="37" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLNamnLand" alignment="0" max="32767" attributes="0"/>
@@ -44,24 +36,29 @@
                           <Component id="jLPolitiskStrukturLand" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jBLaggTillLand" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jBAvbryt" min="-2" pref="75" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTFNamnLand" max="32767" attributes="0"/>
-                              <Component id="jTFSprakLand" max="32767" attributes="0"/>
-                              <Component id="jTFValutaLand" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTFTidszonLand" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTFPolitiskStrukturLand" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTFEkonomiLand" pref="161" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTFNamnLand" max="32767" attributes="0"/>
+                          <Component id="jTFSprakLand" max="32767" attributes="0"/>
+                          <Component id="jTFValutaLand" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFTidszonLand" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFPolitiskStrukturLand" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFEkonomiLand" pref="161" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="jLVemInlogg" min="-2" pref="37" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                      <Component id="jBLaggTillLand" min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="141" max="32767" attributes="0"/>
+              <EmptySpace pref="143" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -102,12 +99,9 @@
                   <Component id="jLEkonomiLand" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTFEkonomiLand" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBLaggTillLand" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBAvbryt" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Component id="jBLaggTillLand" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -175,11 +169,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLaggTillLandActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBAvbryt">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Avbryt"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

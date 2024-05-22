@@ -53,7 +53,6 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
         jTFStadAvdelning = new javax.swing.JTextField();
         jTFChefAvdelning = new javax.swing.JTextField();
         jBLaggTill = new javax.swing.JButton();
-        jBAvbryt = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,8 +88,6 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
                 jBLaggTillActionPerformed(evt);
             }
         });
-
-        jBAvbryt.setText("Avbryt");
 
         jButton1.setText("Tillbaka");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,10 +131,8 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jBLaggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBAvbryt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(137, 137, 137)
+                        .addComponent(jBLaggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -178,9 +173,7 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
                     .addComponent(jLChefAvdelning)
                     .addComponent(jTFChefAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBLaggTill)
-                    .addComponent(jBAvbryt))
+                .addComponent(jBLaggTill)
                 .addContainerGap())
         );
 
@@ -271,7 +264,6 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAvbryt;
     private javax.swing.JButton jBLaggTill;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLAdressAvdelning;

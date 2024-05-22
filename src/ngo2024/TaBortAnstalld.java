@@ -37,7 +37,6 @@ public class TaBortAnstalld extends javax.swing.JFrame {
         jLAid = new javax.swing.JLabel();
         jTFAid = new javax.swing.JTextField();
         jBTaBort = new javax.swing.JButton();
-        jBAvbryt = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,8 +52,6 @@ public class TaBortAnstalld extends javax.swing.JFrame {
                 jBTaBortActionPerformed(evt);
             }
         });
-
-        jBAvbryt.setText("Avbryt");
 
         jButton1.setText("Tillbaka");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,15 +75,13 @@ public class TaBortAnstalld extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(91, 91, 91)
-                                .addComponent(jBTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBAvbryt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLAid, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTFAid, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 228, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,9 +99,7 @@ public class TaBortAnstalld extends javax.swing.JFrame {
                     .addComponent(jLAid)
                     .addComponent(jTFAid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBTaBort)
-                    .addComponent(jBAvbryt))
+                .addComponent(jBTaBort)
                 .addGap(27, 27, 27))
         );
 
@@ -198,7 +191,6 @@ System.out.println("Fel ID: " + ex.getMessage());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAvbryt;
     private javax.swing.JButton jBTaBort;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLAid;

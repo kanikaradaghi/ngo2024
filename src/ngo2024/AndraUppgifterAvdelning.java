@@ -50,7 +50,6 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
         jTFEpostAvdelning = new javax.swing.JTextField();
         jTFStadAvdelning = new javax.swing.JTextField();
         jTFChefAvdelning = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jBAndraAvdelning = new javax.swing.JButton();
         jCBValjAvdelning = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
@@ -92,8 +91,6 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
 
         jTFChefAvdelning.setText("jTextField7");
 
-        jButton1.setText("Avbryt");
-
         jBAndraAvdelning.setText("Ändra");
         jBAndraAvdelning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,22 +123,15 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(169, 169, 169)
-                                    .addComponent(jLVemInlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(114, 114, 114)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCBValjAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLAndraUppgifter))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jBAndraAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)))
+                                .addGap(169, 169, 169)
+                                .addComponent(jLVemInlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCBValjAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLAndraUppgifter))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -180,6 +170,10 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                                     .addComponent(jTFEpostAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(jBAndraAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,11 +218,9 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLChefAvdelning)
                     .addComponent(jTFChefAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAndraAvdelning)
-                    .addComponent(jButton1))
-                .addGap(14, 14, 14))
+                .addGap(18, 18, 18)
+                .addComponent(jBAndraAvdelning)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -348,7 +340,6 @@ String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAndraAvdelning;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jCBValjAvdelning;
     private javax.swing.JLabel jLAdressAvdelning;

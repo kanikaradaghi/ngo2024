@@ -57,18 +57,17 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTFLidLand" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTFLidLand" alignment="0" pref="168" max="32767" attributes="0"/>
                           <Component id="jTFNamnLand" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTFSprakLand" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTFValutaLand" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTFTidszonLand" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTFPolitiskStrukturLand" max="32767" attributes="0"/>
                           <Component id="jTFEkonomiLand" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jBAndraLand" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jBAvbrytAndraLand" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jBAndraLand" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -126,12 +125,9 @@
                   <Component id="jLEkonomiLand" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTFEkonomiLand" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBAndraLand" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBAvbrytAndraLand" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <Component id="jBAndraLand" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -245,11 +241,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAndraLandActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBAvbrytAndraLand">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Avbryt"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>

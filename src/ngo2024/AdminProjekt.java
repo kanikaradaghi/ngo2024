@@ -122,10 +122,8 @@ public class AdminProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_JbtnLandActionPerformed
 
     private void JbtnHanteraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnHanteraProjektActionPerformed
-        // TODO add your handling code here:
-        AdminProjektHantera hanteraProjekt = new AdminProjektHantera(idb, InloggadAnvandare);
-        hanteraProjekt.setVisible(true);
-        this.setVisible(false);
+        new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_JbtnHanteraProjektActionPerformed
 
     /**

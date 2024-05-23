@@ -12,9 +12,9 @@ import oru.inf.InfException;
  * @author Ägaren
  */
 public class AdminLaggTillPartner extends javax.swing.JFrame {
-     private InfDB idb;
+
+    private InfDB idb;
     private String InloggadAnvandare;
-    
 
     /**
      * Creates new form AdminLaggTillPartner
@@ -200,46 +200,49 @@ public class AdminLaggTillPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFKontaktepost1ActionPerformed
 
     private void jBLaggTillPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillPartnerActionPerformed
-        String partner = jTFPartner.getText();
-    String kontaktperson  = jTFKontaktperson.getText();
-    String kontaktepost = jTFKontaktepost1.getText();
-    String telefon = jTFTelefon.getText();
-    String adress = jTFAdress.getText();
-    String stad = jTFStad.getText();
-    String branch = jTFBranch.getText();   
-    
-    int newPid = 1;
 
-    try {
-        String maxPidSql = "SELECT MAX(pid) FROM partner";
-        String maxPidStr = idb.fetchSingle(maxPidSql);
-        
-        if (maxPidStr != null && !maxPidStr.isEmpty()) {
-            newPid = Integer.parseInt(maxPidStr) + 1;
+        if (Validering.textFaltHarVarde(jTFPartner) && Validering.textFaltHarVarde(jTFKontaktperson) && Validering.textFaltHarVarde(jTFKontaktepost1) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFAdress) && Validering.textFaltHarVarde(jTFStad) && Validering.isValidDate(jTFBranch) && Validering.isHelTal(jTFTelefon) && Validering.isValidEpost(jTFKontaktepost1)) {
+
+            String partner = jTFPartner.getText();
+            String kontaktperson = jTFKontaktperson.getText();
+            String kontaktepost = jTFKontaktepost1.getText();
+            String telefon = jTFTelefon.getText();
+            String adress = jTFAdress.getText();
+            String stad = jTFStad.getText();
+            String branch = jTFBranch.getText();
+
+            int newPid = 1;
+
+            try {
+                String maxPidSql = "SELECT MAX(pid) FROM partner";
+                String maxPidStr = idb.fetchSingle(maxPidSql);
+
+                if (maxPidStr != null && !maxPidStr.isEmpty()) {
+                    newPid = Integer.parseInt(maxPidStr) + 1;
+                }
+
+                String sql = "INSERT INTO partner (pid, namn, kontaktperson, kontaktepost, telefon, adress, branch, stad) VALUES ("
+                        + newPid + ", '" + partner + "', '" + kontaktperson + "', '" + kontaktepost + "', '" + telefon + "', '" + adress + "', '" + branch + "', '" + stad + "')";
+
+                idb.insert(sql);
+                System.out.println("Partner har lagts till.");
+
+                jTFPartner.setText("");
+                jTFKontaktperson.setText("");
+                jTFKontaktepost1.setText("");
+                jTFTelefon.setText("");
+                jTFAdress.setText("");
+                jTFBranch.setText("");
+                jTFStad.setText("");
+            } catch (InfException e) {
+                System.out.println("Ett fel uppstod:" + e.getMessage());
+            }
         }
-        
-        String sql = "INSERT INTO partner (pid, namn, kontaktperson, kontaktepost, telefon, adress, branch, stad) VALUES ("
-            + newPid + ", '" + partner + "', '" + kontaktperson + "', '" + kontaktepost + "', '" + telefon + "', '" + adress + "', '" + branch + "', '" + stad + "')";
-        
-        idb.insert(sql);
-        System.out.println("Partner har lagts till.");
-       
-        jTFPartner.setText("");
-        jTFKontaktperson.setText("");
-        jTFKontaktepost1.setText("");
-        jTFTelefon.setText("");
-        jTFAdress.setText("");
-        jTFBranch.setText("");
-        jTFStad.setText("");
-    } catch (InfException e) {
-        System.out.println("Ett fel uppstod:" + e.getMessage());
-    }
-
     }//GEN-LAST:event_jBLaggTillPartnerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new AdminHanteraPartner(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

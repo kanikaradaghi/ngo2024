@@ -248,17 +248,16 @@ public class AdminProjektHantera extends javax.swing.JFrame {
                 || !Validering.textFaltHarVarde(JtxtKostnad)
                 || !Validering.textFaltHarVarde(JtxtStatus)
                 || !Validering.textFaltHarVarde(JtxtPrioritet)) {
-            JOptionPane.showMessageDialog(this, "Vänligen fyll i alla fält.", "Fel", JOptionPane.ERROR_MESSAGE);
+
             return;
         }
 
         if (!Validering.isValidDate(JtxtStartdatum) || !Validering.isValidDate(JtxtSlutdatum)) {
-            JOptionPane.showMessageDialog(this, "Ogiltigt datumformat. Använd ÅÅÅÅ-MM-DD.", "Fel", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (!Validering.isHelTal(JtxtKostnad) || !Validering.isValidCost(JtxtKostnad)) {
-            JOptionPane.showMessageDialog(this, "Ogiltig kostnad. Det måste vara ett positivt heltal.", "Fel", JOptionPane.ERROR_MESSAGE);
+        if (!Validering.isValidCost(JtxtKostnad)) {
+
             return;
         }
 

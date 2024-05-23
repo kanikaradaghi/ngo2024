@@ -63,19 +63,32 @@ public class Validering {
 
         try {
             String inStrang = ruta.getText();
-            int kostnad = Integer.parseInt(inStrang);
-            if (kostnad < 0) {
+            double kostnad = Double.parseDouble(inStrang);
+            if (kostnad <= 0) {
                 throw new NumberFormatException();
             }
             ruta.requestFocus();
         } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(null, "Fyll i en giltig kostnad(positivt heltal)");
+            JOptionPane.showMessageDialog(null, "Fyll i en giltig kostnad(positivt tal)");
             resultat = false;
 
         }
         return resultat;
 
     }
+    public static boolean isValidEpost(JTextField ruta) {
+        boolean resultat = true;
+        String ePostPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+
+        if (!Pattern.matches(ePostPattern, ruta.getText())) {
+            JOptionPane.showMessageDialog(null, "Fel epostformat");
+            resultat = false;
+        }
+        return resultat;
+
+    }
+    
+    
 
 }

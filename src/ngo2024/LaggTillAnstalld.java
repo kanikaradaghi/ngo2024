@@ -8,6 +8,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.security.SecureRandom;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author walee
@@ -227,73 +228,76 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillActionPerformed
-        String fornamn = jTFFornamn.getText();
-        String efternamn = jTFEfternamn.getText();
-        String adress = jTFAdress.getText();
-        String epost = jTFEpost.getText();
-        String telefon = jTFTelefon.getText();
-        String anstallningsDatum = jTFAnstallningsDatum.getText();
-        String avdelning = jTFAvdelning.getText();
-        boolean arAdmin = jRBAdmin.isSelected();
-        boolean arHandlaggare = jRBHandlaggare.isSelected();
         
-        int newAid = 1;
-
-        try{
-            String maxAidSql = "SELECT MAX(aid) FROM anstalld";
-            String maxAidStr = idb.fetchSingle(maxAidSql);
+        if (Validering.textFaltHarVarde(jTFFornamn) && Validering.textFaltHarVarde(jTFEfternamn) && Validering.textFaltHarVarde(jTFAdress) && Validering.textFaltHarVarde(jTFEpost) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFAnstallningsDatum) && Validering.textFaltHarVarde(jTFAvdelning) && Validering.isValidDate(jTFAnstallningsDatum) && Validering.isHelTal(jTFTelefon) && Validering.isValidEpost(jTFEpost)) {
             
-            if(maxAidStr != null && !maxAidStr.isEmpty()){
-                newAid = Integer.parseInt(maxAidStr) + 1;
+            String fornamn = jTFFornamn.getText();            
+            String efternamn = jTFEfternamn.getText();
+            String adress = jTFAdress.getText();
+            String epost = jTFEpost.getText();
+            String telefon = jTFTelefon.getText();
+            String anstallningsDatum = jTFAnstallningsDatum.getText();
+            String avdelning = jTFAvdelning.getText();
+            boolean arAdmin = jRBAdmin.isSelected();
+            boolean arHandlaggare = jRBHandlaggare.isSelected();
+            
+            int newAid = 1;
+            
+            try {
+                String maxAidSql = "SELECT MAX(aid) FROM anstalld";
+                String maxAidStr = idb.fetchSingle(maxAidSql);
+                
+                if (maxAidStr != null && !maxAidStr.isEmpty()) {
+                    newAid = Integer.parseInt(maxAidStr) + 1;
+                }
+                
+                SecureRandom slumpLosenord = new SecureRandom();
+                String bokstaverSiffror = "abcdefghijklmnopqrstuvwxyz0123456789";
+                StringBuilder losenord = new StringBuilder("password");
+                boolean anvand = slumpLosenord.nextBoolean();
+                for (int i = 0; i < 3; i++) {
+                    if (anvand) {
+                        losenord.append(bokstaverSiffror.charAt(slumpLosenord.nextInt(26)));
+                    } else {
+                        losenord.append(bokstaverSiffror.charAt(26 + slumpLosenord.nextInt(10)));
+                        
+                    }
+                    
+                }
+                
+                String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, avdelning, losenord) VALUES ("
+                        + newAid + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsDatum + "', '" + avdelning + "', '" + losenord.toString() + "')";
+                
+                idb.insert(sql);
+                System.out.println("Anställd har lagts till.");
+                
+                if (arAdmin) {
+                    String sqlAdmin = "INSERT INTO admin (aid, behorighetsniva) VALUES (" + newAid + ", 1)";
+                    idb.insert(sqlAdmin);
+                }
+                
+                if (arHandlaggare) {
+                    String sqlHandlaggare = "INSERT INTO handlaggare (aid) VALUES (" + newAid + ")";
+                    idb.insert(sqlHandlaggare);
+                }
+                
+                JOptionPane.showMessageDialog(this, "Lösenord: " + losenord.toString(), "Nytt Lösenord", JOptionPane.INFORMATION_MESSAGE);
+                
+                jTFFornamn.setText("");
+                jTFEfternamn.setText("");
+                jTFAdress.setText("");
+                jTFEpost.setText("");
+                jTFTelefon.setText("");
+                jTFAnstallningsDatum.setText("");
+                jTFAvdelning.setText("");
+                jRBAdmin.setSelected(false);
+                jRBHandlaggare.setSelected(false);
+                
+            } catch (InfException e) {
+                System.out.println("Ett fel uppstod:" + e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Ett fel uppstod: " + e.getMessage());
             }
-        
-        SecureRandom slumpLosenord = new SecureRandom();
-        String bokstaverSiffror = "abcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder losenord = new StringBuilder("password");
-        boolean anvand = slumpLosenord.nextBoolean();
-        for (int i = 0; i < 3; i++){
-        if(anvand){
-        losenord.append(bokstaverSiffror.charAt(slumpLosenord.nextInt(26)));
-        }else {
-        losenord.append(bokstaverSiffror.charAt(26 + slumpLosenord.nextInt (10)));
-        
-        }
-        
-        }
-        
-        String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, avdelning, losenord) VALUES ("
-                + newAid + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsDatum + "', '" + avdelning + "', '" + losenord.toString() + "')";
-        
-        
-        idb.insert(sql);
-        System.out.println("Anställd har lagts till.");
-        
-        if(arAdmin) {
-        String sqlAdmin = "INSERT INTO admin (aid, behorighetsniva) VALUES (" + newAid + ", 1)";
-        idb.insert(sqlAdmin);
-        }
-        
-        if(arHandlaggare) {
-        String sqlHandlaggare = "INSERT INTO handlaggare (aid) VALUES (" + newAid + ")";
-        idb.insert(sqlHandlaggare);
-        }
-        
-        JOptionPane.showMessageDialog(this, "Lösenord: " + losenord.toString(), "Nytt Lösenord", JOptionPane.INFORMATION_MESSAGE);
-        
-        jTFFornamn.setText("");
-        jTFEfternamn.setText("");
-        jTFAdress.setText("");
-        jTFEpost.setText("");
-        jTFTelefon.setText("");
-        jTFAnstallningsDatum.setText("");
-        jTFAvdelning.setText("");
-        jRBAdmin.setSelected(false);
-        jRBHandlaggare.setSelected(false);
-        
-        }catch(InfException e){
-            System.out.println("Ett fel uppstod:" + e.getMessage() );
-        } catch (NumberFormatException e) {
-        System.out.println("Ett fel uppstod: " + e.getMessage());
         }
     }//GEN-LAST:event_jBLaggTillActionPerformed
 
@@ -310,8 +314,8 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
     }//GEN-LAST:event_jRBHandlaggareActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new Anstallda(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new Anstallda(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

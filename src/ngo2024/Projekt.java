@@ -9,22 +9,24 @@ import oru.inf.InfException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
 public class Projekt extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandareH;
     private DefaultComboBoxModel<String> comboBoxModel;
     private DefaultComboBoxModel<String> comboBoxModel2;
     private ArrayList<String> partnerNamn;
     private ArrayList<String> nyaNamn;
-    
+
     /**
      * Creates new form Projekt
      */
-    public Projekt(InfDB idb, String InloggadAnvandareH){
+    public Projekt(InfDB idb, String InloggadAnvandareH) {
         this.idb = idb;
         this.InloggadAnvandareH = InloggadAnvandareH;
         comboBoxModel = new DefaultComboBoxModel<>();
@@ -33,16 +35,17 @@ public class Projekt extends javax.swing.JFrame {
         partnerNamn = ProjektBakgrund.getPartnersPaVarje(InloggadAnvandareH);
         initComponents();
         lbEpostProjekt.setText(InloggadAnvandareH);
-        cbMinaprojekt.setModel(comboBoxModel); 
-        for(String namn: nyaNamn){
+        cbMinaprojekt.setModel(comboBoxModel);
+        for (String namn : nyaNamn) {
             System.out.println("Lägger till: " + namn);
-        comboBoxModel.addElement(namn);
+            comboBoxModel.addElement(namn);
         }
         cbPartnersPaMina.setModel(comboBoxModel2);
-        for(String partner: partnerNamn){
+        for (String partner : partnerNamn) {
             comboBoxModel2.addElement(partner);
-            }
+        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -382,45 +385,45 @@ public class Projekt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMinaprojektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinaprojektActionPerformed
-   String valtObjekt = (String) cbMinaprojekt.getSelectedItem();
-   comboBoxModel2.removeAllElements();
-   ArrayList<String> partnersPaDetta = ProjektBakgrund.getProjektPartners(valtObjekt);
-   cbPartnersPaMina.setModel(comboBoxModel2);
-        for(String partner: partnersPaDetta){
+        String valtObjekt = (String) cbMinaprojekt.getSelectedItem();
+        comboBoxModel2.removeAllElements();
+        ArrayList<String> partnersPaDetta = ProjektBakgrund.getProjektPartners(valtObjekt);
+        cbPartnersPaMina.setModel(comboBoxModel2);
+        for (String partner : partnersPaDetta) {
             comboBoxModel2.addElement(partner);
-            }
-   
-   lblPid.setText(ProjektBakgrund.getPid(valtObjekt));
-   lblProjektNamn.setText(valtObjekt);
-   lblBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
-   lblStartDatum.setText(ProjektBakgrund.getStartDatum(valtObjekt));
-   lblSlutDatum.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
-   lblKostand.setText(ProjektBakgrund.getKostand(valtObjekt));
-   lblStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
-   lblPrioritet.setText(ProjektBakgrund.getPrioritet(valtObjekt));
-   lblProjektChef.setText(ProjektBakgrund.getProjektChef(valtObjekt));
-   lblLand.setText(ProjektBakgrund.getLand(valtObjekt));
-   
+        }
+
+        lblPid.setText(ProjektBakgrund.getPid(valtObjekt));
+        lblProjektNamn.setText(valtObjekt);
+        lblBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
+        lblStartDatum.setText(ProjektBakgrund.getStartDatum(valtObjekt));
+        lblSlutDatum.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
+        lblKostand.setText(ProjektBakgrund.getKostand(valtObjekt));
+        lblStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
+        lblPrioritet.setText(ProjektBakgrund.getPrioritet(valtObjekt));
+        lblProjektChef.setText(ProjektBakgrund.getProjektChef(valtObjekt));
+        lblLand.setText(ProjektBakgrund.getLand(valtObjekt));
+
     }//GEN-LAST:event_cbMinaprojektActionPerformed
 
     private void cbPartnersPaMinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPartnersPaMinaActionPerformed
-         String valtObjekt = (String) cbPartnersPaMina.getSelectedItem();
-         
-         lblId.setText(ProjektBakgrund.getId(valtObjekt));
-         lblNamn.setText(valtObjekt);
-         lblKontaktPerson.setText(ProjektBakgrund.getKontaktPerson(valtObjekt));
-         lblKontaktEpost.setText(ProjektBakgrund.getKontaktEpost(valtObjekt));
-         lblTelefon.setText(ProjektBakgrund.gettelefon(valtObjekt));
-         lblAdress.setText(ProjektBakgrund.getAdress(valtObjekt));
-         lblBranch.setText(ProjektBakgrund.getBranch(valtObjekt));
-         lblStad.setText(ProjektBakgrund.getStad(valtObjekt));
-         
-         
+        String valtObjekt = (String) cbPartnersPaMina.getSelectedItem();
+
+        lblId.setText(ProjektBakgrund.getId(valtObjekt));
+        lblNamn.setText(valtObjekt);
+        lblKontaktPerson.setText(ProjektBakgrund.getKontaktPerson(valtObjekt));
+        lblKontaktEpost.setText(ProjektBakgrund.getKontaktEpost(valtObjekt));
+        lblTelefon.setText(ProjektBakgrund.gettelefon(valtObjekt));
+        lblAdress.setText(ProjektBakgrund.getAdress(valtObjekt));
+        lblBranch.setText(ProjektBakgrund.getBranch(valtObjekt));
+        lblStad.setText(ProjektBakgrund.getStad(valtObjekt));
+
+
     }//GEN-LAST:event_cbPartnersPaMinaActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-    new HandlaggarMeny(idb, InloggadAnvandareH).setVisible(true);
-    this.setVisible(false);
+        new HandlaggarMeny(idb, InloggadAnvandareH).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
@@ -455,7 +458,7 @@ public class Projekt extends javax.swing.JFrame {
             public void run() {
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

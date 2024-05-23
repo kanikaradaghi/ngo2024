@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author User
  */
 public class HandlaggarMeny extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandareH;
     private AnstallBakgrund anstalldInfo;
@@ -20,7 +22,6 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
     private ArrayList<String> namnPaMal;
     private boolean projektLedare;
-
 
     /**
      * Creates new form HandlaggarMeny
@@ -45,12 +46,12 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         tfEpost.setText(InloggadAnvandareH);
         btnProjektLedarKnapp.setVisible(false);
         jList1.setModel(listModel);
-        for(String mal: namnPaMal){
+        for (String mal : namnPaMal) {
             listModel.addElement(mal);
         }
-        if(projektLedare){
+        if (projektLedare) {
             btnProjektLedarKnapp.setVisible(true);
-                    }
+        }
     }
 
     /**
@@ -343,40 +344,36 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB1ActionPerformed
-
-        new Projekt (idb, InloggadAnvandareH).setVisible(true);
-                this.setVisible(false); 
         
-              
-           
+        new Projekt(idb, InloggadAnvandareH).setVisible(true);
+        this.setVisible(false);        
+        
 
-       
     }//GEN-LAST:event_hB1ActionPerformed
 
     private void hB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB2ActionPerformed
         new AvdelningHandlaggare(idb, InloggadAnvandareH).setVisible(true);
-                this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_hB2ActionPerformed
 
     private void tfmittAidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfmittAidActionPerformed
-       
+        
     }//GEN-LAST:event_tfmittAidActionPerformed
 
     private void btnAndraNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNamnActionPerformed
-         
+        
         boolean klart = false;
-        if(Validering.textFaltHarVarde(tfforNamn)){
-             String namnAndring = tfforNamn.getText();
-         klart = AnstallBakgrund.andraForNamn(namnAndring, InloggadAnvandareH);
+        if (Validering.textFaltHarVarde(tfforNamn)) {
+            String namnAndring = tfforNamn.getText();
+            klart = AnstallBakgrund.andraForNamn(namnAndring, InloggadAnvandareH);
             
-        if(klart = true){
-            lblAndringMeddelande.setText("Du har nu ändrat ditt namn");
-            lblAndringMeddelande.setVisible(true);
-                }
-        else{
-            lblAndringMeddelande.setText("Det gick inte att ändra ditt namn");
-            lblAndringMeddelande.setVisible(true);            
-                            }
+            if (klart = true) {
+                lblAndringMeddelande.setText("Du har nu ändrat ditt namn");
+                lblAndringMeddelande.setVisible(true);
+            } else {
+                lblAndringMeddelande.setText("Det gick inte att ändra ditt namn");
+                lblAndringMeddelande.setVisible(true);                
+            }
         }
 
     }//GEN-LAST:event_btnAndraNamnActionPerformed
@@ -384,85 +381,80 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private void btnAndraEfterNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraEfterNamnActionPerformed
         
         boolean klart = false;
-        if(Validering.textFaltHarVarde(tfefterNamn)){
-             String namnAndring = tfefterNamn.getText();
-         klart = AnstallBakgrund.andraEfterNamn(namnAndring, InloggadAnvandareH);
+        if (Validering.textFaltHarVarde(tfefterNamn)) {
+            String namnAndring = tfefterNamn.getText();
+            klart = AnstallBakgrund.andraEfterNamn(namnAndring, InloggadAnvandareH);
             
-        if(klart = true){
-            lblAndringMeddelande.setText("Du har nu ändrat ditt efternamn");
-            lblAndringMeddelande.setVisible(true);
-                }
-        else{
-            lblAndringMeddelande.setText("Det gick inte att ändra ditt efternamn");
-            lblAndringMeddelande.setVisible(true);            
-                            }
+            if (klart = true) {
+                lblAndringMeddelande.setText("Du har nu ändrat ditt efternamn");
+                lblAndringMeddelande.setVisible(true);
+            } else {
+                lblAndringMeddelande.setText("Det gick inte att ändra ditt efternamn");
+                lblAndringMeddelande.setVisible(true);                
+            }
         }
     }//GEN-LAST:event_btnAndraEfterNamnActionPerformed
 
     private void btnAndraAdressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraAdressActionPerformed
-   boolean klart = false;
-        if(Validering.textFaltHarVarde(tfAdress)){
-             String adressAndring = tfAdress.getText();
-         klart = AnstallBakgrund.andraAdress(adressAndring, InloggadAnvandareH);
+        boolean klart = false;
+        if (Validering.textFaltHarVarde(tfAdress)) {
+            String adressAndring = tfAdress.getText();
+            klart = AnstallBakgrund.andraAdress(adressAndring, InloggadAnvandareH);
             
-        if(klart = true){
-            lblAndringMeddelande.setText("Du har nu ändrat din adress");
-            lblAndringMeddelande.setVisible(true);
-                }
-        else{
-            lblAndringMeddelande.setText("Det gick inte att ändra din adress");
-            lblAndringMeddelande.setVisible(true);            
-                            }
+            if (klart = true) {
+                lblAndringMeddelande.setText("Du har nu ändrat din adress");
+                lblAndringMeddelande.setVisible(true);
+            } else {
+                lblAndringMeddelande.setText("Det gick inte att ändra din adress");
+                lblAndringMeddelande.setVisible(true);                
+            }
         }
     }//GEN-LAST:event_btnAndraAdressActionPerformed
 
     private void btnAndraNmrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNmrActionPerformed
-                                                
-   boolean klart = false;
-        if(Validering.textFaltHarVarde(tfTelefonNmr)){
-             String nmrAndring = tfTelefonNmr.getText();
-         klart = AnstallBakgrund.andraNmr(nmrAndring, InloggadAnvandareH);
+        
+        boolean klart = false;
+        if (Validering.textFaltHarVarde(tfTelefonNmr) && Validering.isHelTal(tfTelefonNmr)) {
+            String nmrAndring = tfTelefonNmr.getText();
+            klart = AnstallBakgrund.andraNmr(nmrAndring, InloggadAnvandareH);
             
-        if(klart = true){
-            lblAndringMeddelande.setText("Du har nu ändrat dit telefonnummer");
-            lblAndringMeddelande.setVisible(true);
-                }
-        else{
-            lblAndringMeddelande.setText("Det gick inte att ändra dit telefonnummer");
-            lblAndringMeddelande.setVisible(true);            
-                            }
+            if (klart = true) {
+                lblAndringMeddelande.setText("Du har nu ändrat dit telefonnummer");
+                lblAndringMeddelande.setVisible(true);
+            } else {
+                lblAndringMeddelande.setText("Det gick inte att ändra dit telefonnummer");
+                lblAndringMeddelande.setVisible(true);                
+            }
         }
     }//GEN-LAST:event_btnAndraNmrActionPerformed
 
     private void btnAndraEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraEpostActionPerformed
-       boolean klart = false;
-       String aid = tfmittAid.getText();
-        if(Validering.textFaltHarVarde(tfEpost)){
-             String epostAndring = tfEpost.getText();
-         klart = AnstallBakgrund.andraEpost(epostAndring,aid );
+        boolean klart = false;
+        String aid = tfmittAid.getText();
+        if (Validering.textFaltHarVarde(tfEpost) && Validering.isValidEpost(tfEpost)) {
+            String epostAndring = tfEpost.getText();
+            klart = AnstallBakgrund.andraEpost(epostAndring, aid);
             
-        if(klart = true){
-            lblAndringMeddelande.setText("Du har nu ändrat din epost");
-            lblAndringMeddelande.setVisible(true);
-                }
-        else{
-            lblAndringMeddelande.setText("Det gick inte att ändra din epost");
-            lblAndringMeddelande.setVisible(true);            
-                            }
+            if (klart = true) {
+                lblAndringMeddelande.setText("Du har nu ändrat din epost");
+                lblAndringMeddelande.setVisible(true);
+            } else {
+                lblAndringMeddelande.setText("Det gick inte att ändra din epost");
+                lblAndringMeddelande.setVisible(true);                
+            }
         }
         
     }//GEN-LAST:event_btnAndraEpostActionPerformed
 //knapp för att logga ut till första sidan.
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-         new Inlogg(idb).setVisible(true);
+        new Inlogg(idb).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void btnProjektLedarKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektLedarKnappActionPerformed
-       new Projektledare(idb, InloggadAnvandareH).setVisible(true);   
-                this.setVisible(false);
+        new Projektledare(idb, InloggadAnvandareH).setVisible(true);        
+        this.setVisible(false);
     }//GEN-LAST:event_btnProjektLedarKnappActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -493,10 +485,10 @@ public class HandlaggarMeny extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {   
+            public void run() {                
             }
-    });
-    }  
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraAdress;
     private javax.swing.JButton btnAndraEfterNamn;

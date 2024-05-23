@@ -9,15 +9,14 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
 
-
 /**
  *
  * @author walee
  */
 public class AndraLand extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandare;
-    
 
     /**
      * Creates new form AndraLand
@@ -207,83 +206,82 @@ public class AndraLand extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-     private void fyllComboBox() {
+    private void fyllComboBox() {
         jCBValjLand.removeAllItems();
-    try {
-        String sql = "SELECT namn FROM land";
-        ArrayList<String> ettLand = idb.fetchColumn(sql);
+        try {
+            String sql = "SELECT namn FROM land";
+            ArrayList<String> ettLand = idb.fetchColumn(sql);
 
-        if (ettLand != null) {
-            for (String land : ettLand) {
-                jCBValjLand.addItem(land);
+            if (ettLand != null) {
+                for (String land : ettLand) {
+                    jCBValjLand.addItem(land);
+                }
+            } else {
+                System.out.println("Inga land hittades.");
             }
-        } else {
-            System.out.println("Inga land hittades.");
+        } catch (InfException e) {
+            System.out.println("Ett fel uppstod vid hämtning av landnamn.");
         }
-    } catch (InfException e) {
-        System.out.println("Ett fel uppstod vid hämtning av landnamn.");
     }
-}
-    
-    
-    private void jBAndraLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraLandActionPerformed
-    String lid = jTFLidLand.getText();
-    String namn = jTFNamnLand.getText();
-    String sprak = jTFSprakLand.getText();
-    String valuta = jTFValutaLand.getText();
-    String tidszon = jTFTidszonLand.getText();
-    String politisk_struktur = jTFPolitiskStrukturLand.getText();
-    String ekonomi = jTFEkonomiLand.getText();
 
-    try {
-        // Uppdatera databasen med de nya värdena
-        String sqlAndring = "UPDATE land SET namn = '" + namn + "', sprak = '" + sprak + "', valuta = '" + valuta + "', tidszon = '" + tidszon + "', politisk_struktur = '" + politisk_struktur + "', ekonomi = '" + ekonomi + "' WHERE lid = '" + lid + "'";
-        idb.update(sqlAndring);
-        
-        // Visa en bekräftelse att ändringarna har genomförts
-        System.out.println("Ändringar har genomförts.");
-    } catch (InfException e) {
-        // Visa felmeddelande om något går fel vid uppdateringen
-        System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
-        e.printStackTrace();
-    }
+
+    private void jBAndraLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraLandActionPerformed
+
+        if (Validering.textFaltHarVarde(jTFLidLand) && Validering.isHelTal(jTFLidLand) && Validering.textFaltHarVarde(jTFNamnLand) && Validering.textFaltHarVarde(jTFSprakLand) && Validering.textFaltHarVarde(jTFValutaLand) && Validering.textFaltHarVarde(jTFTidszonLand) && Validering.textFaltHarVarde(jTFPolitiskStrukturLand) && Validering.textFaltHarVarde(jTFEkonomiLand)) {
+
+            String lid = jTFLidLand.getText();
+            String namn = jTFNamnLand.getText();
+            String sprak = jTFSprakLand.getText();
+            String valuta = jTFValutaLand.getText();
+            String tidszon = jTFTidszonLand.getText();
+            String politisk_struktur = jTFPolitiskStrukturLand.getText();
+            String ekonomi = jTFEkonomiLand.getText();
+
+            try {
+                // Uppdatera databasen med de nya värdena
+                String sqlAndring = "UPDATE land SET namn = '" + namn + "', sprak = '" + sprak + "', valuta = '" + valuta + "', tidszon = '" + tidszon + "', politisk_struktur = '" + politisk_struktur + "', ekonomi = '" + ekonomi + "' WHERE lid = '" + lid + "'";
+                idb.update(sqlAndring);
+
+                // Visa en bekräftelse att ändringarna har genomförts
+                System.out.println("Ändringar har genomförts.");
+            } catch (InfException e) {
+                // Visa felmeddelande om något går fel vid uppdateringen
+                System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_jBAndraLandActionPerformed
 
     private void jCBValjLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjLandActionPerformed
-        
-         String valtLand = (String) jCBValjLand.getSelectedItem();
-    if (valtLand != null) {
-        try {
-            String sql = "SELECT * FROM land WHERE namn = '" + valtLand + "'";
-            HashMap<String, String> land = idb.fetchRow(sql);
-            
-            if (land != null) {
-                jTFLidLand.setText(land.get("lid"));
-                jTFNamnLand.setText(land.get("namn"));
-                jTFSprakLand.setText(land.get("sprak"));
-                jTFValutaLand.setText(land.get("valuta"));
-                jTFTidszonLand.setText(land.get("tidszon"));
-                jTFPolitiskStrukturLand.setText(land.get("politisk_struktur"));
-                jTFEkonomiLand.setText(land.get("ekonomi"));
-            } else {
-                System.out.println("Kunde inte hitta land.");
+
+        String valtLand = (String) jCBValjLand.getSelectedItem();
+        if (valtLand != null) {
+            try {
+                String sql = "SELECT * FROM land WHERE namn = '" + valtLand + "'";
+                HashMap<String, String> land = idb.fetchRow(sql);
+
+                if (land != null) {
+                    jTFLidLand.setText(land.get("lid"));
+                    jTFNamnLand.setText(land.get("namn"));
+                    jTFSprakLand.setText(land.get("sprak"));
+                    jTFValutaLand.setText(land.get("valuta"));
+                    jTFTidszonLand.setText(land.get("tidszon"));
+                    jTFPolitiskStrukturLand.setText(land.get("politisk_struktur"));
+                    jTFEkonomiLand.setText(land.get("ekonomi"));
+                } else {
+                    System.out.println("Kunde inte hitta land.");
+                }
+            } catch (InfException e) {
+                System.out.println("Ett fel uppstod vid hämtning av landdetaljer.");
             }
-        } catch (InfException e) {
-            System.out.println("Ett fel uppstod vid hämtning av landdetaljer.");
         }
-    }
-                
-                
-                
-            
-        
-        
+
+
     }//GEN-LAST:event_jCBValjLandActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     new AdminLand(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminLand(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

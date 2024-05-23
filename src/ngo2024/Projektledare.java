@@ -454,10 +454,10 @@ private void uppdateraProjektNamn(String namn){
         if(Validering.textFaltHarVarde(tftProjektBeskrivning)){
             ProjektBakgrund.andraBeskrivning(pid, tftProjektBeskrivning.getText());
         }
-        if(Validering.textFaltHarVarde(tftStartDatum) ){
+        if(Validering.textFaltHarVarde(tftStartDatum) && Validering.isValidDate(tftStartDatum)){
             ProjektBakgrund.andraStartDatum(pid, tftStartDatum.getText());
         }
-        if(Validering.textFaltHarVarde(tftSlutDatum)){
+        if(Validering.textFaltHarVarde(tftSlutDatum)&& Validering.isValidDate(tftSlutDatum)){
             ProjektBakgrund.andraSlutDatum(pid, tftSlutDatum.getText());
         }
         if(Validering.textFaltHarVarde(tftKostnad));{

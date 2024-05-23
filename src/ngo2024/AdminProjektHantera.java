@@ -27,6 +27,7 @@ public class AdminProjektHantera extends javax.swing.JFrame {
 
     }
 
+    //Får fram id för land.
     private void fyllLandComboBox() {
 
         try {
@@ -47,6 +48,7 @@ public class AdminProjektHantera extends javax.swing.JFrame {
         }
     }
 
+    //Får fram id, förnamn och efternamn för anställd som kan också vara projektchef.
     private void fyllProjektchefComboBox() {
 
         try {

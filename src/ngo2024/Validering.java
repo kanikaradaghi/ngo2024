@@ -25,14 +25,14 @@ public class Validering {
         return resultat;
     }
 
+    //Validering för heltal
     public static boolean isHelTal(JTextField ruta) {
         boolean resultat = true;
 
         try {
             String inStrang = ruta.getText();
-            //test
+
             int tal = Integer.parseInt(inStrang);
-            //Integer.parseInt(inStrang);
             ruta.requestFocus();
 
         } catch (NumberFormatException e) {
@@ -42,8 +42,7 @@ public class Validering {
         return resultat;
     }
 
-    //Validering för AdminProjektHantera
-    //Validering för datum. 
+    //Validering för datum. Ska vara i rätt format.
     public static boolean isValidDate(JTextField ruta) {
         boolean resultat = true;
         // ÅÅÅÅ-MM-DD
@@ -57,7 +56,7 @@ public class Validering {
 
     }
 
-    //Validering för kostnad
+    //Validering för kostnad. Kostnad ska vara positivt tal.
     public static boolean isValidCost(JTextField ruta) {
         boolean resultat = true;
 
@@ -77,6 +76,8 @@ public class Validering {
         return resultat;
 
     }
+
+    //Kontrollerar att E-post är i rätt format.
     public static boolean isValidEpost(JTextField ruta) {
         boolean resultat = true;
         String ePostPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
@@ -88,7 +89,5 @@ public class Validering {
         return resultat;
 
     }
-    
-    
 
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import ngo2024.AdminProjektHantera;
@@ -12,9 +13,9 @@ import ngo2024.AdminProjektHantera;
  * @author Ägaren
  */
 public class AdminProjekt extends javax.swing.JFrame {
-      private InfDB idb;
-    private String InloggadAnvandare;
 
+    private InfDB idb;
+    private String InloggadAnvandare;
 
     /**
      * Creates new form AdminProjekt
@@ -135,17 +136,17 @@ public class AdminProjekt extends javax.swing.JFrame {
 
     private void JbtnLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnLandActionPerformed
         new AdminLand(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_JbtnLandActionPerformed
 
     private void JbtnHanteraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnHanteraProjektActionPerformed
         new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_JbtnHanteraProjektActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminMeny(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminMeny(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

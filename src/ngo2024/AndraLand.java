@@ -205,6 +205,7 @@ public class AndraLand extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+//Combobox för att välja ett land.
 
     private void fyllComboBox() {
         jCBValjLand.removeAllItems();
@@ -238,14 +239,13 @@ public class AndraLand extends javax.swing.JFrame {
             String ekonomi = jTFEkonomiLand.getText();
 
             try {
-                // Uppdatera databasen med de nya värdena
+                // Uppdaterar databasen
                 String sqlAndring = "UPDATE land SET namn = '" + namn + "', sprak = '" + sprak + "', valuta = '" + valuta + "', tidszon = '" + tidszon + "', politisk_struktur = '" + politisk_struktur + "', ekonomi = '" + ekonomi + "' WHERE lid = '" + lid + "'";
                 idb.update(sqlAndring);
 
-                // Visa en bekräftelse att ändringarna har genomförts
                 System.out.println("Ändringar har genomförts.");
             } catch (InfException e) {
-                // Visa felmeddelande om något går fel vid uppdateringen
+
                 System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
                 e.printStackTrace();
             }
@@ -253,7 +253,7 @@ public class AndraLand extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAndraLandActionPerformed
 
     private void jCBValjLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjLandActionPerformed
-
+//Ändra det valda landet. 
         String valtLand = (String) jCBValjLand.getSelectedItem();
         if (valtLand != null) {
             try {

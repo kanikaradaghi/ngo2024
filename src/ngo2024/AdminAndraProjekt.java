@@ -9,16 +9,14 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
 
-
 /**
  *
  * @author walee
  */
 public class AdminAndraProjekt extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
-    
 
     /**
      * Creates new form AdminAndraProjekt
@@ -240,60 +238,59 @@ public class AdminAndraProjekt extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+//Combobox för att välja projekt
 
     private void fyllComboBox() {
         jCBValjProjekt.removeAllItems();
-    try {
-        String sql = "SELECT projektnamn FROM projekt";
-        ArrayList<String> ettProjekt = idb.fetchColumn(sql);
-
-        if (ettProjekt != null) {
-            for (String projekt : ettProjekt) {
-                jCBValjProjekt.addItem(projekt);
-            }
-        } else {
-            System.out.println("Inga projekt hittades.");
-        }
-    } catch (InfException e) {
-        System.out.println("Ett fel uppstod vid hämtning av projektnamn.");
-    }
-}
-    
-    
-    
-    private void jCBValjProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjProjektActionPerformed
-        
-         String valtProjekt = (String) jCBValjProjekt.getSelectedItem();
-    if (valtProjekt != null) {
         try {
-            String sql = "SELECT * FROM projekt WHERE projektnamn = '" + valtProjekt + "'";
-            HashMap<String, String> projekt = idb.fetchRow(sql);
-            
-            if (projekt != null) {
-                jTFPidProjekt.setText(projekt.get("pid"));
-                jTFProjektnamnProjekt.setText(projekt.get("projektnamn"));
-                jTFBeskrivningProjekt.setText(projekt.get("beskrivning"));
-                jTFStartdatumProjekt.setText(projekt.get("startdatum"));
-                jTFSlutdatumProjekt.setText(projekt.get("slutdatum"));
-                jTFKostnadProjekt.setText(projekt.get("kostnad"));
-                jTFStatusProjekt.setText(projekt.get("status"));
-                jTFPrioritetProjekt.setText(projekt.get("prioritet"));
-                jTFProjektchefProjekt.setText(projekt.get("projektchef"));
-                jTFLandProjekt.setText(projekt.get("land"));
-                
-                
+            String sql = "SELECT projektnamn FROM projekt";
+            ArrayList<String> ettProjekt = idb.fetchColumn(sql);
+
+            if (ettProjekt != null) {
+                for (String projekt : ettProjekt) {
+                    jCBValjProjekt.addItem(projekt);
+                }
             } else {
-                System.out.println("Kunde inte hitta projekt.");
+                System.out.println("Inga projekt hittades.");
             }
         } catch (InfException e) {
-            System.out.println("Ett fel uppstod vid hämtning av projektdetaljer.");
+            System.out.println("Ett fel uppstod vid hämtning av projektnamn.");
         }
     }
-        
+
+
+    private void jCBValjProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjProjektActionPerformed
+//        Knapp för att ändra
+        String valtProjekt = (String) jCBValjProjekt.getSelectedItem();
+        if (valtProjekt != null) {
+            try {
+                String sql = "SELECT * FROM projekt WHERE projektnamn = '" + valtProjekt + "'";
+                HashMap<String, String> projekt = idb.fetchRow(sql);
+
+                if (projekt != null) {
+                    jTFPidProjekt.setText(projekt.get("pid"));
+                    jTFProjektnamnProjekt.setText(projekt.get("projektnamn"));
+                    jTFBeskrivningProjekt.setText(projekt.get("beskrivning"));
+                    jTFStartdatumProjekt.setText(projekt.get("startdatum"));
+                    jTFSlutdatumProjekt.setText(projekt.get("slutdatum"));
+                    jTFKostnadProjekt.setText(projekt.get("kostnad"));
+                    jTFStatusProjekt.setText(projekt.get("status"));
+                    jTFPrioritetProjekt.setText(projekt.get("prioritet"));
+                    jTFProjektchefProjekt.setText(projekt.get("projektchef"));
+                    jTFLandProjekt.setText(projekt.get("land"));
+
+                } else {
+                    System.out.println("Kunde inte hitta projekt.");
+                }
+            } catch (InfException e) {
+                System.out.println("Ett fel uppstod vid hämtning av projektdetaljer.");
+            }
+        }
+
     }//GEN-LAST:event_jCBValjProjektActionPerformed
 
     private void jBAndraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraProjektActionPerformed
-        
+
         if (!Validering.textFaltHarVarde(jTFProjektnamnProjekt)
                 || !Validering.textFaltHarVarde(jTFBeskrivningProjekt)
                 || !Validering.textFaltHarVarde(jTFStartdatumProjekt)
@@ -306,8 +303,7 @@ public class AdminAndraProjekt extends javax.swing.JFrame {
                 || !Validering.isHelTal(jTFPidProjekt)
                 || !Validering.isHelTal(jTFProjektchefProjekt)
                 || !Validering.isHelTal(jTFLandProjekt)
-            || !Validering.textFaltHarVarde(jTFLandProjekt))
-                {
+                || !Validering.textFaltHarVarde(jTFLandProjekt)) {
 
             return;
         }
@@ -320,43 +316,37 @@ public class AdminAndraProjekt extends javax.swing.JFrame {
 
             return;
         }
-        
-        
-    String pid = jTFPidProjekt.getText();
-    String projektnamn = jTFProjektnamnProjekt.getText();
-    String beskrivning = jTFBeskrivningProjekt.getText();
-    String startdatum = jTFStartdatumProjekt.getText();
-    String slutdatum = jTFSlutdatumProjekt.getText();
-    String kostnad = jTFKostnadProjekt.getText();
-    String status = jTFStatusProjekt.getText();
-    String prioritet = jTFPrioritetProjekt.getText();
-    String projektchef = jTFProjektchefProjekt.getText();
-    String land = jTFLandProjekt.getText();
 
-    try {
-        // Uppdatera databasen med de nya värdena
-        String sqlAndring = "UPDATE projekt SET projektnamn = '" + projektnamn + "', beskrivning = '" + beskrivning + "', startdatum = '" + startdatum + "', slutdatum = '" + slutdatum + "', kostnad = '" + kostnad + "', status = '" + status +  "', prioritet = '" + prioritet +  "', projektchef = '" + projektchef +  "', land = '" + land + "' WHERE pid = '" + pid + "'";
-        idb.update(sqlAndring);
-        
-        // Visa en bekräftelse att ändringarna har genomförts
-        System.out.println("Ändringar har genomförts.");
-    } catch (InfException e) {
-        // Visa felmeddelande om något går fel vid uppdateringen
-        System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
-        e.printStackTrace();
-    }
-        
+        String pid = jTFPidProjekt.getText();
+        String projektnamn = jTFProjektnamnProjekt.getText();
+        String beskrivning = jTFBeskrivningProjekt.getText();
+        String startdatum = jTFStartdatumProjekt.getText();
+        String slutdatum = jTFSlutdatumProjekt.getText();
+        String kostnad = jTFKostnadProjekt.getText();
+        String status = jTFStatusProjekt.getText();
+        String prioritet = jTFPrioritetProjekt.getText();
+        String projektchef = jTFProjektchefProjekt.getText();
+        String land = jTFLandProjekt.getText();
+
+        try {
+            // Uppdaterar i databasen
+            String sqlAndring = "UPDATE projekt SET projektnamn = '" + projektnamn + "', beskrivning = '" + beskrivning + "', startdatum = '" + startdatum + "', slutdatum = '" + slutdatum + "', kostnad = '" + kostnad + "', status = '" + status + "', prioritet = '" + prioritet + "', projektchef = '" + projektchef + "', land = '" + land + "' WHERE pid = '" + pid + "'";
+            idb.update(sqlAndring);
+
+            System.out.println("Ändringar har genomförts.");
+        } catch (InfException e) {
+
+            System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_jBAndraProjektActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */

@@ -4,7 +4,6 @@
  */
 package ngo2024;
 
-
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -13,6 +12,7 @@ import oru.inf.InfException;
  * @author Ägaren
  */
 public class AdminAvdelning extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -119,18 +119,18 @@ public class AdminAvdelning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLaggTillAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillAvdelningActionPerformed
-       new LaggTillAvdelning(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
+        new LaggTillAvdelning(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBLaggTillAvdelningActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      new AndraUppgifterAvdelning(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
+        new AndraUppgifterAvdelning(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new AdminMeny(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -163,7 +163,7 @@ public class AdminAvdelning extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new AdminAvdelning().setVisible(true);
+                // new AdminAvdelning().setVisible(true);
             }
         });
     }

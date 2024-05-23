@@ -390,7 +390,7 @@ public class ProjektBakgrund {
         return namn;
     }
 
-    // Kodför att ändra i projekt
+    // Kod för att ändra i projekt
     public static void andraPid(String nyttPid, String projektNamn) {
 
         String sqlFraga = "update  projekt set projekt.pid = '" + nyttPid + "' where projektnamn = '" + projektNamn + "'";

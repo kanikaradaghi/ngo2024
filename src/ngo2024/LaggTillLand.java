@@ -12,7 +12,7 @@ import oru.inf.InfException;
  * @author walee
  */
 public class LaggTillLand extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -167,47 +167,47 @@ public class LaggTillLand extends javax.swing.JFrame {
     private void jBLaggTillLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillLandActionPerformed
 
         if (Validering.textFaltHarVarde(jTFNamnLand) && Validering.textFaltHarVarde(jTFSprakLand) && Validering.textFaltHarVarde(jTFValutaLand) && Validering.textFaltHarVarde(jTFTidszonLand) && Validering.textFaltHarVarde(jTFPolitiskStrukturLand) && Validering.textFaltHarVarde(jTFEkonomiLand)) {
+//Lägger till ett nytt land.
+            String namn = jTFNamnLand.getText();
+            String sprak = jTFSprakLand.getText();
+            String valuta = jTFValutaLand.getText();
+            String tidszon = jTFTidszonLand.getText();
+            String politisk_struktur = jTFPolitiskStrukturLand.getText();
+            String ekonomi = jTFEkonomiLand.getText();
+//        Ger det nya landet ett id.
+            int newLid = 1;
 
-        String namn = jTFNamnLand.getText();
-        String sprak = jTFSprakLand.getText();
-        String valuta = jTFValutaLand.getText();
-        String tidszon = jTFTidszonLand.getText();
-        String politisk_struktur = jTFPolitiskStrukturLand.getText();
-        String ekonomi = jTFEkonomiLand.getText();
-        
-        int newLid = 1;
-         
-        try{
-            String maxLidSql = "SELECT MAX(lid) FROM land";
-            String maxLidStr = idb.fetchSingle(maxLidSql);
-            
-            if(maxLidStr != null && !maxLidStr.isEmpty()){
-                newLid = Integer.parseInt(maxLidStr) + 1;
+            try {
+                String maxLidSql = "SELECT MAX(lid) FROM land";
+                String maxLidStr = idb.fetchSingle(maxLidSql);
+
+                if (maxLidStr != null && !maxLidStr.isEmpty()) {
+                    newLid = Integer.parseInt(maxLidStr) + 1;
+                }
+
+                String sqlLand = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) VALUES ("
+                        + newLid + ", '" + namn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politisk_struktur + "', '" + ekonomi + "')";
+
+                idb.insert(sqlLand);
+                System.out.println("Land har lagts till.");
+
+                jTFNamnLand.setText("");
+                jTFSprakLand.setText("");
+                jTFValutaLand.setText("");
+                jTFTidszonLand.setText("");
+                jTFPolitiskStrukturLand.setText("");
+                jTFEkonomiLand.setText("");
+
+            } catch (InfException e) {
+                System.out.println("Ett fel uppstod:" + e.getMessage());
             }
-        
-    String sqlLand = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) VALUES ("
-    + newLid + ", '" + namn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politisk_struktur + "', '" + ekonomi + "')";
-       
-        idb.insert(sqlLand);
-        System.out.println("Land har lagts till.");
-            
-        jTFNamnLand.setText("");
-        jTFSprakLand.setText("");
-        jTFValutaLand.setText("");
-        jTFTidszonLand.setText("");
-        jTFPolitiskStrukturLand.setText("");
-        jTFEkonomiLand.setText("");
-        
-        }catch(InfException e){
-            System.out.println("Ett fel uppstod:" + e.getMessage() );
         }
-        }
-        
+
     }//GEN-LAST:event_jBLaggTillLandActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      new AdminLand (idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminLand(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

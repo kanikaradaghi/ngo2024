@@ -2,6 +2,7 @@ package ngo2024;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -13,7 +14,8 @@ import oru.inf.InfException;
  */
 public class Inlogg extends javax.swing.JFrame {
 
-       private InfDB idb;
+    private InfDB idb;
+
     /**
      * Creates new form Inlogg
      */
@@ -23,6 +25,7 @@ public class Inlogg extends javax.swing.JFrame {
         lblFelMeddelande.setVisible(false);
         this.ePost = ePost;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,52 +135,44 @@ public class Inlogg extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEpostActionPerformed
 
     private void btLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoggaInActionPerformed
-        
+
         String ePost = tfEpost.getText();
         String losen = tfLosenord.getText();
-         
-        try{
-            String sqlFraga= "SELECT losenord FROM anstalld WHERE epost = '" + ePost + "'";
+
+        try {
+            String sqlFraga = "SELECT losenord FROM anstalld WHERE epost = '" + ePost + "'";
             System.out.println(sqlFraga);
             String dbLosen = idb.fetchSingle(sqlFraga);
-        
-            if(losen.equals(dbLosen) ){
+
+            if (losen.equals(dbLosen)) {
                 String sqlFraga1 = "SELECT aid FROM anstalld WHERE epost = '" + ePost + "'";
                 System.out.println(sqlFraga1);
                 String dbAid = idb.fetchSingle(sqlFraga1);
-                
-               
+
                 String sqlFragaAdmin = "SELECT behorighetsniva FROM admin WHERE aid = '" + dbAid + "'";
                 System.out.println(sqlFragaAdmin);
                 String behorighetsniva = idb.fetchSingle(sqlFragaAdmin);
                 System.out.println(behorighetsniva);
-                
-                
-                if(behorighetsniva !=null && behorighetsniva.equals("1")){
-                
 
-           
-            
-                new AdminMeny(idb,ePost).setVisible(true);
-                this.setVisible(false);
-                
-                }else{new HandlaggarMeny(idb,ePost).setVisible(true);
-                        this.setVisible(false);
-                        }
-            
-            
-            }else{lblFelMeddelande.setVisible(true);
+                if (behorighetsniva != null && behorighetsniva.equals("1")) {
+
+                    new AdminMeny(idb, ePost).setVisible(true);
+                    this.setVisible(false);
+
+                } else {
+                    new HandlaggarMeny(idb, ePost).setVisible(true);
+                    this.setVisible(false);
+                }
+
+            } else {
+                lblFelMeddelande.setVisible(true);
             }
-            
-            
 
-    } catch (InfException ex){
+        } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
-        
 
-        
-        
+
     }//GEN-LAST:event_btLoggaInActionPerformed
 
     private void tfLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLosenordActionPerformed
@@ -218,12 +213,12 @@ public class Inlogg extends javax.swing.JFrame {
             }
         });
     }
-    public String getEpost()
-    {
+
+    public String getEpost() {
         return ePost;
     }
-    
-  
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLoggaIn;
     private javax.swing.JLabel jLabel1;
@@ -236,4 +231,3 @@ public class Inlogg extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private String ePost;
 }
-//hej

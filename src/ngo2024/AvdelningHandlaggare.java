@@ -9,13 +9,17 @@ import javax.swing.DefaultComboBoxModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.DefaultListModel;
+
 ;
+
 /**
  *
  * @author User
  */
+
+//information för handläggare om avdelning.
 public class AvdelningHandlaggare extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
     private DefaultComboBoxModel<String> comboBoxModel;
@@ -23,41 +27,34 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
     private DefaultListModel<String> listModel;
     private String avdelning;
     private ArrayList<String> forNamnPaAvdelning;
-  
 
-
-  
     /**
      * Creates new form AvdelningHandlaggare
      */
     public AvdelningHandlaggare(InfDB idb, String InloggadAnvandare) {
-        
-      this.idb = idb;
-      this.InloggadAnvandare = InloggadAnvandare;
-      avdelning = ProjektBakgrund.getAvdelning(InloggadAnvandare);
-      projektAvdelning = ProjektBakgrund.getProjektListaAvdelning(avdelning);
+
+        this.idb = idb;
+        this.InloggadAnvandare = InloggadAnvandare;
+        avdelning = ProjektBakgrund.getAvdelning(InloggadAnvandare);
+        projektAvdelning = ProjektBakgrund.getProjektListaAvdelning(avdelning);
         initComponents();
         lblInloggad.setText(InloggadAnvandare);
         listModel = new DefaultListModel<>();
         comboBoxModel = new DefaultComboBoxModel<>();
 
-
         projektPaAvdelning.setModel(comboBoxModel);
         forNamnPaAvdelning = ProjektBakgrund.getPersonalForNamnPåAvdelning(avdelning);
         jListPersonal.setModel(listModel);
-       
-        for(String forNamn :forNamnPaAvdelning){
+
+        for (String forNamn : forNamnPaAvdelning) {
             listModel.addElement(forNamn);
-            }
-            
-        
-        for(String namn: projektAvdelning){
-            System.out.println("Lägger till: " + namn);
-        comboBoxModel.addElement(namn);
         }
-        
-        
-        
+
+        for (String namn : projektAvdelning) {
+            System.out.println("Lägger till: " + namn);
+            comboBoxModel.addElement(namn);
+        }
+
     }
 
     /**
@@ -404,18 +401,19 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void projektPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektPaAvdelningActionPerformed
-     String valtObjekt = (String) projektPaAvdelning.getSelectedItem();
-     lblAvdProjektPid.setText(ProjektBakgrund.getPid(valtObjekt));
-   lblAvdProjektNamn.setText(valtObjekt);
-   lblAvdProjektBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
-   avdAvdProjektStart.setText(ProjektBakgrund.getStartDatum(valtObjekt));
-   lblAvdProjektSlut.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
-   lblAvdProjektKostnad.setText(ProjektBakgrund.getKostand(valtObjekt));
-   lblAvdStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
-   lblAvdPrioritet.setText(ProjektBakgrund.getPrioritet(valtObjekt));
-   lblAvdProjektchef.setText(ProjektBakgrund.getProjektChef(valtObjekt));
-   lblAvdLand.setText(ProjektBakgrund.getLand(valtObjekt));
-     
+//     combobox som väljer vilket projekt på avdelning man vill se.
+        String valtObjekt = (String) projektPaAvdelning.getSelectedItem();
+        lblAvdProjektPid.setText(ProjektBakgrund.getPid(valtObjekt));
+        lblAvdProjektNamn.setText(valtObjekt);
+        lblAvdProjektBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
+        avdAvdProjektStart.setText(ProjektBakgrund.getStartDatum(valtObjekt));
+        lblAvdProjektSlut.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
+        lblAvdProjektKostnad.setText(ProjektBakgrund.getKostand(valtObjekt));
+        lblAvdStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
+        lblAvdPrioritet.setText(ProjektBakgrund.getPrioritet(valtObjekt));
+        lblAvdProjektchef.setText(ProjektBakgrund.getProjektChef(valtObjekt));
+        lblAvdLand.setText(ProjektBakgrund.getLand(valtObjekt));
+
     }//GEN-LAST:event_projektPaAvdelningActionPerformed
 
     private void tftSokOrdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tftSokOrdActionPerformed
@@ -423,145 +421,142 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
     }//GEN-LAST:event_tftSokOrdActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-      String sokOrd = tftSokOrd.getText();
-      DefaultListModel<String> listModel2 = new DefaultListModel<>();
-      boolean hittad = false;
-      for (int i = 0; i < listModel.getSize(); i++) {
-            if (listModel.getElementAt(i).equals(sokOrd) ||  listModel.getElementAt(i).equals(AnstallBakgrund.getFornamn(sokOrd))){
+        String sokOrd = tftSokOrd.getText();
+        DefaultListModel<String> listModel2 = new DefaultListModel<>();
+        boolean hittad = false;
+        for (int i = 0; i < listModel.getSize(); i++) {
+            if (listModel.getElementAt(i).equals(sokOrd) || listModel.getElementAt(i).equals(AnstallBakgrund.getFornamn(sokOrd))) {
                 String laggsTill = listModel.getElementAt(i);
-                
-                 listModel2.addElement(laggsTill);      
+
+                listModel2.addElement(laggsTill);
                 jListPersonal.setModel(listModel2);
                 hittad = true;
             }
-      }
-      if(!hittad){
-          tftSokOrd.setText("Kunde inte hitta handläggaren");
-      }
-        
+        }
+        if (!hittad) {
+            tftSokOrd.setText("Kunde inte hitta handläggaren");
+        }
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnAngraSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAngraSokActionPerformed
-      jListPersonal.setModel(listModel);
+        jListPersonal.setModel(listModel);
     }//GEN-LAST:event_btnAngraSokActionPerformed
 
     private void check1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check1ActionPerformed
-     DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
-        if(check1.isSelected() == true){
+        DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
+        if (check1.isSelected() == true) {
             check2.setSelected(false);
             check3.setSelected(false);
-         for(int i = 0; i < comboBoxModel.getSize(); i++){
-             String projektNamn = comboBoxModel.getElementAt(i);
-             System.out.println(ProjektBakgrund.getStatus(projektNamn));
-             if(!ProjektBakgrund.getStatus(projektNamn).equals("Avslutat") && !ProjektBakgrund.getStatus(projektNamn).equals("Planerat")){
-                 modelErsatt.addElement(projektNamn);    
-             }
-         }
-         if(modelErsatt.getSize() > 0){
-             projektPaAvdelning.setModel(modelErsatt);
-                      }
-          
-      }
-        
-                    
+            for (int i = 0; i < comboBoxModel.getSize(); i++) {
+                String projektNamn = comboBoxModel.getElementAt(i);
+                System.out.println(ProjektBakgrund.getStatus(projektNamn));
+                if (!ProjektBakgrund.getStatus(projektNamn).equals("Avslutat") && !ProjektBakgrund.getStatus(projektNamn).equals("Planerat")) {
+                    modelErsatt.addElement(projektNamn);
+                }
+            }
+            if (modelErsatt.getSize() > 0) {
+                projektPaAvdelning.setModel(modelErsatt);
+            }
+
+        }
+
+
     }//GEN-LAST:event_check1ActionPerformed
 
     private void check2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check2ActionPerformed
-      DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
-        if(check2.isSelected() == true){
+        DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
+        if (check2.isSelected() == true) {
             check1.setSelected(false);
             check3.setSelected(false);
-         for(int i = 0; i < comboBoxModel.getSize(); i++){
-             String projektNamn = comboBoxModel.getElementAt(i);
-             System.out.println(ProjektBakgrund.getStatus(projektNamn));
-             if(ProjektBakgrund.getStatus(projektNamn).equals("Planerat")){
-                 modelErsatt.addElement(projektNamn);    
-             }
-         }
-         if(modelErsatt.getSize() > 0){
-             projektPaAvdelning.setModel(modelErsatt);
-                      }
-          
-      }
-        else{
+            for (int i = 0; i < comboBoxModel.getSize(); i++) {
+                String projektNamn = comboBoxModel.getElementAt(i);
+                System.out.println(ProjektBakgrund.getStatus(projektNamn));
+                if (ProjektBakgrund.getStatus(projektNamn).equals("Planerat")) {
+                    modelErsatt.addElement(projektNamn);
+                }
+            }
+            if (modelErsatt.getSize() > 0) {
+                projektPaAvdelning.setModel(modelErsatt);
+            }
+
+        } else {
             checkboxcheck();
         }
     }//GEN-LAST:event_check2ActionPerformed
-private void checkboxcheck(){
-    if (!check2.isSelected() && !check2.isSelected() && !check3.isSelected()) {
-   projektPaAvdelning.setModel(comboBoxModel);
+    private void checkboxcheck() {
+        if (!check2.isSelected() && !check2.isSelected() && !check3.isSelected()) {
+            projektPaAvdelning.setModel(comboBoxModel);
+        }
     }
-}
     private void check3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check3ActionPerformed
-    DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
-        if(check3.isSelected() == true){
+        DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
+        if (check3.isSelected() == true) {
             check1.setSelected(false);
             check2.setSelected(false);
-         for(int i = 0; i < comboBoxModel.getSize(); i++){
-             String projektNamn = comboBoxModel.getElementAt(i);
-             System.out.println(ProjektBakgrund.getStatus(projektNamn));
-             if(ProjektBakgrund.getStatus(projektNamn).equals("Avslutat")){
-                 modelErsatt.addElement(projektNamn);    
-             }
-         }
-         if(modelErsatt.getSize() > 0){
-             projektPaAvdelning.setModel(modelErsatt);
-                      }
-          
-      }
-        else{
+            for (int i = 0; i < comboBoxModel.getSize(); i++) {
+                String projektNamn = comboBoxModel.getElementAt(i);
+                System.out.println(ProjektBakgrund.getStatus(projektNamn));
+                if (ProjektBakgrund.getStatus(projektNamn).equals("Avslutat")) {
+                    modelErsatt.addElement(projektNamn);
+                }
+            }
+            if (modelErsatt.getSize() > 0) {
+                projektPaAvdelning.setModel(modelErsatt);
+            }
+
+        } else {
             checkboxcheck();
         }
     }//GEN-LAST:event_check3ActionPerformed
 
     private void btnAngraDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAngraDatumActionPerformed
-      projektPaAvdelning.setModel(comboBoxModel);
+        projektPaAvdelning.setModel(comboBoxModel);
     }//GEN-LAST:event_btnAngraDatumActionPerformed
 
     private void btnSokDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokDatumActionPerformed
-       // lagg till validering
-        
-       String sokDatum = tftSokDatum.getText();
-       String sokDatumSlut = tftSokDatumSlut.getText();
-       int sokDatumint = Integer.parseInt(sokDatum);
-       int sokDatumSlutInt = Integer.parseInt(sokDatumSlut);
-       DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
-       boolean hittad = false;
-       for(int i = 0; i < comboBoxModel.getSize(); i++){
-             String projektNamn = comboBoxModel.getElementAt(i);
-             
-             String hamtatStart = ProjektBakgrund.getStartDatum(projektNamn);
-             String hamtatSlut = ProjektBakgrund.getSlutDatum(projektNamn);
-             System.out.println(hamtatStart + " " + hamtatSlut);
-             
-             String hamtatStart2 = hamtatStart.replace("-", "").replaceAll("[\\p{C}\\p{Z}]+", "");
-             String hamtatSlut2 = hamtatSlut.replace("-", "").replaceAll("[\\p{C}\\p{Z}]+", "");
-             System.out.println(hamtatStart2 + " " + hamtatSlut2);
-             
-           
-             
-             int hamtatStartInt = Integer.parseInt(hamtatStart2);
-             int hamtatSlutInt = Integer.parseInt(hamtatSlut2);
-             System.out.println(hamtatStartInt +" "+ hamtatSlutInt);
-             
-             if(hamtatStartInt <= sokDatumint && hamtatSlutInt >= sokDatumSlutInt){
-                  modelErsatt.addElement(projektNamn);                
-                 
-                 hittad = true;
-             }
-             }
-       if(hittad){
-           projektPaAvdelning.setModel(modelErsatt);
-       }
-       
-       System.out.println(hittad);
-       
-       
+        if (Validering.textFaltHarVarde(tftSokDatum) && Validering.isValidDate(tftSokDatum)
+                && Validering.textFaltHarVarde(tftSokDatumSlut) && Validering.isValidDate(tftSokDatumSlut)) {
+//        Söker efter datum.
+            String sokDatum = tftSokDatum.getText();
+            String sokDatumSlut = tftSokDatumSlut.getText();
+            int sokDatumint = Integer.parseInt(sokDatum);
+            int sokDatumSlutInt = Integer.parseInt(sokDatumSlut);
+            DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
+            boolean hittad = false;
+            for (int i = 0; i < comboBoxModel.getSize(); i++) {
+                String projektNamn = comboBoxModel.getElementAt(i);
+
+                String hamtatStart = ProjektBakgrund.getStartDatum(projektNamn);
+                String hamtatSlut = ProjektBakgrund.getSlutDatum(projektNamn);
+                System.out.println(hamtatStart + " " + hamtatSlut);
+
+                String hamtatStart2 = hamtatStart.replace("-", "").replaceAll("[\\p{C}\\p{Z}]+", "");
+                String hamtatSlut2 = hamtatSlut.replace("-", "").replaceAll("[\\p{C}\\p{Z}]+", "");
+                System.out.println(hamtatStart2 + " " + hamtatSlut2);
+
+                int hamtatStartInt = Integer.parseInt(hamtatStart2);
+                int hamtatSlutInt = Integer.parseInt(hamtatSlut2);
+                System.out.println(hamtatStartInt + " " + hamtatSlutInt);
+
+                if (hamtatStartInt <= sokDatumint && hamtatSlutInt >= sokDatumSlutInt) {
+                    modelErsatt.addElement(projektNamn);
+
+                    hittad = true;
+                }
+            }
+            if (hittad) {
+                projektPaAvdelning.setModel(modelErsatt);
+            }
+
+            System.out.println(hittad);
+
+        }
     }//GEN-LAST:event_btnSokDatumActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         new HandlaggarMeny(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
@@ -593,9 +588,9 @@ private void checkboxcheck(){
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run(){
-    }
-});
+            public void run() {
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

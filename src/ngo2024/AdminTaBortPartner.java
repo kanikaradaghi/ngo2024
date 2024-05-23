@@ -121,6 +121,7 @@ public class AdminTaBortPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFPidActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//       Skriver in pid som ska tas bort. 
         String pid = jTFPid.getText();
         try {
             if (pid.isEmpty()) {
@@ -136,8 +137,6 @@ public class AdminTaBortPartner extends javax.swing.JFrame {
                 String taBortPartner = "DELETE FROM partner WHERE pid = " + pid;
                 idb.delete(taBortPartner);
 
-                
-         
                 System.out.println("Partner har tagits bort.");
 
                 jTFPid.setText("");
@@ -157,8 +156,8 @@ public class AdminTaBortPartner extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         new AdminHanteraPartner(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminHanteraPartner(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

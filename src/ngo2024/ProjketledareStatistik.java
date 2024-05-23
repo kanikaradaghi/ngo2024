@@ -3,27 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
-
 
 /**
  *
  * @author Ägaren
  */
 public class ProjketledareStatistik extends javax.swing.JFrame {
-  private InfDB idb;
-  private String InloggadAnvandareH;
+
+    private InfDB idb;
+    private String InloggadAnvandareH;
 
     /**
      * Creates new form ProjketledareStatistik
      */
     public ProjketledareStatistik(InfDB idb, String InloggadAnvandareH) {
         this.idb = idb;
- 
+
         initComponents();
         lbEpostProjektledare.setText(InloggadAnvandareH);
-        
+
     }
 
     /**
@@ -149,7 +150,7 @@ public class ProjketledareStatistik extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new ProjketledareStatistik().setVisible(true);
+                // new ProjketledareStatistik().setVisible(true);
             }
         });
     }

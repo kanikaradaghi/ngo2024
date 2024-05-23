@@ -9,21 +9,23 @@ import oru.inf.InfException;
 import javax.swing.DefaultComboBoxModel;
 import java.util.ArrayList;
 import java.util.Collections;
+
 /**
  *
  * @author User
  */
 public class Projektledare extends javax.swing.JFrame {
-private InfDB idb;
-private String InloggadAnvandareH;
-private DefaultComboBoxModel<String> comboBoxModel;
-private DefaultComboBoxModel<String> comboBoxModel2;
-private DefaultComboBoxModel<String> comboBoxModel3;
-private ArrayList<String> minaProjekt;
-private ArrayList<String> minaPartners;
-private ArrayList<String> minaHandlaggare;
-private String projektNamn;
-int totalKostnad = 0;
+
+    private InfDB idb;
+    private String InloggadAnvandareH;
+    private DefaultComboBoxModel<String> comboBoxModel;
+    private DefaultComboBoxModel<String> comboBoxModel2;
+    private DefaultComboBoxModel<String> comboBoxModel3;
+    private ArrayList<String> minaProjekt;
+    private ArrayList<String> minaPartners;
+    private ArrayList<String> minaHandlaggare;
+    private String projektNamn;
+    int totalKostnad = 0;
 
     /**
      * Creates new form Projektledare
@@ -39,40 +41,30 @@ int totalKostnad = 0;
         minaProjekt = ProjektBakgrund.getProjektNamnForLedarel(AnstallBakgrund.getAId(InloggadAnvandareH));
         minaHandlaggareBox.setModel(comboBoxModel3);
         lblMeddelande.setVisible(false);
-        
-        
+
         minaChefFor.setModel(comboBoxModel);
-        
-        for(String namn: minaProjekt){
+
+        for (String namn : minaProjekt) {
             comboBoxModel.addElement(namn);
         }
-        
-         for(String namn : minaProjekt){
-           minaPartners = ProjektBakgrund.getProjektPartners(namn);
-                   }
-         for(String partner : minaPartners){
-             comboBoxModel2.addElement(partner);
-         }
-         
-      
-         
-//         for(String handLaggare : minaHandlaggare){
-//             comboBoxModel3.addElement(handLaggare);
-//             System.out.println("Lägger till: " + handLaggare );
-//         }
-         
-         partnersPaMina.setModel(comboBoxModel2);
-         
-         
-         for(String namn: minaProjekt){
-             int kostnad = (int) Double.parseDouble(ProjektBakgrund.getKostand(namn));
-             totalKostnad = totalKostnad + kostnad;
-             
-         }
-         lblstats.setText("Totalkostand för alla:" + totalKostnad );
-            System.out.print(ProjektBakgrund.getKostand(projektNamn));
-//        
- 
+
+        for (String namn : minaProjekt) {
+            minaPartners = ProjektBakgrund.getProjektPartners(namn);
+        }
+        for (String partner : minaPartners) {
+            comboBoxModel2.addElement(partner);
+        }
+
+        partnersPaMina.setModel(comboBoxModel2);
+
+        for (String namn : minaProjekt) {
+            int kostnad = (int) Double.parseDouble(ProjektBakgrund.getKostand(namn));
+            totalKostnad = totalKostnad + kostnad;
+
+        }
+        lblstats.setText("Totalkostand för alla:" + totalKostnad);
+        System.out.print(ProjektBakgrund.getKostand(projektNamn));
+
     }
 
     /**
@@ -414,116 +406,114 @@ int totalKostnad = 0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void minaChefForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaChefForActionPerformed
-      String valtObjekt = (String) comboBoxModel.getSelectedItem();
-      
-      uppdateraProjektNamn(valtObjekt);
-      
-      lblPid.setText(ProjektBakgrund.getPid(valtObjekt));
-      tftProjektNamn.setText(valtObjekt);
-      tftProjektBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
-      tftStartDatum.setText(ProjektBakgrund.getStartDatum(valtObjekt));
-      tftSlutDatum.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
-      tftSlutDatum.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
-      tftKostnad.setText(ProjektBakgrund.getKostand(valtObjekt));
-      tftStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
-      tftPrio.setText(ProjektBakgrund.getPrioritet(valtObjekt));
-      lblLand.setText(ProjektBakgrund.getLand(valtObjekt));
-      
-      
-         minaHandlaggare = ProjektBakgrund.getAllaHandlaggare(projektNamn);
-         for(String handLaggare : minaHandlaggare){
-             comboBoxModel3.addElement(handLaggare);
-             System.out.println("Lägger till: " + handLaggare );
-         }
-      
+        String valtObjekt = (String) comboBoxModel.getSelectedItem();
+
+        uppdateraProjektNamn(valtObjekt);
+
+        lblPid.setText(ProjektBakgrund.getPid(valtObjekt));
+        tftProjektNamn.setText(valtObjekt);
+        tftProjektBeskrivning.setText(ProjektBakgrund.getBeskrivning(valtObjekt));
+        tftStartDatum.setText(ProjektBakgrund.getStartDatum(valtObjekt));
+        tftSlutDatum.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
+        tftSlutDatum.setText(ProjektBakgrund.getSlutDatum(valtObjekt));
+        tftKostnad.setText(ProjektBakgrund.getKostand(valtObjekt));
+        tftStatus.setText(ProjektBakgrund.getStatus(valtObjekt));
+        tftPrio.setText(ProjektBakgrund.getPrioritet(valtObjekt));
+        lblLand.setText(ProjektBakgrund.getLand(valtObjekt));
+
+        minaHandlaggare = ProjektBakgrund.getAllaHandlaggare(projektNamn);
+        for (String handLaggare : minaHandlaggare) {
+            comboBoxModel3.addElement(handLaggare);
+            System.out.println("Lägger till: " + handLaggare);
+        }
+
     }//GEN-LAST:event_minaChefForActionPerformed
-private void uppdateraProjektNamn(String namn){
-    
-    projektNamn = namn;
-}
+    private void uppdateraProjektNamn(String namn) {
+
+        projektNamn = namn;
+    }
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
-         
-         String pid = ProjektBakgrund.getPid(projektNamn);
-        
-    
-        if(Validering.textFaltHarVarde(tftProjektNamn)){
+
+        String pid = ProjektBakgrund.getPid(projektNamn);
+
+        if (Validering.textFaltHarVarde(tftProjektNamn)) {
             ProjektBakgrund.andraProjektNamn(pid, tftProjektNamn.getText());
             uppdateraProjektNamn(tftProjektNamn.getText());
-            
+
         }
-        if(Validering.textFaltHarVarde(tftProjektBeskrivning)){
+        if (Validering.textFaltHarVarde(tftProjektBeskrivning)) {
             ProjektBakgrund.andraBeskrivning(pid, tftProjektBeskrivning.getText());
         }
-        if(Validering.textFaltHarVarde(tftStartDatum) && Validering.isValidDate(tftStartDatum)){
+        if (Validering.textFaltHarVarde(tftStartDatum) && Validering.isValidDate(tftStartDatum)) {
             ProjektBakgrund.andraStartDatum(pid, tftStartDatum.getText());
         }
-        if(Validering.textFaltHarVarde(tftSlutDatum)&& Validering.isValidDate(tftSlutDatum)){
+        if (Validering.textFaltHarVarde(tftSlutDatum) && Validering.isValidDate(tftSlutDatum)) {
             ProjektBakgrund.andraSlutDatum(pid, tftSlutDatum.getText());
         }
-        if(Validering.textFaltHarVarde(tftKostnad));{
-        ProjektBakgrund.andraKostand(pid,tftKostnad.getText());
-    }
-        if(Validering.textFaltHarVarde(tftStatus)){
+        if (Validering.textFaltHarVarde(tftKostnad));
+        {
+            ProjektBakgrund.andraKostand(pid, tftKostnad.getText());
+        }
+        if (Validering.textFaltHarVarde(tftStatus)) {
             ProjektBakgrund.andraStatus(pid, tftStatus.getText());
         }
-        if(Validering.textFaltHarVarde(tftPrio)){
+        if (Validering.textFaltHarVarde(tftPrio)) {
             ProjektBakgrund.andraPrio(pid, tftPrio.getText());
         }
         lblMeddelande.setVisible(true);
-        
-     
-        
+
+
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-       new HandlaggarMeny(idb, InloggadAnvandareH).setVisible(true);
-       this.setVisible(false);
+        new HandlaggarMeny(idb, InloggadAnvandareH).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnTillbakaActionPerformed
-// metoden tar in antinget ett id på en partner eller ett namn på en partner och lägger till det på ett projekt
+// metoden tar in antingen ett id på en partner eller ett namn på en partner och lägger till det på ett projekt
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
-     String partner = tftVadlPartner.getText();
-     ArrayList<String> allaPartners = ProjektBakgrund.getAllaPartnersNamn();
-     ArrayList<String> allaId = ProjektBakgrund.getAllaPartnerId();
-     
-     if(allaPartners.contains(partner)){
-         String partnerId = ProjektBakgrund.getId(partner);
-         String projektId = ProjektBakgrund.getPid(projektNamn);
-         
-         ProjektBakgrund.laggTillPartner(projektId,partnerId);
-         }
-     if(allaId.contains(partner)){
-         String projektId = ProjektBakgrund.getPid(projektNamn);
-         
-         ProjektBakgrund.laggTillPartner(projektId,partner);
-           }
+        String partner = tftVadlPartner.getText();
+        ArrayList<String> allaPartners = ProjektBakgrund.getAllaPartnersNamn();
+        ArrayList<String> allaId = ProjektBakgrund.getAllaPartnerId();
+
+        if (allaPartners.contains(partner)) {
+            String partnerId = ProjektBakgrund.getId(partner);
+            String projektId = ProjektBakgrund.getPid(projektNamn);
+
+            ProjektBakgrund.laggTillPartner(projektId, partnerId);
+        }
+        if (allaId.contains(partner)) {
+            String projektId = ProjektBakgrund.getPid(projektNamn);
+
+            ProjektBakgrund.laggTillPartner(projektId, partner);
+        }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void partnersPaMinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partnersPaMinaActionPerformed
-       String valtObjekt = (String) comboBoxModel2.getSelectedItem();
-       
-       tftVadlPartner.setText(valtObjekt);
+        String valtObjekt = (String) comboBoxModel2.getSelectedItem();
+
+        tftVadlPartner.setText(valtObjekt);
     }//GEN-LAST:event_partnersPaMinaActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
 
-     String partner = tftVadlPartner.getText();
-     ArrayList<String> allaPartners = ProjektBakgrund.getAllaPartnersNamn();
-     ArrayList<String> allaId = ProjektBakgrund.getAllaPartnerId();
-     
-     if(allaPartners.contains(partner)){
-         String partnerId = ProjektBakgrund.getId(partner);
-         String projektId = ProjektBakgrund.getPid(projektNamn);
-         
-         ProjektBakgrund.taBortPartner(projektId,partnerId);
-         
-         }
-     if(allaId.contains(partner)){
-         String projektId = ProjektBakgrund.getPid(projektNamn);
-         
-         ProjektBakgrund.taBortPartner(projektId,partner);
-           }
-     
-            
+        String partner = tftVadlPartner.getText();
+        ArrayList<String> allaPartners = ProjektBakgrund.getAllaPartnersNamn();
+        ArrayList<String> allaId = ProjektBakgrund.getAllaPartnerId();
+
+        if (allaPartners.contains(partner)) {
+            String partnerId = ProjektBakgrund.getId(partner);
+            String projektId = ProjektBakgrund.getPid(projektNamn);
+
+            ProjektBakgrund.taBortPartner(projektId, partnerId);
+
+        }
+        if (allaId.contains(partner)) {
+            String projektId = ProjektBakgrund.getPid(projektNamn);
+
+            ProjektBakgrund.taBortPartner(projektId, partner);
+        }
+
+
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void tftHandlaggarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tftHandlaggarRutaActionPerformed
@@ -531,70 +521,67 @@ private void uppdateraProjektNamn(String namn){
     }//GEN-LAST:event_tftHandlaggarRutaActionPerformed
 
     private void btnTabortHandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTabortHandlaggareActionPerformed
-     String anstalld = tftHandlaggarRuta.getText();
-     ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
-     ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
-     boolean andring = false;
-     if(!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1){
-         tftHandlaggarRuta.setText("Misslyckades, Använd id istället");
-       
-             
-           } 
-     else{
-         
-         String pid = ProjektBakgrund.getPid(projektNamn);
-         String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
-         
-         ProjektBakgrund.taBortHandlaggare(pid,aid);
-         
-         System.out.println("Försöker ta bort: " + pid + " " + aid);
-          andring = true;    
-         
-         }
-     if(allaId.contains(anstalld)){
-         String pid = ProjektBakgrund.getPid(projektNamn);
-         String aid = anstalld;
-         
-         ProjektBakgrund.taBortHandlaggare(pid,aid);
-         andring = true;
-         
-          }  
-      if(andring){
-          tftHandlaggarRuta.setText("Ändring sparad");
-      }
+        String anstalld = tftHandlaggarRuta.getText();
+        ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
+        ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
+        boolean andring = false;
+        if (!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1) {
+            tftHandlaggarRuta.setText("Misslyckades, Använd id istället");
 
-     
+        } else {
+
+            String pid = ProjektBakgrund.getPid(projektNamn);
+            String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
+
+            ProjektBakgrund.taBortHandlaggare(pid, aid);
+
+            System.out.println("Försöker ta bort: " + pid + " " + aid);
+            andring = true;
+
+        }
+        if (allaId.contains(anstalld)) {
+            String pid = ProjektBakgrund.getPid(projektNamn);
+            String aid = anstalld;
+
+            ProjektBakgrund.taBortHandlaggare(pid, aid);
+            andring = true;
+
+        }
+        if (andring) {
+            tftHandlaggarRuta.setText("Ändring sparad");
+        }
+
+
     }//GEN-LAST:event_btnTabortHandlaggareActionPerformed
 
     private void minaHandlaggareBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minaHandlaggareBoxActionPerformed
-      String valtObjekt = (String) comboBoxModel3.getSelectedItem();
+        String valtObjekt = (String) comboBoxModel3.getSelectedItem();
         tftHandlaggarRuta.setText(valtObjekt);
     }//GEN-LAST:event_minaHandlaggareBoxActionPerformed
 
     private void btnLaggTillHandLaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillHandLaggareActionPerformed
         String anstalld = tftHandlaggarRuta.getText();
-     ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
-     ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
-     
-     if(!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1){
-         tftHandlaggarRuta.setText("Misslyckades, andvänd aid");
-}
-     else{
-        
-         String pid = ProjektBakgrund.getPid(projektNamn);
-         String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
-         
-         ProjektBakgrund.laggTillHandlaggare(pid,aid);
-         }
-     if(allaId.contains(anstalld)){
-         
-         String pid = ProjektBakgrund.getPid(projektNamn);
-         String aid = anstalld;
-         
-         ProjektBakgrund.laggTillHandlaggare(pid,aid);
-         
-           }
-        
+        ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
+        ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
+
+        if (!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1) {
+            tftHandlaggarRuta.setText("Misslyckades, andvänd aid");
+        } else {
+
+            String pid = ProjektBakgrund.getPid(projektNamn);
+            String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
+
+            ProjektBakgrund.laggTillHandlaggare(pid, aid);
+        }
+        if (allaId.contains(anstalld)) {
+
+            String pid = ProjektBakgrund.getPid(projektNamn);
+            String aid = anstalld;
+
+            ProjektBakgrund.laggTillHandlaggare(pid, aid);
+
+        }
+
     }//GEN-LAST:event_btnLaggTillHandLaggareActionPerformed
 
     /**
@@ -630,7 +617,7 @@ private void uppdateraProjektNamn(String namn){
             }
         });
     }
-//Hej
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTill;
     private javax.swing.JButton btnLaggTillHandLaggare;

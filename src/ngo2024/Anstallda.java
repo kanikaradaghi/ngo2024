@@ -6,12 +6,13 @@ package ngo2024;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author walee
  */
 public class Anstallda extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -109,18 +110,18 @@ public class Anstallda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillActionPerformed
-      new LaggTillAnstalld(idb, InloggadAnvandare).setVisible(true);
-                this.setVisible(false);
+        new LaggTillAnstalld(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBLaggTillActionPerformed
 
     private void jBTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTaBortActionPerformed
         new TaBortAnstalld(idb, InloggadAnvandare).setVisible(true);
-                this. setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jBTaBortActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      new AdminMeny(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminMeny(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -166,7 +167,3 @@ public class Anstallda extends javax.swing.JFrame {
     private javax.swing.JLabel jLVemInlogg;
     // End of variables declaration//GEN-END:variables
 }
-
-
-//helloworld:)
-

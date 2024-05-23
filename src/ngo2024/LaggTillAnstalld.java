@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author walee
  */
 public class LaggTillAnstalld extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -228,10 +228,11 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillActionPerformed
-        
+
         if (Validering.textFaltHarVarde(jTFFornamn) && Validering.textFaltHarVarde(jTFEfternamn) && Validering.textFaltHarVarde(jTFAdress) && Validering.textFaltHarVarde(jTFEpost) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFAnstallningsDatum) && Validering.textFaltHarVarde(jTFAvdelning) && Validering.isValidDate(jTFAnstallningsDatum) && Validering.isHelTal(jTFTelefon) && Validering.isValidEpost(jTFEpost)) {
-            
-            String fornamn = jTFFornamn.getText();            
+
+//Lägger till en ny ansttälld.
+            String fornamn = jTFFornamn.getText();
             String efternamn = jTFEfternamn.getText();
             String adress = jTFAdress.getText();
             String epost = jTFEpost.getText();
@@ -240,17 +241,17 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
             String avdelning = jTFAvdelning.getText();
             boolean arAdmin = jRBAdmin.isSelected();
             boolean arHandlaggare = jRBHandlaggare.isSelected();
-            
+//            ger ett id till den nya anställd.
             int newAid = 1;
-            
+
             try {
                 String maxAidSql = "SELECT MAX(aid) FROM anstalld";
                 String maxAidStr = idb.fetchSingle(maxAidSql);
-                
+
                 if (maxAidStr != null && !maxAidStr.isEmpty()) {
                     newAid = Integer.parseInt(maxAidStr) + 1;
                 }
-                
+//                Slumpar lösenordet.
                 SecureRandom slumpLosenord = new SecureRandom();
                 String bokstaverSiffror = "abcdefghijklmnopqrstuvwxyz0123456789";
                 StringBuilder losenord = new StringBuilder("password");
@@ -260,29 +261,29 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                         losenord.append(bokstaverSiffror.charAt(slumpLosenord.nextInt(26)));
                     } else {
                         losenord.append(bokstaverSiffror.charAt(26 + slumpLosenord.nextInt(10)));
-                        
+
                     }
-                    
+
                 }
-                
+
                 String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, avdelning, losenord) VALUES ("
                         + newAid + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsDatum + "', '" + avdelning + "', '" + losenord.toString() + "')";
-                
+
                 idb.insert(sql);
                 System.out.println("Anställd har lagts till.");
-                
+//                kontrollerar om det är admin eller handläggare.
                 if (arAdmin) {
                     String sqlAdmin = "INSERT INTO admin (aid, behorighetsniva) VALUES (" + newAid + ", 1)";
                     idb.insert(sqlAdmin);
                 }
-                
+
                 if (arHandlaggare) {
                     String sqlHandlaggare = "INSERT INTO handlaggare (aid) VALUES (" + newAid + ")";
                     idb.insert(sqlHandlaggare);
                 }
-                
+
                 JOptionPane.showMessageDialog(this, "Lösenord: " + losenord.toString(), "Nytt Lösenord", JOptionPane.INFORMATION_MESSAGE);
-                
+
                 jTFFornamn.setText("");
                 jTFEfternamn.setText("");
                 jTFAdress.setText("");
@@ -292,7 +293,7 @@ public class LaggTillAnstalld extends javax.swing.JFrame {
                 jTFAvdelning.setText("");
                 jRBAdmin.setSelected(false);
                 jRBHandlaggare.setSelected(false);
-                
+
             } catch (InfException e) {
                 System.out.println("Ett fel uppstod:" + e.getMessage());
             } catch (NumberFormatException e) {

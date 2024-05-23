@@ -12,7 +12,7 @@ import oru.inf.InfException;
  * @author walee
  */
 public class AdminLand extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -113,18 +113,18 @@ public class AdminLand extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLaggTillLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillLandActionPerformed
-       new LaggTillLand(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new LaggTillLand(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBLaggTillLandActionPerformed
 
     private void jBAndraLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraLandActionPerformed
         new AndraLand(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jBAndraLandActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -13,7 +13,6 @@ import oru.inf.InfException;
  *
  * @author User
  */
-
 // Klass för handlaggaremeny där en handläggare ser sina uppgifter samt kan gå vidare till mina projekt, och min avdelning
 // är du projektledare kommer även allternativet att öpnna upp sidan för projektledare
 public class HandlaggarMeny extends javax.swing.JFrame {
@@ -29,7 +28,6 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     /**
      * Creates new form HandlaggarMeny
      */
-    
     public HandlaggarMeny(InfDB idb, String InloggadAnvandareH) {
         this.idb = idb;
         this.InloggadAnvandareH = InloggadAnvandareH;
@@ -348,10 +346,10 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hB1ActionPerformed
-        
+
         new Projekt(idb, InloggadAnvandareH).setVisible(true);
-        this.setVisible(false);        
-        
+        this.setVisible(false);
+
 
     }//GEN-LAST:event_hB1ActionPerformed
 
@@ -361,40 +359,40 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_hB2ActionPerformed
 
     private void tfmittAidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfmittAidActionPerformed
-        
+
     }//GEN-LAST:event_tfmittAidActionPerformed
 //Knapp för att spara ändringar du harv skrivit i textboxen in till datasbasen, alla knappar följer samma koncept.
     private void btnAndraNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNamnActionPerformed
-        
+
         boolean klart = false;
         if (Validering.textFaltHarVarde(tfforNamn)) {
             String namnAndring = tfforNamn.getText();
             klart = AnstallBakgrund.andraForNamn(namnAndring, InloggadAnvandareH);
-            
+
             if (klart = true) {
                 lblAndringMeddelande.setText("Du har nu ändrat ditt namn");
                 lblAndringMeddelande.setVisible(true);
             } else {
                 lblAndringMeddelande.setText("Det gick inte att ändra ditt namn");
-                lblAndringMeddelande.setVisible(true);                
+                lblAndringMeddelande.setVisible(true);
             }
         }
 
     }//GEN-LAST:event_btnAndraNamnActionPerformed
 
     private void btnAndraEfterNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraEfterNamnActionPerformed
-        
+
         boolean klart = false;
         if (Validering.textFaltHarVarde(tfefterNamn)) {
             String namnAndring = tfefterNamn.getText();
             klart = AnstallBakgrund.andraEfterNamn(namnAndring, InloggadAnvandareH);
-            
+
             if (klart = true) {
                 lblAndringMeddelande.setText("Du har nu ändrat ditt efternamn");
                 lblAndringMeddelande.setVisible(true);
             } else {
                 lblAndringMeddelande.setText("Det gick inte att ändra ditt efternamn");
-                lblAndringMeddelande.setVisible(true);                
+                lblAndringMeddelande.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAndraEfterNamnActionPerformed
@@ -404,30 +402,30 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         if (Validering.textFaltHarVarde(tfAdress)) {
             String adressAndring = tfAdress.getText();
             klart = AnstallBakgrund.andraAdress(adressAndring, InloggadAnvandareH);
-            
+
             if (klart = true) {
                 lblAndringMeddelande.setText("Du har nu ändrat din adress");
                 lblAndringMeddelande.setVisible(true);
             } else {
                 lblAndringMeddelande.setText("Det gick inte att ändra din adress");
-                lblAndringMeddelande.setVisible(true);                
+                lblAndringMeddelande.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAndraAdressActionPerformed
 
     private void btnAndraNmrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNmrActionPerformed
-        
+
         boolean klart = false;
         if (Validering.textFaltHarVarde(tfTelefonNmr) && Validering.isHelTal(tfTelefonNmr)) {
             String nmrAndring = tfTelefonNmr.getText();
             klart = AnstallBakgrund.andraNmr(nmrAndring, InloggadAnvandareH);
-            
+
             if (klart = true) {
                 lblAndringMeddelande.setText("Du har nu ändrat dit telefonnummer");
                 lblAndringMeddelande.setVisible(true);
             } else {
                 lblAndringMeddelande.setText("Det gick inte att ändra dit telefonnummer");
-                lblAndringMeddelande.setVisible(true);                
+                lblAndringMeddelande.setVisible(true);
             }
         }
     }//GEN-LAST:event_btnAndraNmrActionPerformed
@@ -438,16 +436,16 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         if (Validering.textFaltHarVarde(tfEpost) && Validering.isValidEpost(tfEpost)) {
             String epostAndring = tfEpost.getText();
             klart = AnstallBakgrund.andraEpost(epostAndring, aid);
-            
+
             if (klart = true) {
                 lblAndringMeddelande.setText("Du har nu ändrat din epost");
                 lblAndringMeddelande.setVisible(true);
             } else {
                 lblAndringMeddelande.setText("Det gick inte att ändra din epost");
-                lblAndringMeddelande.setVisible(true);                
+                lblAndringMeddelande.setVisible(true);
             }
         }
-        
+
     }//GEN-LAST:event_btnAndraEpostActionPerformed
 //knapp för att logga ut till första sidan.
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
@@ -456,7 +454,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 // Knapp för att gå vidare till projektledar sidan.
     private void btnProjektLedarKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektLedarKnappActionPerformed
-        new Projektledare(idb, InloggadAnvandareH).setVisible(true);        
+        new Projektledare(idb, InloggadAnvandareH).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnProjektLedarKnappActionPerformed
 
@@ -489,7 +487,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {                
+            public void run() {
             }
         });
     }

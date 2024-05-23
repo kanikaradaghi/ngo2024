@@ -8,13 +8,16 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
 import java.util.ArrayList;
+
 /**
  *
  * @author walee
  */
 public class AndraUppgifterAvdelning extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandare;
+
     /**
      * Creates new form AndraUppgifterAvdelning
      */
@@ -225,49 +228,50 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+//Combobox för att välja avdelning.
 
     private void fyllComboBox() {
         jCBValjAvdelning.removeAllItems();
-    try {
-        String query = "SELECT namn FROM avdelning";
-        ArrayList<String> avdelningar = idb.fetchColumn(query);
-
-        if (avdelningar != null) {
-            for (String avdelning : avdelningar) {
-                jCBValjAvdelning.addItem(avdelning);
-            }
-        } else {
-            System.out.println("Inga avdelningar hittades.");
-        }
-    } catch (InfException e) {
-        System.out.println("Ett fel uppstod vid hämtning av avdelningsnamn.");
-    }
-}
-    
-    private void jCBValjAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjAvdelningActionPerformed
-   
-        String valtNamn = (String) jCBValjAvdelning.getSelectedItem();
-    if (valtNamn != null) {
         try {
-            String sql = "SELECT * FROM avdelning WHERE namn = '" + valtNamn + "'";
-            HashMap<String, String> avdelning = idb.fetchRow(sql);
+            String query = "SELECT namn FROM avdelning";
+            ArrayList<String> avdelningar = idb.fetchColumn(query);
 
-            if (avdelning != null) {
-                jTFAvdidAvdelning.setText(avdelning.get("avdid"));
-                jTFNamnAvdelning.setText(avdelning.get("namn"));
-                jTFBeskrivningAvdelning.setText(avdelning.get("beskrivning"));
-                jTFAdressAvdelning.setText(avdelning.get("adress"));
-                jTFEpostAvdelning.setText(avdelning.get("epost"));
-                jTFTelefonAvdelning.setText(avdelning.get("telefon"));
-                jTFStadAvdelning.setText(avdelning.get("stad"));
-                jTFChefAvdelning.setText(avdelning.get("chef"));
+            if (avdelningar != null) {
+                for (String avdelning : avdelningar) {
+                    jCBValjAvdelning.addItem(avdelning);
+                }
             } else {
-                System.out.println("Kunde inte hitta avdelningen.");
+                System.out.println("Inga avdelningar hittades.");
             }
         } catch (InfException e) {
-            System.out.println("Ett fel uppstod vid hämtning av avdelningsdetaljer.");
+            System.out.println("Ett fel uppstod vid hämtning av avdelningsnamn.");
         }
     }
+
+    private void jCBValjAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjAvdelningActionPerformed
+//   ändra den valda avdelningen.
+        String valtNamn = (String) jCBValjAvdelning.getSelectedItem();
+        if (valtNamn != null) {
+            try {
+                String sql = "SELECT * FROM avdelning WHERE namn = '" + valtNamn + "'";
+                HashMap<String, String> avdelning = idb.fetchRow(sql);
+
+                if (avdelning != null) {
+                    jTFAvdidAvdelning.setText(avdelning.get("avdid"));
+                    jTFNamnAvdelning.setText(avdelning.get("namn"));
+                    jTFBeskrivningAvdelning.setText(avdelning.get("beskrivning"));
+                    jTFAdressAvdelning.setText(avdelning.get("adress"));
+                    jTFEpostAvdelning.setText(avdelning.get("epost"));
+                    jTFTelefonAvdelning.setText(avdelning.get("telefon"));
+                    jTFStadAvdelning.setText(avdelning.get("stad"));
+                    jTFChefAvdelning.setText(avdelning.get("chef"));
+                } else {
+                    System.out.println("Kunde inte hitta avdelningen.");
+                }
+            } catch (InfException e) {
+                System.out.println("Ett fel uppstod vid hämtning av avdelningsdetaljer.");
+            }
+        }
 
     }//GEN-LAST:event_jCBValjAvdelningActionPerformed
 
@@ -285,42 +289,38 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
                 || !Validering.isHelTal(jTFStadAvdelning)
                 || !Validering.isHelTal(jTFTelefonAvdelning)
                 || !Validering.isValidEpost(jTFEpostAvdelning)
-                || !Validering.isHelTal(jTFChefAvdelning))
-                {
+                || !Validering.isHelTal(jTFChefAvdelning)) {
 
             return;
         }
 
-        
-        
-    String avdid = jTFAvdidAvdelning.getText();
-    String namn = jTFNamnAvdelning.getText();
-    String beskrivning = jTFBeskrivningAvdelning.getText();
-    String adress = jTFAdressAvdelning.getText();
-    String epost = jTFEpostAvdelning.getText();
-    String telefon = jTFTelefonAvdelning.getText();
-    String stad = jTFStadAvdelning.getText();
-    String chef = jTFChefAvdelning.getText();
+        String avdid = jTFAvdidAvdelning.getText();
+        String namn = jTFNamnAvdelning.getText();
+        String beskrivning = jTFBeskrivningAvdelning.getText();
+        String adress = jTFAdressAvdelning.getText();
+        String epost = jTFEpostAvdelning.getText();
+        String telefon = jTFTelefonAvdelning.getText();
+        String stad = jTFStadAvdelning.getText();
+        String chef = jTFChefAvdelning.getText();
 
-    try {
-        // Uppdatera databasen med de nya värdena
-String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '" + beskrivning + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', stad = '" + stad + "', chef = '" + chef + "' WHERE avdid = '" + avdid + "'";
-        idb.update(sqlAndring);
-        
-        // Visa en bekräftelse att ändringarna har genomförts
-        System.out.println("Ändringar har genomförts.");
-    } catch (InfException e) {
-        // Visa felmeddelande om något går fel vid uppdateringen
-        System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
-        e.printStackTrace();
-    }
-  
+        try {
+            // Uppdaterar databasen 
+            String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '" + beskrivning + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', stad = '" + stad + "', chef = '" + chef + "' WHERE avdid = '" + avdid + "'";
+            idb.update(sqlAndring);
+
+            System.out.println("Ändringar har genomförts.");
+        } catch (InfException e) {
+
+            System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
+            e.printStackTrace();
+        }
+
 
     }//GEN-LAST:event_jBAndraAvdelningActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

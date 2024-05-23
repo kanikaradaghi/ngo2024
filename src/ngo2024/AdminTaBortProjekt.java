@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -11,6 +12,7 @@ import oru.inf.InfException;
  * @author Ägaren
  */
 public class AdminTaBortProjekt extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -18,13 +20,11 @@ public class AdminTaBortProjekt extends javax.swing.JFrame {
      * Creates new form AdminTaBortProjekt
      */
     public AdminTaBortProjekt(InfDB idb, String InloggadAnvandare) {
-         this.idb = idb;
+        this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
         jLVemInlogg.setText(InloggadAnvandare);
     }
-        
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,7 +113,8 @@ public class AdminTaBortProjekt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String pid = jTFPid.getText();
+//        Skriver in projekt id som ska tas bort. 
+        String pid = jTFPid.getText();
         try {
             if (pid.isEmpty()) {
                 System.out.println("Ange ett giltigt ID");
@@ -128,8 +129,6 @@ public class AdminTaBortProjekt extends javax.swing.JFrame {
                 String taBortProjekt = "DELETE FROM projekt WHERE pid = " + pid;
                 idb.delete(taBortProjekt);
 
-                
-         
                 System.out.println("Projekt har tagits bort.");
 
                 jTFPid.setText("");
@@ -149,8 +148,8 @@ public class AdminTaBortProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminHanteraProjekt2(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

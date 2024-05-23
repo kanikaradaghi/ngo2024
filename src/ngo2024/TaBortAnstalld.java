@@ -12,7 +12,7 @@ import oru.inf.InfException;
  * @author walee
  */
 public class TaBortAnstalld extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -107,52 +107,50 @@ public class TaBortAnstalld extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTaBortActionPerformed
+//Tar bort anstalld.
+        String aid = jTFAid.getText();
 
-String aid = jTFAid.getText();
+        try {
+            if (aid.isEmpty()) {
+                System.out.println("Ange ett giltigt ID");
+                return;
+            }
 
+            String fragaSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
+            String finnsAid = idb.fetchSingle(fragaSql);
 
-try{
-if(aid.isEmpty()){
-System.out.println("Ange ett giltigt ID");
-return;
-}
+            if (finnsAid != null && !finnsAid.isEmpty()) {
 
-String fragaSql = "SELECT aid FROM anstalld WHERE aid = " + aid;
-String finnsAid = idb.fetchSingle(fragaSql);
+                String taBortAdmin = "DELETE FROM admin WHERE aid = " + aid;
+                idb.delete(taBortAdmin);
 
-if (finnsAid != null && !finnsAid.isEmpty()) {
+                String taBortHandlaggare = "DELETE FROM handlaggare WHERE aid = " + aid;
+                idb.delete(taBortHandlaggare);
 
-String taBortAdmin = "DELETE FROM admin WHERE aid = " + aid;
-idb.delete(taBortAdmin);
+                String taBortAnstalld = "DELETE FROM anstalld WHERE aid = " + aid;
+                idb.delete(taBortAnstalld);
 
-String taBortHandlaggare = "DELETE FROM handlaggare WHERE aid = " + aid;
-idb.delete(taBortHandlaggare);
+                System.out.println("Anställd har tagits bort.");
 
-String taBortAnstalld = "DELETE FROM anstalld WHERE aid = " + aid;
-idb.delete(taBortAnstalld);
+                jTFAid.setText("");
 
-System.out.println("Anställd har tagits bort.");
+            } else {
+                System.out.println("Finns inte anställd med ID");
 
+            }
 
-jTFAid.setText("");
+        } catch (InfException ex) {
+            System.out.println("Ett fel uppstod: " + ex.getMessage());
 
-} else{
-System.out.println("Finns inte anställd med ID");
-
-}
-
-}catch (InfException ex){
-System.out.println("Ett fel uppstod: " + ex.getMessage());
-    
-}catch (NumberFormatException ex){
-System.out.println("Fel ID: " + ex.getMessage());
-}
+        } catch (NumberFormatException ex) {
+            System.out.println("Fel ID: " + ex.getMessage());
+        }
 
     }//GEN-LAST:event_jBTaBortActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      new Anstallda(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new Anstallda(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

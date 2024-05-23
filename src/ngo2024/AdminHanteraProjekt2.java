@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
 import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -13,7 +14,8 @@ import java.util.HashMap;
  * @author Ägaren
  */
 public class AdminHanteraProjekt2 extends javax.swing.JFrame {
-     private InfDB idb;
+
+    private InfDB idb;
     private String InloggadAnvandare;
 
     /**
@@ -23,9 +25,8 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
         this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
-         //fyllComboBox();
         jLVemInlogg.setText(InloggadAnvandare);
-       
+
     }
 
     /**
@@ -123,18 +124,18 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminProjektHantera(idb, InloggadAnvandare).setVisible(true);
+        new AdminProjektHantera(idb, InloggadAnvandare).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       new AdminAndraProjekt(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminAndraProjekt(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -172,7 +173,7 @@ public class AdminHanteraProjekt2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new AdminHanteraProjekt2().setVisible(true);
+                // new AdminHanteraProjekt2().setVisible(true);
             }
         });
     }

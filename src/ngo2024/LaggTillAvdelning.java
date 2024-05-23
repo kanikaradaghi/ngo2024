@@ -12,10 +12,9 @@ import oru.inf.InfException;
  * @author walee
  */
 public class LaggTillAvdelning extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String InloggadAnvandare;
-    
 
     /**
      * Creates new form LaggTillAvdelning
@@ -185,8 +184,8 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFTelefonAvdelningActionPerformed
 
     private void jBLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillActionPerformed
-       
-       if (!Validering.textFaltHarVarde(jTFNamnAvdelning)
+
+        if (!Validering.textFaltHarVarde(jTFNamnAvdelning)
                 || !Validering.textFaltHarVarde(jTFBeskrivningAvdelning)
                 || !Validering.textFaltHarVarde(jTFAdressAvdelning)
                 || !Validering.textFaltHarVarde(jTFEpostAvdelning)
@@ -196,53 +195,51 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
                 || !Validering.isHelTal(jTFStadAvdelning)
                 || !Validering.isHelTal(jTFTelefonAvdelning)
                 || !Validering.isValidEpost(jTFEpostAvdelning)
-                || !Validering.isHelTal(jTFChefAvdelning))
-                {
+                || !Validering.isHelTal(jTFChefAvdelning)) {
 
             return;
-        } 
-        
-       String namn = jTFNamnAvdelning.getText();
-       String beskrivning = jTFBeskrivningAvdelning.getText();
-       String adress = jTFAdressAvdelning.getText();
-       String epost = jTFEpostAvdelning.getText();
-       String telefon = jTFTelefonAvdelning.getText();
-       String stad = jTFStadAvdelning.getText();
-       String chef = jTFChefAvdelning.getText();
-       
-       int newAvdid = 1;
-       
-       try{
+        }
+//        Lägger till ny avdelning
+        String namn = jTFNamnAvdelning.getText();
+        String beskrivning = jTFBeskrivningAvdelning.getText();
+        String adress = jTFAdressAvdelning.getText();
+        String epost = jTFEpostAvdelning.getText();
+        String telefon = jTFTelefonAvdelning.getText();
+        String stad = jTFStadAvdelning.getText();
+        String chef = jTFChefAvdelning.getText();
+//       ger den nya avdelning id.
+        int newAvdid = 1;
+
+        try {
             String maxAvdidSql = "SELECT MAX(avdid) FROM avdelning";
             String maxAvdidStr = idb.fetchSingle(maxAvdidSql);
-            
-            if(maxAvdidStr != null && !maxAvdidStr.isEmpty()){
+
+            if (maxAvdidStr != null && !maxAvdidStr.isEmpty()) {
                 newAvdid = Integer.parseInt(maxAvdidStr) + 1;
             }
-            
-            
+
             String sqlAvdelning = "INSERT INTO avdelning (avdid, namn, beskrivning, adress, epost, telefon, stad, chef) VALUES ("
-    + newAvdid + ", '" + namn + "', '" + beskrivning + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + stad + "', '" + chef + "')";
-       
+                    + newAvdid + ", '" + namn + "', '" + beskrivning + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + stad + "', '" + chef + "')";
+
             idb.insert(sqlAvdelning);
-        System.out.println("Avdelning har lagts till.");
-        
-        jTFNamnAvdelning.setText("");
-        jTFBeskrivningAvdelning.setText("");
-        jTFAdressAvdelning.setText("");
-        jTFEpostAvdelning.setText("");
-        jTFTelefonAvdelning.setText("");
-        jTFStadAvdelning.setText("");
-        jTFChefAvdelning.setText("");
-     
-        }catch(InfException e){
-            System.out.println("Ett fel uppstod:" + e.getMessage() );
+            System.out.println("Avdelning har lagts till.");
+
+            jTFNamnAvdelning.setText("");
+            jTFBeskrivningAvdelning.setText("");
+            jTFAdressAvdelning.setText("");
+            jTFEpostAvdelning.setText("");
+            jTFTelefonAvdelning.setText("");
+            jTFStadAvdelning.setText("");
+            jTFChefAvdelning.setText("");
+
+        } catch (InfException e) {
+            System.out.println("Ett fel uppstod:" + e.getMessage());
         }
     }//GEN-LAST:event_jBLaggTillActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        new AdminAvdelning(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

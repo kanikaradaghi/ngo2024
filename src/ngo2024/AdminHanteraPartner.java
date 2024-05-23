@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -11,6 +12,7 @@ import oru.inf.InfException;
  * @author Ägaren
  */
 public class AdminHanteraPartner extends javax.swing.JFrame {
+
     private InfDB idb;
     private String InloggadAnvandare;
 
@@ -18,12 +20,11 @@ public class AdminHanteraPartner extends javax.swing.JFrame {
      * Creates new form AdminHanteraPartner
      */
     public AdminHanteraPartner(InfDB idb, String InloggadAnvandare) {
-       this.idb = idb;
+        this.idb = idb;
         this.InloggadAnvandare = InloggadAnvandare;
         initComponents();
         jLVemInlogg.setText(InloggadAnvandare);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,23 +120,23 @@ public class AdminHanteraPartner extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       new AdminLaggTillPartner(idb, InloggadAnvandare).setVisible(true);
+        new AdminLaggTillPartner(idb, InloggadAnvandare).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    new AdminTaBortPartner(idb, InloggadAnvandare).setVisible(true);
-        this.setVisible(false);    
+        new AdminTaBortPartner(idb, InloggadAnvandare).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new AdminProjekt(idb, InloggadAnvandare).setVisible(true);
-    this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new AdminAndraPartner(idb, InloggadAnvandare).setVisible(true);
-        this.setVisible(false);    
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -168,7 +169,7 @@ public class AdminHanteraPartner extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new AdminHanteraPartner().setVisible(true);
+                // new AdminHanteraPartner().setVisible(true);
             }
         });
     }

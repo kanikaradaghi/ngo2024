@@ -294,6 +294,34 @@ public class AdminAndraProjekt extends javax.swing.JFrame {
 
     private void jBAndraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraProjektActionPerformed
         
+        if (!Validering.textFaltHarVarde(jTFProjektnamnProjekt)
+                || !Validering.textFaltHarVarde(jTFBeskrivningProjekt)
+                || !Validering.textFaltHarVarde(jTFStartdatumProjekt)
+                || !Validering.textFaltHarVarde(jTFSlutdatumProjekt)
+                || !Validering.textFaltHarVarde(jTFKostnadProjekt)
+                || !Validering.textFaltHarVarde(jTFStatusProjekt)
+                || !Validering.textFaltHarVarde(jTFPrioritetProjekt)
+                || !Validering.textFaltHarVarde(jTFPidProjekt)
+                || !Validering.textFaltHarVarde(jTFProjektchefProjekt)
+                || !Validering.isHelTal(jTFPidProjekt)
+                || !Validering.isHelTal(jTFProjektchefProjekt)
+                || !Validering.isHelTal(jTFLandProjekt)
+            || !Validering.textFaltHarVarde(jTFLandProjekt))
+                {
+
+            return;
+        }
+
+        if (!Validering.isValidDate(jTFStartdatumProjekt) || !Validering.isValidDate(jTFSlutdatumProjekt)) {
+            return;
+        }
+
+        if (!Validering.isValidCost(jTFKostnadProjekt)) {
+
+            return;
+        }
+        
+        
     String pid = jTFPidProjekt.getText();
     String projektnamn = jTFProjektnamnProjekt.getText();
     String beskrivning = jTFBeskrivningProjekt.getText();

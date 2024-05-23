@@ -185,6 +185,23 @@ public class LaggTillAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFTelefonAvdelningActionPerformed
 
     private void jBLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillActionPerformed
+       
+       if (!Validering.textFaltHarVarde(jTFNamnAvdelning)
+                || !Validering.textFaltHarVarde(jTFBeskrivningAvdelning)
+                || !Validering.textFaltHarVarde(jTFAdressAvdelning)
+                || !Validering.textFaltHarVarde(jTFEpostAvdelning)
+                || !Validering.textFaltHarVarde(jTFTelefonAvdelning)
+                || !Validering.textFaltHarVarde(jTFStadAvdelning)
+                || !Validering.textFaltHarVarde(jTFChefAvdelning)
+                || !Validering.isHelTal(jTFStadAvdelning)
+                || !Validering.isHelTal(jTFTelefonAvdelning)
+                || !Validering.isValidEpost(jTFEpostAvdelning)
+                || !Validering.isHelTal(jTFChefAvdelning))
+                {
+
+            return;
+        } 
+        
        String namn = jTFNamnAvdelning.getText();
        String beskrivning = jTFBeskrivningAvdelning.getText();
        String adress = jTFAdressAvdelning.getText();

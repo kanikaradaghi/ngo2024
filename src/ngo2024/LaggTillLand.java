@@ -165,6 +165,9 @@ public class LaggTillLand extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBLaggTillLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillLandActionPerformed
+
+        if (Validering.textFaltHarVarde(jTFNamnLand) && Validering.textFaltHarVarde(jTFSprakLand) && Validering.textFaltHarVarde(jTFValutaLand) && Validering.textFaltHarVarde(jTFTidszonLand) && Validering.textFaltHarVarde(jTFPolitiskStrukturLand) && Validering.textFaltHarVarde(jTFEkonomiLand)) {
+
         String namn = jTFNamnLand.getText();
         String sprak = jTFSprakLand.getText();
         String valuta = jTFValutaLand.getText();
@@ -197,6 +200,7 @@ public class LaggTillLand extends javax.swing.JFrame {
         
         }catch(InfException e){
             System.out.println("Ett fel uppstod:" + e.getMessage() );
+        }
         }
         
     }//GEN-LAST:event_jBLaggTillLandActionPerformed

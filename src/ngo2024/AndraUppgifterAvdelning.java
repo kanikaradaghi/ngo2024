@@ -272,7 +272,27 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBValjAvdelningActionPerformed
 
     private void jBAndraAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraAvdelningActionPerformed
-    
+
+        if (!Validering.textFaltHarVarde(jTFAvdidAvdelning)
+                || !Validering.textFaltHarVarde(jTFNamnAvdelning)
+                || !Validering.textFaltHarVarde(jTFBeskrivningAvdelning)
+                || !Validering.textFaltHarVarde(jTFAdressAvdelning)
+                || !Validering.textFaltHarVarde(jTFEpostAvdelning)
+                || !Validering.textFaltHarVarde(jTFTelefonAvdelning)
+                || !Validering.textFaltHarVarde(jTFStadAvdelning)
+                || !Validering.textFaltHarVarde(jTFChefAvdelning)
+                || !Validering.isHelTal(jTFAvdidAvdelning)
+                || !Validering.isHelTal(jTFStadAvdelning)
+                || !Validering.isHelTal(jTFTelefonAvdelning)
+                || !Validering.isValidEpost(jTFEpostAvdelning)
+                || !Validering.isHelTal(jTFChefAvdelning))
+                {
+
+            return;
+        }
+
+        
+        
     String avdid = jTFAvdidAvdelning.getText();
     String namn = jTFNamnAvdelning.getText();
     String beskrivning = jTFBeskrivningAvdelning.getText();
@@ -284,7 +304,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
 
     try {
         // Uppdatera databasen med de nya värdena
-String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '" + beskrivning + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', stad = '" + stad + "', chef = NULL WHERE avdid = '" + avdid + "'";
+String sqlAndring = "UPDATE avdelning SET namn = '" + namn + "', beskrivning = '" + beskrivning + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', stad = '" + stad + "', chef = '" + chef + "' WHERE avdid = '" + avdid + "'";
         idb.update(sqlAndring);
         
         // Visa en bekräftelse att ändringarna har genomförts

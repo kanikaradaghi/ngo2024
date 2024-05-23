@@ -305,7 +305,9 @@ private void fyllComboBox() {
     }//GEN-LAST:event_jCBValjPartnerActionPerformed
 
     private void jBAndraPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAndraPartnerActionPerformed
-       
+
+        if (Validering.textFaltHarVarde(jTFPid) && Validering.isHelTal(jTFPid) && Validering.textFaltHarVarde(jTFPartner) && Validering.textFaltHarVarde(jTFKontaktperson) && Validering.textFaltHarVarde(jTFKontaktepost) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFAdress) && Validering.textFaltHarVarde(jTFBranch) && Validering.textFaltHarVarde(jTFStad) && Validering.isHelTal(jTFTelefon) && Validering.isValidEpost(jTFKontaktepost) && Validering.isHelTal(jTFStad)) {
+        
     String pid = jTFPid.getText();
     String partner = jTFPartner.getText();
     String kontaktperson = jTFKontaktperson.getText();
@@ -326,6 +328,7 @@ private void fyllComboBox() {
         System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
         e.printStackTrace();
     }
+        }
     }//GEN-LAST:event_jBAndraPartnerActionPerformed
 
     private void jTFPidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPidActionPerformed

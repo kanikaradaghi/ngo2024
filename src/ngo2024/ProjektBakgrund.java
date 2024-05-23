@@ -12,6 +12,9 @@ import java.util.ArrayList;
  *
  * @author gylle
  */
+//Klassen sköter all koppling om informationpartners och projekt mellan gränssnittet och databasen
+// Klassens metoder är döpta efter vad de gör, där "get" hämtar något från databasen och "andra" ändrar något i datasen
+//
 public class ProjektBakgrund {
 
     private static InfDB idb;
@@ -20,7 +23,8 @@ public class ProjektBakgrund {
         this.idb = idb;
     }
 
-    //Döm mig inte för följade två kodblock, koden gör det den ska men det ser förjävligt ut.
+    //Döm mig inte för följade två kodblock, Metoden hämtar en arraylist av alla projektnamn som en handläggare är tilldelad
+// på.
     public static ArrayList konstigKod(String ePost) {
         String sqlFraga = "select ans_proj.pid from anstalld, ans_proj where anstalld.aid = ans_proj.aid "
                 + "and anstalld.epost = '" + ePost + "'";

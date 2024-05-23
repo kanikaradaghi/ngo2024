@@ -13,6 +13,9 @@ import oru.inf.InfException;
  *
  * @author User
  */
+
+// Klass för handlaggaremeny där en handläggare ser sina uppgifter samt kan gå vidare till mina projekt, och min avdelning
+// är du projektledare kommer även allternativet att öpnna upp sidan för projektledare
 public class HandlaggarMeny extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -26,6 +29,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     /**
      * Creates new form HandlaggarMeny
      */
+    
     public HandlaggarMeny(InfDB idb, String InloggadAnvandareH) {
         this.idb = idb;
         this.InloggadAnvandareH = InloggadAnvandareH;
@@ -359,7 +363,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
     private void tfmittAidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfmittAidActionPerformed
         
     }//GEN-LAST:event_tfmittAidActionPerformed
-
+//Knapp för att spara ändringar du harv skrivit i textboxen in till datasbasen, alla knappar följer samma koncept.
     private void btnAndraNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraNamnActionPerformed
         
         boolean klart = false;
@@ -450,7 +454,7 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         new Inlogg(idb).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLoggaUtActionPerformed
-
+// Knapp för att gå vidare till projektledar sidan.
     private void btnProjektLedarKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektLedarKnappActionPerformed
         new Projektledare(idb, InloggadAnvandareH).setVisible(true);        
         this.setVisible(false);

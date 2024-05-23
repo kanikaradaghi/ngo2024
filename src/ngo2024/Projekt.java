@@ -14,6 +14,8 @@ import java.util.ArrayList;
  *
  * @author User
  */
+
+//  Klassen visar alla projekt en handläggare har blivit tilldelad, samt partners på dessa projekt.
 public class Projekt extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -384,6 +386,9 @@ public class Projekt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //Combobox där man völjer sitt projekt, alla metoder för att hämta information från databasen sker i klassen
+    // ProjektBakgrund, comboboxen för partner är utformad likadant.
     private void cbMinaprojektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinaprojektActionPerformed
         String valtObjekt = (String) cbMinaprojekt.getSelectedItem();
         comboBoxModel2.removeAllElements();

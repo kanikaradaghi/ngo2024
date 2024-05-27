@@ -201,7 +201,15 @@ public class AdminLaggTillPartner extends javax.swing.JFrame {
 
     private void jBLaggTillPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaggTillPartnerActionPerformed
 
-        if (Validering.textFaltHarVarde(jTFPartner) && Validering.textFaltHarVarde(jTFKontaktperson) && Validering.textFaltHarVarde(jTFKontaktepost1) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFTelefon) && Validering.textFaltHarVarde(jTFAdress) && Validering.textFaltHarVarde(jTFStad) && Validering.isValidDate(jTFBranch) && Validering.isHelTal(jTFTelefon) && Validering.isValidEpost(jTFKontaktepost1)) {
+        if (Validering.textFaltHarVarde(jTFPartner)
+                && Validering.textFaltHarVarde(jTFKontaktperson)
+                && Validering.textFaltHarVarde(jTFKontaktepost1)
+                && Validering.textFaltHarVarde(jTFTelefon)
+                && Validering.textFaltHarVarde(jTFTelefon)
+                && Validering.textFaltHarVarde(jTFAdress)
+                && Validering.textFaltHarVarde(jTFStad)
+                && Validering.isHelTal(jTFTelefon)
+                && Validering.isValidEpost(jTFKontaktepost1)) {
 
             String partner = jTFPartner.getText();
             String kontaktperson = jTFKontaktperson.getText();

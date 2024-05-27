@@ -16,7 +16,6 @@ import javax.swing.DefaultListModel;
  *
  * @author User
  */
-
 //information för handläggare om avdelning.
 public class AvdelningHandlaggare extends javax.swing.JFrame {
 
@@ -455,9 +454,8 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
                     modelErsatt.addElement(projektNamn);
                 }
             }
-            if (modelErsatt.getSize() > 0) {
-                projektPaAvdelning.setModel(modelErsatt);
-            }
+
+            projektPaAvdelning.setModel(modelErsatt);
 
         }
 
@@ -476,9 +474,8 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
                     modelErsatt.addElement(projektNamn);
                 }
             }
-            if (modelErsatt.getSize() > 0) {
-                projektPaAvdelning.setModel(modelErsatt);
-            }
+
+            projektPaAvdelning.setModel(modelErsatt);
 
         } else {
             checkboxcheck();
@@ -499,11 +496,10 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
                 System.out.println(ProjektBakgrund.getStatus(projektNamn));
                 if (ProjektBakgrund.getStatus(projektNamn).equals("Avslutat")) {
                     modelErsatt.addElement(projektNamn);
+                    projektPaAvdelning.setModel(modelErsatt);
                 }
             }
-            if (modelErsatt.getSize() > 0) {
-                projektPaAvdelning.setModel(modelErsatt);
-            }
+            projektPaAvdelning.setModel(modelErsatt);
 
         } else {
             checkboxcheck();
@@ -512,6 +508,8 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
 
     private void btnAngraDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAngraDatumActionPerformed
         projektPaAvdelning.setModel(comboBoxModel);
+        tftSokDatum.setText("");
+        tftSokDatumSlut.setText("");
     }//GEN-LAST:event_btnAngraDatumActionPerformed
 
     private void btnSokDatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokDatumActionPerformed
@@ -520,8 +518,10 @@ public class AvdelningHandlaggare extends javax.swing.JFrame {
 //        Söker efter datum.
             String sokDatum = tftSokDatum.getText();
             String sokDatumSlut = tftSokDatumSlut.getText();
-            int sokDatumint = Integer.parseInt(sokDatum);
-            int sokDatumSlutInt = Integer.parseInt(sokDatumSlut);
+            String sokDatum2 = sokDatum.replace("-", "").replaceAll("[\\p{C}\\p{Z}]+", "");
+            String sokDatumSlut2 = sokDatumSlut.replace("-", "").replaceAll("[\\p{C}\\p{Z}]+", "");
+            int sokDatumint = Integer.parseInt(sokDatum2);
+            int sokDatumSlutInt = Integer.parseInt(sokDatumSlut2);
             DefaultComboBoxModel<String> modelErsatt = new DefaultComboBoxModel<>();
             boolean hittad = false;
             for (int i = 0; i < comboBoxModel.getSize(); i++) {

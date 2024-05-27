@@ -38,6 +38,7 @@ public class Projektledare extends javax.swing.JFrame {
         comboBoxModel = new DefaultComboBoxModel<>();
         comboBoxModel2 = new DefaultComboBoxModel<>();
         comboBoxModel3 = new DefaultComboBoxModel<>();
+        minaPartners = new ArrayList<>();
         minaProjekt = ProjektBakgrund.getProjektNamnForLedarel(AnstallBakgrund.getAId(InloggadAnvandareH));
         minaHandlaggareBox.setModel(comboBoxModel3);
         lblMeddelande.setVisible(false);
@@ -48,12 +49,6 @@ public class Projektledare extends javax.swing.JFrame {
             comboBoxModel.addElement(namn);
         }
 
-        for (String namn : minaProjekt) {
-            minaPartners = ProjektBakgrund.getProjektPartners(namn);
-        }
-        for (String partner : minaPartners) {
-            comboBoxModel2.addElement(partner);
-        }
 
         partnersPaMina.setModel(comboBoxModel2);
 
@@ -113,6 +108,8 @@ public class Projektledare extends javax.swing.JFrame {
         lblstats = new javax.swing.JLabel();
         lblPid = new javax.swing.JLabel();
         lblLand = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -241,6 +238,10 @@ public class Projektledare extends javax.swing.JFrame {
 
         lblLand.setText("jLabel13");
 
+        jLabel13.setText("Använd förnamn eller id");
+
+        jLabel14.setText("Använd namn eller id");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -320,13 +321,17 @@ public class Projektledare extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblstats, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tftVadlPartner, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tftHandlaggarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(btnTabortHandlaggare)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnLaggTillHandLaggare)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(tftHandlaggarRuta, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(37, 37, 37)
+                                            .addComponent(btnTabortHandlaggare)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnLaggTillHandLaggare)))
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tftVadlPartner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
                                 .addGap(0, 1, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -341,7 +346,8 @@ public class Projektledare extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel14))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(minaChefFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,7 +363,8 @@ public class Projektledare extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tftProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -422,9 +429,16 @@ public class Projektledare extends javax.swing.JFrame {
         lblLand.setText(ProjektBakgrund.getLand(valtObjekt));
 
         minaHandlaggare = ProjektBakgrund.getAllaHandlaggare(projektNamn);
+        comboBoxModel3.removeAllElements();
         for (String handLaggare : minaHandlaggare) {
             comboBoxModel3.addElement(handLaggare);
             System.out.println("Lägger till: " + handLaggare);
+        }
+        minaPartners = ProjektBakgrund.getProjektPartners(projektNamn);
+        comboBoxModel2.removeAllElements();
+        for(String partner: minaPartners){
+            comboBoxModel2.addElement(partner);
+            
         }
 
     }//GEN-LAST:event_minaChefForActionPerformed
@@ -480,11 +494,13 @@ public class Projektledare extends javax.swing.JFrame {
             String projektId = ProjektBakgrund.getPid(projektNamn);
 
             ProjektBakgrund.laggTillPartner(projektId, partnerId);
+            tftVadlPartner.setText("Partner är tillagd");
         }
         if (allaId.contains(partner)) {
             String projektId = ProjektBakgrund.getPid(projektNamn);
 
             ProjektBakgrund.laggTillPartner(projektId, partner);
+            tftVadlPartner.setText("Partner är tillagd");
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
@@ -505,12 +521,14 @@ public class Projektledare extends javax.swing.JFrame {
             String projektId = ProjektBakgrund.getPid(projektNamn);
 
             ProjektBakgrund.taBortPartner(projektId, partnerId);
+            tftVadlPartner.setText("Partner är bortagen");
 
         }
         if (allaId.contains(partner)) {
             String projektId = ProjektBakgrund.getPid(projektNamn);
 
             ProjektBakgrund.taBortPartner(projektId, partner);
+            tftVadlPartner.setText("Partner är borttagen");
         }
 
 
@@ -558,20 +576,23 @@ public class Projektledare extends javax.swing.JFrame {
         String valtObjekt = (String) comboBoxModel3.getSelectedItem();
         tftHandlaggarRuta.setText(valtObjekt);
     }//GEN-LAST:event_minaHandlaggareBoxActionPerformed
-
+// Knapp för att lägga till handläggare med aid eller förnamn
     private void btnLaggTillHandLaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillHandLaggareActionPerformed
         String anstalld = tftHandlaggarRuta.getText();
         ArrayList<String> allaFornamn = AnstallBakgrund.getAnstallda();
         ArrayList<String> allaId = AnstallBakgrund.getAllaAid();
+        boolean andring = true;
+        boolean andring2 = true;
 
         if (!allaFornamn.contains(anstalld) || AnstallBakgrund.getAntalforNamn(anstalld) > 1) {
-            tftHandlaggarRuta.setText("Misslyckades, andvänd aid");
+            andring = false;
         } else {
 
             String pid = ProjektBakgrund.getPid(projektNamn);
             String aid = AnstallBakgrund.getAidMedForNamn(anstalld);
 
             ProjektBakgrund.laggTillHandlaggare(pid, aid);
+            andring = true;
         }
         if (allaId.contains(anstalld)) {
 
@@ -579,8 +600,18 @@ public class Projektledare extends javax.swing.JFrame {
             String aid = anstalld;
 
             ProjektBakgrund.laggTillHandlaggare(pid, aid);
-
+            andring2 = true;
         }
+        else{
+            andring2 = false;
+        }
+        if(!andring && !andring2){
+           tftHandlaggarRuta.setText("Misslyckades");
+        }
+        else{
+            tftHandlaggarRuta.setText("Ändringar sparade");
+        }
+        
 
     }//GEN-LAST:event_btnLaggTillHandLaggareActionPerformed
 
@@ -630,6 +661,8 @@ public class Projektledare extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

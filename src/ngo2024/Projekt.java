@@ -31,7 +31,7 @@ public class Projekt extends javax.swing.JFrame {
         this.idb = idb;
         this.InloggadAnvandareH = InloggadAnvandareH;
         comboBoxModel = new DefaultComboBoxModel<>();
-        nyaNamn = ProjektBakgrund.konstigKod(InloggadAnvandareH);
+        nyaNamn = ProjektBakgrund.listaProjektNamnHandlaggare(InloggadAnvandareH);
         comboBoxModel2 = new DefaultComboBoxModel<>();
         partnerNamn = ProjektBakgrund.getPartnersPaVarje(InloggadAnvandareH);
         initComponents();

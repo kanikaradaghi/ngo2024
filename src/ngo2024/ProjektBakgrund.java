@@ -25,7 +25,7 @@ public class ProjektBakgrund {
 
     //Döm mig inte för följade två kodblock, Metoden hämtar en arraylist av alla projektnamn som en handläggare är tilldelad
 // på.
-    public static ArrayList konstigKod(String ePost) {
+    public static ArrayList listaProjektNamnHandlaggare(String ePost) {
         String sqlFraga = "select ans_proj.pid from anstalld, ans_proj where anstalld.aid = ans_proj.aid "
                 + "and anstalld.epost = '" + ePost + "'";
 
@@ -201,7 +201,7 @@ public class ProjektBakgrund {
         }
         return partnerNamn;
     }
-    // Metoden hämtar en arraylist av partnernamn för just ett projekt.
+    // Metoden hämtar en arraylist av partnernamn för just ett projekt, tar ett ett projektnamn som parameter.
 
     public static ArrayList getProjektPartners(String namn) {
         ArrayList<String> namnLista = new ArrayList<>();

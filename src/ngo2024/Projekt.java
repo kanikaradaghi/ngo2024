@@ -33,7 +33,7 @@ public class Projekt extends javax.swing.JFrame {
         comboBoxModel = new DefaultComboBoxModel<>();
         nyaNamn = ProjektBakgrund.listaProjektNamnHandlaggare(InloggadAnvandareH);
         comboBoxModel2 = new DefaultComboBoxModel<>();
-        partnerNamn = ProjektBakgrund.getPartnersPaVarje(InloggadAnvandareH);
+        partnerNamn = new ArrayList<>();
         initComponents();
         lbEpostProjekt.setText(InloggadAnvandareH);
         cbMinaprojekt.setModel(comboBoxModel);
@@ -42,9 +42,7 @@ public class Projekt extends javax.swing.JFrame {
             comboBoxModel.addElement(namn);
         }
         cbPartnersPaMina.setModel(comboBoxModel2);
-        for (String partner : partnerNamn) {
-            comboBoxModel2.addElement(partner);
-        }
+
     }
 
     /**
@@ -389,10 +387,11 @@ public class Projekt extends javax.swing.JFrame {
     // ProjektBakgrund, comboboxen för partner är utformad likadant.
     private void cbMinaprojektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMinaprojektActionPerformed
         String valtObjekt = (String) cbMinaprojekt.getSelectedItem();
-        comboBoxModel2.removeAllElements();
-        ArrayList<String> partnersPaDetta = ProjektBakgrund.getProjektPartners(valtObjekt);
+//        comboBoxModel2.removeAllElements();
+         partnerNamn = ProjektBakgrund.getProjektPartners(valtObjekt);
         cbPartnersPaMina.setModel(comboBoxModel2);
-        for (String partner : partnersPaDetta) {
+        comboBoxModel2.removeAllElements();
+        for (String partner : partnerNamn) {
             comboBoxModel2.addElement(partner);
         }
 

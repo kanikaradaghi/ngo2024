@@ -192,6 +192,11 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         });
 
         tfEpost.setText("jTextField1");
+        tfEpost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfEpostActionPerformed(evt);
+            }
+        });
 
         btnLoggaUt.setText("Logga ut");
         btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +476,10 @@ public class HandlaggarMeny extends javax.swing.JFrame {
         new Projektledare(idb, InloggadAnvandareH).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnProjektLedarKnappActionPerformed
+
+    private void tfEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEpostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEpostActionPerformed
 
     /**
      * @param args the command line arguments

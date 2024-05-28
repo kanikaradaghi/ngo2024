@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -250,6 +251,7 @@ public class AndraLand extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
+        JOptionPane.showMessageDialog(null, "Ändringar har genomförts");
     }//GEN-LAST:event_jBAndraLandActionPerformed
 
     private void jCBValjLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBValjLandActionPerformed

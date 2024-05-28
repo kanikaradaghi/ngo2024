@@ -4,6 +4,7 @@
  */
 package ngo2024;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -145,6 +146,7 @@ public class TaBortAnstalld extends javax.swing.JFrame {
         } catch (NumberFormatException ex) {
             System.out.println("Fel ID: " + ex.getMessage());
         }
+        JOptionPane.showMessageDialog(null, "Anställd har tagits bort");
 
     }//GEN-LAST:event_jBTaBortActionPerformed
 

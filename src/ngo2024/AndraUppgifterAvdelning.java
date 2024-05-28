@@ -8,6 +8,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -314,6 +315,7 @@ public class AndraUppgifterAvdelning extends javax.swing.JFrame {
             System.out.println("Ett fel uppstod. Ändringar kunde inte genomföras.");
             e.printStackTrace();
         }
+        JOptionPane.showMessageDialog(null, "Ändringar har genomförts");
 
 
     }//GEN-LAST:event_jBAndraAvdelningActionPerformed
